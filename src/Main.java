@@ -1,5 +1,7 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.lang.*;
 import java.io.*;
@@ -34,7 +36,7 @@ public class Main extends JFrame {
      * Asparagus
      * Primary color for UI
      */
-    final Color asparagus = new Color(134,168,115);
+    static final Color asparagus = new Color(134,168,115);
 
     /**
      * Satin sheen gold
@@ -82,6 +84,12 @@ public class Main extends JFrame {
      * Thin padding
      */
     EmptyBorder thinPadding = new EmptyBorder(10,10,10,10);
+
+    Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
+
+    Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+
+
     /**
      * Main entry point of the program
      * @param args command line arguments
@@ -190,11 +198,13 @@ public class Main extends JFrame {
         // Intro Label
         JLabel introLabel = new JLabel("Hello,");
         introLabel.setFont(montserrat);
+        introLabel.setForeground(Color.BLACK);
         introPanel.add(introLabel, BorderLayout.NORTH);
 
         JLabel firstNameLabel = new JLabel();
         firstNameLabel.setFont(montserratBold);
         firstNameLabel.setText("<Name>");
+        firstNameLabel.setForeground(Color.BLACK);
         introPanel.add(firstNameLabel, BorderLayout.SOUTH);
 
         // Buttons Panel
@@ -253,77 +263,266 @@ public class Main extends JFrame {
         JButton addAccountButton = new JButton(scaledAddAccountIcon);
         addAccountButton.setText("Add Account");
         addAccountButton.setFont(montserratBold.deriveFont(15f));
+        addAccountButton.setForeground(Color.BLACK);
         addAccountButton.setHorizontalAlignment(SwingConstants.LEFT);
         addAccountButton.setOpaque(false);
         addAccountButton.setContentAreaFilled(false);
         addAccountButton.setBorderPainted(false);
         buttonsPanel.add(addAccountButton, gbc);
 
+        addAccountButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            /**
+             * Interaction with the button when the mouse hovers on it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(handCursor);
+
+                addAccountButton.setFont(montserratBold.deriveFont(17f));
+                addAccountButton.setForeground(asparagus);
+            } // end of mouseEntered method
+
+            /**
+             * Interaction with the button when the mouse hovers away from it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(defaultCursor);
+
+                addAccountButton.setFont(montserratBold.deriveFont(15f));
+                addAccountButton.setForeground(Color.BLACK);
+            } // end of mouseExited method
+        }); // end of mouseListener for addAccountButton
+
         // Deposit Button
         gbc.gridy = 1;
         JButton depositButton = new JButton(scaledDepositIcon);
         depositButton.setText("Deposit");
         depositButton.setFont(montserratBold.deriveFont(15f));
+        depositButton.setForeground(Color.BLACK);
         depositButton.setHorizontalAlignment(SwingConstants.LEFT);
         depositButton.setOpaque(false);
         depositButton.setContentAreaFilled(false);
         depositButton.setBorderPainted(false);
         buttonsPanel.add(depositButton, gbc);
 
+        depositButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            /**
+             * Interaction with the button when the mouse hovers on it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(handCursor);
+
+                depositButton.setFont(montserratBold.deriveFont(17f));
+                depositButton.setForeground(asparagus);
+            } // end of mouseEntered method
+
+            /**
+             * Interaction with the button when the mouse hovers away from it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(defaultCursor);
+
+                depositButton.setFont(montserratBold.deriveFont(15f));
+                depositButton.setForeground(Color.BLACK);
+            } // end of mouseExited method
+        }); // end of mouseListener for depositButton
+
         // Withdraw Button
         gbc.gridy = 2;
         JButton withdrawButton = new JButton(scaledWithdrawIcon);
         withdrawButton.setText("Withdraw");
         withdrawButton.setFont(montserratBold.deriveFont(15f));
+        withdrawButton.setForeground(Color.BLACK);
         withdrawButton.setHorizontalAlignment(SwingConstants.LEFT);
         withdrawButton.setOpaque(false);
         withdrawButton.setContentAreaFilled(false);
         withdrawButton.setBorderPainted(false);
         buttonsPanel.add(withdrawButton, gbc);
 
+        withdrawButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            /**
+             * Interaction with the button when the mouse hovers on it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(handCursor);
+
+                withdrawButton.setFont(montserratBold.deriveFont(17f));
+                withdrawButton.setForeground(asparagus);
+            } // end of mouseEntered method
+
+            /**
+             * Interaction with the button when the mouse hovers away from it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(defaultCursor);
+
+                withdrawButton.setFont(montserratBold.deriveFont(15f));
+                withdrawButton.setForeground(Color.BLACK);
+            } // end of mouseExited method
+        }); // end of mouseListener for withdrawButton
+
         // Transfer Button
         gbc.gridy = 3;
         JButton transferButton = new JButton(scaledTransferIcon);
         transferButton.setText("Transfer");
         transferButton.setFont(montserratBold.deriveFont(15f));
+        transferButton.setForeground(Color.BLACK);
         transferButton.setHorizontalAlignment(SwingConstants.LEFT);
         transferButton.setOpaque(false);
         transferButton.setContentAreaFilled(false);
         transferButton.setBorderPainted(false);
         buttonsPanel.add(transferButton, gbc);
 
+        transferButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            /**
+             * Interaction with the button when the mouse hovers on it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(handCursor);
+
+                transferButton.setFont(montserratBold.deriveFont(17f));
+                transferButton.setForeground(asparagus);
+            } // end of mouseEntered method
+
+            /**
+             * Interaction with the button when the mouse hovers away from it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(defaultCursor);
+
+                transferButton.setFont(montserratBold.deriveFont(15f));
+                transferButton.setForeground(Color.BLACK);
+            } // end of mouseExited method
+        }); // end of mouseListener for transferButton
+
         // Transaction Button
         gbc.gridy = 4;
         JButton transactionsButton = new JButton(scaledTransactionsIcon);
         transactionsButton.setText("Transactions");
         transactionsButton.setFont(montserratBold.deriveFont(15f));
+        transactionsButton.setForeground(Color.BLACK);
         transactionsButton.setHorizontalAlignment(SwingConstants.LEFT);
         transactionsButton.setOpaque(false);
         transactionsButton.setContentAreaFilled(false);
         transactionsButton.setBorderPainted(false);
         buttonsPanel.add(transactionsButton, gbc);
 
+        transactionsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            /**
+             * Interaction with the button when the mouse hovers on it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(handCursor);
+
+                transactionsButton.setFont(montserratBold.deriveFont(17f));
+                transactionsButton.setForeground(asparagus);
+            } // end of mouseEntered method
+
+            /**
+             * Interaction with the button when the mouse hovers away from it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(defaultCursor);
+
+                transactionsButton.setFont(montserratBold.deriveFont(15f));
+                transactionsButton.setForeground(Color.BLACK);
+            } // end of mouseExited method
+        }); // end of mouseListener for transactionsButton
+
         // Switch to Wallet Button
         gbc.gridy = 5;
         JButton switchButton = new JButton(scaledSwitchIcon);
         switchButton.setText("Switch to Wallet");
         switchButton.setFont(montserratBold.deriveFont(15f));
+        switchButton.setForeground(Color.BLACK);
         switchButton.setHorizontalAlignment(SwingConstants.LEFT);
         switchButton.setOpaque(false);
         switchButton.setContentAreaFilled(false);
         switchButton.setBorderPainted(false);
         buttonsPanel.add(switchButton, gbc);
 
+        switchButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            /**
+             * Interaction with the button when the mouse hovers on it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(handCursor);
+
+                switchButton.setFont(montserratBold.deriveFont(17f));
+                switchButton.setForeground(asparagus);
+            } // end of mouseEntered method
+
+            /**
+             * Interaction with the button when the mouse hovers away from it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(defaultCursor);
+
+                switchButton.setFont(montserratBold.deriveFont(15f));
+                switchButton.setForeground(Color.BLACK);
+            } // end of mouseExited method
+        }); // end of mouseListener for switchButton
+
         // Sign Out Button
         gbc.gridy = 6;
         JButton signOutButton = new JButton(scaledSignOutIcon);
         signOutButton.setText("Sign Out");
         signOutButton.setFont(montserratBold.deriveFont(15f));
+        signOutButton.setForeground(Color.BLACK);
         signOutButton.setHorizontalAlignment(SwingConstants.LEFT);
         signOutButton.setOpaque(false);
         signOutButton.setContentAreaFilled(false);
         signOutButton.setBorderPainted(false);
         buttonsPanel.add(signOutButton, gbc);
+
+        signOutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            /**
+             * Interaction with the button when the mouse hovers on it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(handCursor);
+
+                signOutButton.setFont(montserratBold.deriveFont(17f));
+                signOutButton.setForeground(asparagus);
+            } // end of mouseEntered method
+
+            /**
+             * Interaction with the button when the mouse hovers away from it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(defaultCursor);
+
+                signOutButton.setFont(montserratBold.deriveFont(15f));
+                signOutButton.setForeground(Color.BLACK);
+            } // end of mouseExited method
+        }); // end of mouseListener for signOutButton
 
         gbc.gridy = 7;
         JLabel copyrightLabel = new JLabel();
