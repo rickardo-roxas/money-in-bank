@@ -9,6 +9,10 @@ public class Account {
      */
     private String accountHolder;
     /**
+     * Name of account (i.e. Savings, Checking, etc.)
+     */
+    private String accountName;
+    /**
      * Account number (XXX XXX XXXX)
      */
     private String accountNumber;
@@ -47,6 +51,14 @@ public class Account {
     } // end of setAccountHolder mutator method
 
     /**
+     * Mutates the state of the accountName attribute
+     * @param accountName given value
+     */
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    } // end of setAccountName mutator method
+
+    /**
      * Mutates the state of the accountNumber attribute
      * @param accountNumber given value
      */
@@ -69,6 +81,14 @@ public class Account {
     public String getAccountHolder() {
         return accountHolder;
     } // end of getAccountHolder accessor method
+
+    /**
+     * Accesses the state of the accountName attribute
+     * @return state/value of accountName attribute
+     */
+    public String getAccountName() {
+        return accountName;
+    } // end of getAccountName accessor method
 
     /**
      * Accesses the state of the accountNumber attribute

@@ -25,6 +25,15 @@ public class Main extends JFrame {
      * Constructs Main with graphical user interface
      */
     public Main() {
+        super("Money In Bank");
 
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(1200,600);
+
+        ImageIcon favicon = new ImageIcon("icons/favicon.png");
+        setIconImage(favicon.getImage());
+
+        setLocationRelativeTo(null);
+        setVisible(true);
     } // end of Main constructor
 } // end of class Main
