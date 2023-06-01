@@ -39,6 +39,16 @@ public class Main extends JFrame {
     private final Color satinSheenGold = new Color(187,159,6);
 
     /**
+     * GridBagLayout used for some components.
+     */
+    private final GridBagLayout gridBagLayout = new GridBagLayout();
+
+    /**
+     * GridBagConstraints user for all components using the gridBagLayout object.
+     */
+    private final GridBagConstraints gbc = new GridBagConstraints();
+
+    /**
      * Main entry point of the program
      * @param args command line arguments
      */
@@ -57,14 +67,43 @@ public class Main extends JFrame {
      */
     public Main() {
         super("Money In Bank");
+        setDefaultLookAndFeelDecorated(true);
 
         // Sets the icon image
-        ImageIcon favicon = new ImageIcon("icons/favicon.png");
+        ImageIcon favicon = new ImageIcon("icons/logo.png");
         setIconImage(favicon.getImage());
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+        add(mainPanel);
 
         // Left Panel
         JPanel leftPanel = new JPanel();
-        leftPanel.setBackground(Color.RED);
+        leftPanel.setLayout(new BorderLayout());
+        leftPanel.setBackground(midnightGreen);
+        leftPanel.setPreferredSize(new Dimension(400, 700));
+        mainPanel.add(leftPanel, BorderLayout.LINE_START);
+
+        // Left Panel Components
+        // Logo Panel
+        JPanel logoPanel = new JPanel();
+        logoPanel.setPreferredSize(new Dimension(400,300));
+        logoPanel.setBackground(Color.CYAN);
+        logoPanel.setLayout(new CardLayout(350,300));
+        leftPanel.add(logoPanel, BorderLayout.NORTH);
+
+        // Center Panel
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BorderLayout());
+        centerPanel.setBackground(Color.BLACK);
+        centerPanel.setSize(800,700);
+        mainPanel.add(centerPanel, BorderLayout.CENTER);
+
+        // Center Panel Components
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setBackground(Color.DARK_GRAY);
+        bottomPanel.setPreferredSize(new Dimension(800,300));
+        centerPanel.add(bottomPanel, BorderLayout.SOUTH);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1200,700);
