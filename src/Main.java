@@ -1,9 +1,11 @@
+import javax.swing.*;
+
 /**
  * @author Johan Rickardo Roxas
  * @version 1.00 (2023/06/01)
  * Main program that contains the graphical user-interface.
  */
-public class Main {
+public class Main extends JFrame {
 
     /**
      * Main entry point of the program
@@ -19,5 +21,10 @@ public class Main {
         } // end of try-catch
     } // end of main method
 
+    /**
+     * Constructs Main with graphical user interface
+     */
+    public Main() {
 
+    } // end of Main constructor
 } // end of class Main
