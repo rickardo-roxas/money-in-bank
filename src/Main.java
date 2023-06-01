@@ -279,6 +279,10 @@ public class Main extends JFrame {
             public void mouseEntered(MouseEvent e) {
                 setCursor(handCursor);
 
+                ImageIcon newIcon =
+                        new ImageIcon("icons/btn-hover/account_balance_FILL0_wght400_GRAD0_opsz48.png");
+                ImageIcon scaledIcon = scaleImage(newIcon,35,35);
+                addAccountButton.setIcon(scaledIcon);
                 addAccountButton.setFont(montserratBold.deriveFont(17f));
                 addAccountButton.setForeground(asparagus);
             } // end of mouseEntered method
@@ -291,6 +295,7 @@ public class Main extends JFrame {
             public void mouseExited(MouseEvent e) {
                 setCursor(defaultCursor);
 
+                addAccountButton.setIcon(scaledAddAccountIcon);
                 addAccountButton.setFont(montserratBold.deriveFont(15f));
                 addAccountButton.setForeground(Color.BLACK);
             } // end of mouseExited method
@@ -317,6 +322,10 @@ public class Main extends JFrame {
             public void mouseEntered(MouseEvent e) {
                 setCursor(handCursor);
 
+                ImageIcon newIcon =
+                        new ImageIcon("icons/btn-hover/savings_FILL0_wght400_GRAD0_opsz48.png");
+                ImageIcon scaledIcon = scaleImage(newIcon,35,35);
+                depositButton.setIcon(scaledIcon);
                 depositButton.setFont(montserratBold.deriveFont(17f));
                 depositButton.setForeground(asparagus);
             } // end of mouseEntered method
@@ -329,6 +338,7 @@ public class Main extends JFrame {
             public void mouseExited(MouseEvent e) {
                 setCursor(defaultCursor);
 
+                depositButton.setIcon(scaledDepositIcon);
                 depositButton.setFont(montserratBold.deriveFont(15f));
                 depositButton.setForeground(Color.BLACK);
             } // end of mouseExited method
@@ -355,6 +365,10 @@ public class Main extends JFrame {
             public void mouseEntered(MouseEvent e) {
                 setCursor(handCursor);
 
+                ImageIcon newIcon =
+                        new ImageIcon("icons/btn-hover/price_change_FILL0_wght400_GRAD0_opsz48.png");
+                ImageIcon scaledIcon = scaleImage(newIcon,35,35);
+                withdrawButton.setIcon(scaledIcon);
                 withdrawButton.setFont(montserratBold.deriveFont(17f));
                 withdrawButton.setForeground(asparagus);
             } // end of mouseEntered method
@@ -367,6 +381,7 @@ public class Main extends JFrame {
             public void mouseExited(MouseEvent e) {
                 setCursor(defaultCursor);
 
+                withdrawButton.setIcon(scaledWithdrawIcon);
                 withdrawButton.setFont(montserratBold.deriveFont(15f));
                 withdrawButton.setForeground(Color.BLACK);
             } // end of mouseExited method
@@ -393,6 +408,10 @@ public class Main extends JFrame {
             public void mouseEntered(MouseEvent e) {
                 setCursor(handCursor);
 
+                ImageIcon newIcon =
+                        new ImageIcon("icons/btn-hover/attach_money_FILL0_wght400_GRAD0_opsz48.png");
+                ImageIcon scaledIcon = scaleImage(newIcon,35,35);
+                transferButton.setIcon(scaledIcon);
                 transferButton.setFont(montserratBold.deriveFont(17f));
                 transferButton.setForeground(asparagus);
             } // end of mouseEntered method
@@ -405,6 +424,7 @@ public class Main extends JFrame {
             public void mouseExited(MouseEvent e) {
                 setCursor(defaultCursor);
 
+                transferButton.setIcon(scaledTransferIcon);
                 transferButton.setFont(montserratBold.deriveFont(15f));
                 transferButton.setForeground(Color.BLACK);
             } // end of mouseExited method
@@ -431,6 +451,10 @@ public class Main extends JFrame {
             public void mouseEntered(MouseEvent e) {
                 setCursor(handCursor);
 
+                ImageIcon newIcon =
+                        new ImageIcon("icons/btn-hover/receipt_long_FILL0_wght400_GRAD0_opsz48.png");
+                ImageIcon scaledIcon = scaleImage(newIcon,35,35);
+                transactionsButton.setIcon(scaledIcon);
                 transactionsButton.setFont(montserratBold.deriveFont(17f));
                 transactionsButton.setForeground(asparagus);
             } // end of mouseEntered method
@@ -443,6 +467,7 @@ public class Main extends JFrame {
             public void mouseExited(MouseEvent e) {
                 setCursor(defaultCursor);
 
+                transactionsButton.setIcon(scaledTransactionsIcon);
                 transactionsButton.setFont(montserratBold.deriveFont(15f));
                 transactionsButton.setForeground(Color.BLACK);
             } // end of mouseExited method
@@ -469,6 +494,10 @@ public class Main extends JFrame {
             public void mouseEntered(MouseEvent e) {
                 setCursor(handCursor);
 
+                ImageIcon newIcon =
+                        new ImageIcon("icons/btn-hover/account_balance_wallet_FILL0_wght400_GRAD0_opsz48.png");
+                ImageIcon scaledIcon = scaleImage(newIcon,35,35);
+                switchButton.setIcon(scaledIcon);
                 switchButton.setFont(montserratBold.deriveFont(17f));
                 switchButton.setForeground(asparagus);
             } // end of mouseEntered method
@@ -481,6 +510,7 @@ public class Main extends JFrame {
             public void mouseExited(MouseEvent e) {
                 setCursor(defaultCursor);
 
+                switchButton.setIcon(scaledSwitchIcon);
                 switchButton.setFont(montserratBold.deriveFont(15f));
                 switchButton.setForeground(Color.BLACK);
             } // end of mouseExited method
@@ -507,6 +537,10 @@ public class Main extends JFrame {
             public void mouseEntered(MouseEvent e) {
                 setCursor(handCursor);
 
+                ImageIcon newIcon =
+                        new ImageIcon("icons/btn-hover/logout_FILL0_wght400_GRAD0_opsz48.png");
+                ImageIcon scaledIcon = scaleImage(newIcon,35,35);
+                signOutButton.setIcon(scaledIcon);
                 signOutButton.setFont(montserratBold.deriveFont(17f));
                 signOutButton.setForeground(asparagus);
             } // end of mouseEntered method
@@ -519,6 +553,7 @@ public class Main extends JFrame {
             public void mouseExited(MouseEvent e) {
                 setCursor(defaultCursor);
 
+                signOutButton.setIcon(scaledSignOutIcon);
                 signOutButton.setFont(montserratBold.deriveFont(15f));
                 signOutButton.setForeground(Color.BLACK);
             } // end of mouseExited method
