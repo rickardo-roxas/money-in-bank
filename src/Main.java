@@ -216,9 +216,9 @@ public class Main extends JFrame {
 
         // Buttons Panel Components
         gbc.gridx = 0;
+        gbc.gridwidth = 50;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridwidth = 1;
-        gbc.insets = new Insets(5, 0, 0, 0);
+        gbc.insets = new Insets(5, 0, 0, 80);
 
         // Button Icons
         // Add Account Icon
@@ -281,7 +281,7 @@ public class Main extends JFrame {
 
                 ImageIcon newIcon =
                         new ImageIcon("icons/btn-hover/account_balance_FILL0_wght400_GRAD0_opsz48.png");
-                ImageIcon scaledIcon = scaleImage(newIcon,35,35);
+                ImageIcon scaledIcon = scaleImage(newIcon,30,30);
                 addAccountButton.setIcon(scaledIcon);
                 addAccountButton.setFont(montserratBold.deriveFont(17f));
                 addAccountButton.setForeground(asparagus);
@@ -324,7 +324,7 @@ public class Main extends JFrame {
 
                 ImageIcon newIcon =
                         new ImageIcon("icons/btn-hover/savings_FILL0_wght400_GRAD0_opsz48.png");
-                ImageIcon scaledIcon = scaleImage(newIcon,35,35);
+                ImageIcon scaledIcon = scaleImage(newIcon,30,30);
                 depositButton.setIcon(scaledIcon);
                 depositButton.setFont(montserratBold.deriveFont(17f));
                 depositButton.setForeground(asparagus);
@@ -367,7 +367,7 @@ public class Main extends JFrame {
 
                 ImageIcon newIcon =
                         new ImageIcon("icons/btn-hover/price_change_FILL0_wght400_GRAD0_opsz48.png");
-                ImageIcon scaledIcon = scaleImage(newIcon,35,35);
+                ImageIcon scaledIcon = scaleImage(newIcon,30,30);
                 withdrawButton.setIcon(scaledIcon);
                 withdrawButton.setFont(montserratBold.deriveFont(17f));
                 withdrawButton.setForeground(asparagus);
@@ -410,7 +410,7 @@ public class Main extends JFrame {
 
                 ImageIcon newIcon =
                         new ImageIcon("icons/btn-hover/attach_money_FILL0_wght400_GRAD0_opsz48.png");
-                ImageIcon scaledIcon = scaleImage(newIcon,35,35);
+                ImageIcon scaledIcon = scaleImage(newIcon,30,30);
                 transferButton.setIcon(scaledIcon);
                 transferButton.setFont(montserratBold.deriveFont(17f));
                 transferButton.setForeground(asparagus);
@@ -453,7 +453,7 @@ public class Main extends JFrame {
 
                 ImageIcon newIcon =
                         new ImageIcon("icons/btn-hover/receipt_long_FILL0_wght400_GRAD0_opsz48.png");
-                ImageIcon scaledIcon = scaleImage(newIcon,35,35);
+                ImageIcon scaledIcon = scaleImage(newIcon,30,30);
                 transactionsButton.setIcon(scaledIcon);
                 transactionsButton.setFont(montserratBold.deriveFont(17f));
                 transactionsButton.setForeground(asparagus);
@@ -476,7 +476,7 @@ public class Main extends JFrame {
         // Switch to Wallet Button
         gbc.gridy = 5;
         JButton switchButton = new JButton(scaledSwitchIcon);
-        switchButton.setText("Switch to Wallet");
+        switchButton.setText("Go to Wallet");
         switchButton.setFont(montserratBold.deriveFont(15f));
         switchButton.setForeground(Color.BLACK);
         switchButton.setHorizontalAlignment(SwingConstants.LEFT);
@@ -496,7 +496,7 @@ public class Main extends JFrame {
 
                 ImageIcon newIcon =
                         new ImageIcon("icons/btn-hover/account_balance_wallet_FILL0_wght400_GRAD0_opsz48.png");
-                ImageIcon scaledIcon = scaleImage(newIcon,35,35);
+                ImageIcon scaledIcon = scaleImage(newIcon,30,30);
                 switchButton.setIcon(scaledIcon);
                 switchButton.setFont(montserratBold.deriveFont(17f));
                 switchButton.setForeground(asparagus);
@@ -539,7 +539,7 @@ public class Main extends JFrame {
 
                 ImageIcon newIcon =
                         new ImageIcon("icons/btn-hover/logout_FILL0_wght400_GRAD0_opsz48.png");
-                ImageIcon scaledIcon = scaleImage(newIcon,35,35);
+                ImageIcon scaledIcon = scaleImage(newIcon,30,30);
                 signOutButton.setIcon(scaledIcon);
                 signOutButton.setFont(montserratBold.deriveFont(17f));
                 signOutButton.setForeground(asparagus);
@@ -560,6 +560,7 @@ public class Main extends JFrame {
         }); // end of mouseListener for signOutButton
 
         gbc.gridy = 7;
+        gbc.insets = new Insets(20, 0, 0, 0);
         JLabel copyrightLabel = new JLabel();
         copyrightLabel.setText("© 2023 ROXAS, JOHAN RICKARDO");
         copyrightLabel.setFont(new Font("Helvetica" , Font.PLAIN, 10));
