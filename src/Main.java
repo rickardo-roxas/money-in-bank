@@ -55,6 +55,11 @@ public class Main extends JFrame {
     final GridBagConstraints gbc = new GridBagConstraints();
 
     /**
+     * CardLayout used for soe components.
+     */
+    final CardLayout cardLayout = new CardLayout(30,40);
+
+    /**
      * Thin Montserrat font
      */
     Font montserratThin;
@@ -576,6 +581,144 @@ public class Main extends JFrame {
         mainPanel.add(centerPanel, BorderLayout.CENTER);
 
         // Center Panel Components
+        // Card Panel
+        JPanel cardPanel = new JPanel();
+        cardPanel.setLayout(cardLayout);
+        cardPanel.setBackground(Color.WHITE);
+        cardPanel.setPreferredSize(new Dimension(900,500));
+        centerPanel.add(cardPanel, BorderLayout.NORTH);
+
+        // Card Panel Components
+        // Account Panel
+        JPanel accountPanel = new JPanel();
+        accountPanel.setLayout(new BorderLayout());
+        accountPanel.setBackground(Color.WHITE);
+        accountPanel.setPreferredSize(new Dimension(900,500));
+        cardPanel.add(accountPanel);
+
+        // Left Button Panel
+        JPanel leftButtonPanel = new JPanel();
+        leftButtonPanel.setLayout(gridBagLayout);
+        leftButtonPanel.setBackground(Color.white);
+        leftButtonPanel.setPreferredSize( new Dimension(100,500));
+        accountPanel.add(leftButtonPanel, BorderLayout.LINE_START);
+
+        // Button Panel Constraints
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.insets = new Insets(10, 20, 10, 20);
+
+        // Left Button Components
+        ImageIcon leftArrowIcon = new ImageIcon("icons/btn/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png");
+
+        JButton leftArrowButton = new JButton();
+        leftArrowButton.setIcon(leftArrowIcon);
+        leftArrowButton.setHorizontalAlignment(SwingConstants.CENTER);
+        leftArrowButton.setVerticalAlignment(SwingConstants.CENTER);
+        leftArrowButton.setOpaque(false);
+        leftArrowButton.setContentAreaFilled(false);
+        leftArrowButton.setBorderPainted(false);
+        leftButtonPanel.add(leftArrowButton, gbc);
+
+        // Right Button Panel
+        JPanel rightButtonPanel = new JPanel();
+        rightButtonPanel.setLayout(gridBagLayout);
+        rightButtonPanel.setBackground(Color.WHITE);
+        rightButtonPanel.setPreferredSize( new Dimension(100,500));
+        accountPanel.add(rightButtonPanel, BorderLayout.LINE_END);
+
+        // Right Button Components
+        ImageIcon rightArrowIcon = new ImageIcon("icons/btn/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.png");
+
+        JButton rightArrowButton = new JButton();
+        rightArrowButton.setIcon(rightArrowIcon);
+        rightArrowButton.setHorizontalAlignment(SwingConstants.CENTER);
+        rightArrowButton.setVerticalAlignment(SwingConstants.CENTER);
+        rightArrowButton.setOpaque(false);
+        rightArrowButton.setContentAreaFilled(false);
+        rightArrowButton.setBorderPainted(false);
+        rightButtonPanel.add(rightArrowButton, gbc);
+
+        // Account Card Panel
+        JPanel accountCardPanel = new JPanel();
+        accountCardPanel.setLayout(cardLayout);
+        accountCardPanel.setBackground(asparagus);
+        accountCardPanel.setPreferredSize(new Dimension(400, 200));
+        accountPanel.add(accountCardPanel, BorderLayout.CENTER);
+
+        // Account Holder Panel
+        JPanel accountHolderPanel = new JPanel();
+        accountHolderPanel.setLayout(gridBagLayout);
+        accountHolderPanel.setBackground(asparagus);
+        accountHolderPanel.setPreferredSize(new Dimension(400, 200));
+        accountCardPanel.add(accountHolderPanel, BorderLayout.CENTER);
+
+        gbc.gridx = 0;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 10, 0, 10);
+
+        // Account Panel components
+        // Bank Label
+        gbc.gridy = 0;
+        JLabel bankLabel = new JLabel();
+        bankLabel.setText("BPI");
+        bankLabel.setFont(montserratBold.deriveFont(30f));
+        bankLabel.setForeground(Color.WHITE);
+        bankLabel.setVerticalAlignment(SwingConstants.CENTER);
+        bankLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(bankLabel, gbc);
+
+        // Separator
+        gbc.gridy = 1;
+        JSeparator s1 = new JSeparator();
+        s1.setForeground(Color.WHITE);
+        s1.setOrientation(SwingConstants.HORIZONTAL);
+        s1.setPreferredSize(new Dimension(400, 2));
+        accountHolderPanel.add(s1, gbc);
+
+        // Actual Balance
+        gbc.gridy = 2;
+        JLabel balanceLabel = new JLabel();
+        balanceLabel.setText("₱ " + "135,978.23");
+        balanceLabel.setFont(montserratBlack.deriveFont(40f));
+        balanceLabel.setForeground(Color.WHITE);
+        balanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        balanceLabel.setVerticalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(balanceLabel,gbc);
+
+        // Account Name
+        gbc.gridy = 3;
+        JLabel accountNameLabel = new JLabel();
+        accountNameLabel.setText("Savings 1");
+        accountNameLabel.setFont(montserrat.deriveFont(17.5f));
+        accountNameLabel.setForeground(Color.WHITE);
+        accountNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        accountNameLabel.setVerticalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(accountNameLabel, gbc);
+
+        // Account Number
+        gbc.gridy = 4;
+        JLabel accountNumberLabel = new JLabel();
+        accountNumberLabel.setText("123 456 7890");
+        accountNumberLabel.setFont(montserrat.deriveFont(17.5f));
+        accountNumberLabel.setForeground(Color.WHITE);
+        accountNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        accountNumberLabel.setVerticalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(accountNumberLabel, gbc);
+
+        // Account Holder
+        gbc.gridy = 5;
+        JLabel accountHolderLabel = new JLabel();
+        accountHolderLabel.setText("John Doe");
+        accountHolderLabel.setFont(montserrat.deriveFont(17.5f));
+        accountHolderLabel.setForeground(Color.WHITE);
+        accountHolderLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        accountHolderLabel.setVerticalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(accountHolderLabel, gbc);
+
         // Bottom Panel
         JPanel bottomPanel = new JPanel();
         bottomPanel.setBackground(Color.DARK_GRAY);
