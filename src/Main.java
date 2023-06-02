@@ -222,9 +222,9 @@ public class Main extends JFrame {
 
         // Button Icons
         // Add Account Icon
-        ImageIcon addAccountIcon =
+        ImageIcon accountIcon =
                 new ImageIcon("icons/btn/account_balance_FILL0_wght400_GRAD0_opsz48.png");
-        ImageIcon scaledAddAccountIcon = scaleImage(addAccountIcon, 30,30);
+        ImageIcon scaledAccountIcon = scaleImage(accountIcon, 30,30);
 
         // Deposit Account Icon
         ImageIcon depositIcon =
@@ -260,17 +260,17 @@ public class Main extends JFrame {
         // Buttons
         // Add Account Button
         gbc.gridy = 0;
-        JButton addAccountButton = new JButton(scaledAddAccountIcon);
-        addAccountButton.setText("Add Account");
-        addAccountButton.setFont(montserratBold.deriveFont(15f));
-        addAccountButton.setForeground(Color.BLACK);
-        addAccountButton.setHorizontalAlignment(SwingConstants.LEFT);
-        addAccountButton.setOpaque(false);
-        addAccountButton.setContentAreaFilled(false);
-        addAccountButton.setBorderPainted(false);
-        buttonsPanel.add(addAccountButton, gbc);
+        JButton accountButton = new JButton(scaledAccountIcon);
+        accountButton.setText("Account");
+        accountButton.setFont(montserratBold.deriveFont(15f));
+        accountButton.setForeground(Color.BLACK);
+        accountButton.setHorizontalAlignment(SwingConstants.LEFT);
+        accountButton.setOpaque(false);
+        accountButton.setContentAreaFilled(false);
+        accountButton.setBorderPainted(false);
+        buttonsPanel.add(accountButton, gbc);
 
-        addAccountButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        accountButton.addMouseListener(new java.awt.event.MouseAdapter() {
             /**
              * Interaction with the button when the mouse hovers on it
              * @param e the event to be processed
@@ -282,9 +282,9 @@ public class Main extends JFrame {
                 ImageIcon newIcon =
                         new ImageIcon("icons/btn-hover/account_balance_FILL0_wght400_GRAD0_opsz48.png");
                 ImageIcon scaledIcon = scaleImage(newIcon,30,30);
-                addAccountButton.setIcon(scaledIcon);
-                addAccountButton.setFont(montserratBold.deriveFont(17f));
-                addAccountButton.setForeground(asparagus);
+                accountButton.setIcon(scaledIcon);
+                accountButton.setFont(montserratBold.deriveFont(17f));
+                accountButton.setForeground(asparagus);
             } // end of mouseEntered method
 
             /**
@@ -295,11 +295,11 @@ public class Main extends JFrame {
             public void mouseExited(MouseEvent e) {
                 setCursor(defaultCursor);
 
-                addAccountButton.setIcon(scaledAddAccountIcon);
-                addAccountButton.setFont(montserratBold.deriveFont(15f));
-                addAccountButton.setForeground(Color.BLACK);
+                accountButton.setIcon(scaledAccountIcon);
+                accountButton.setFont(montserratBold.deriveFont(15f));
+                accountButton.setForeground(Color.BLACK);
             } // end of mouseExited method
-        }); // end of mouseListener for addAccountButton
+        }); // end of mouseListener for accountButton
 
         // Deposit Button
         gbc.gridy = 1;
@@ -576,9 +576,10 @@ public class Main extends JFrame {
         mainPanel.add(centerPanel, BorderLayout.CENTER);
 
         // Center Panel Components
+        // Bottom Panel
         JPanel bottomPanel = new JPanel();
         bottomPanel.setBackground(Color.DARK_GRAY);
-        bottomPanel.setPreferredSize(new Dimension(800,300));
+        bottomPanel.setPreferredSize(new Dimension(800,200));
         centerPanel.add(bottomPanel, BorderLayout.SOUTH);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
