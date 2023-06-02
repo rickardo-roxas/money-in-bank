@@ -261,6 +261,20 @@ public class Main extends JFrame {
                 new ImageIcon("icons/btn/logout_FILL0_wght400_GRAD0_opsz48.png");
         ImageIcon scaledSignOutIcon = scaleImage(signOutIcon, 30,30);
 
+        // Set Budget Icon
+        ImageIcon setBudgetIcon =
+                new ImageIcon("icons/btn/redeem_FILL0_wght400_GRAD0_opsz48.png");
+        ImageIcon scaledSetBudgetIcon = scaleImage(setBudgetIcon, 70,70);
+
+        // Calculate Budget Icon
+        ImageIcon calculateBudgetIcon =
+                new ImageIcon("icons/btn/calculate_FILL0_wght400_GRAD0_opsz48.png");
+        ImageIcon scaledCalculateBudgetIcon = scaleImage(calculateBudgetIcon,70,70);
+
+        // Budget Goals Icon
+        ImageIcon budgetGoalsIcon =
+                new ImageIcon("icons/btn/bar_chart_FILL0_wght400_GRAD0_opsz48.png");
+        ImageIcon scaledBudgetGoalsIcon = scaleImage(budgetGoalsIcon,70,70);
 
         // Buttons
         // Add Account Button
@@ -564,15 +578,6 @@ public class Main extends JFrame {
             } // end of mouseExited method
         }); // end of mouseListener for signOutButton
 
-        gbc.gridy = 7;
-        gbc.insets = new Insets(20, 0, 0, 0);
-        JLabel copyrightLabel = new JLabel();
-        copyrightLabel.setText("© 2023 ROXAS, JOHAN RICKARDO");
-        copyrightLabel.setFont(new Font("Helvetica" , Font.PLAIN, 10));
-        copyrightLabel.setVerticalTextPosition(JLabel.CENTER);
-        copyrightLabel.setHorizontalAlignment(JLabel.CENTER);
-        buttonsPanel.add(copyrightLabel, gbc);
-
         // Center Panel
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BorderLayout());
@@ -721,9 +726,49 @@ public class Main extends JFrame {
 
         // Bottom Panel
         JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new BorderLayout());
         bottomPanel.setBackground(Color.DARK_GRAY);
         bottomPanel.setPreferredSize(new Dimension(800,200));
+        bottomPanel.setBorder(normalPadding);
         centerPanel.add(bottomPanel, BorderLayout.SOUTH);
+
+        // Buttons Panel
+        JPanel budgetButtonsPanel = new JPanel();
+        budgetButtonsPanel.setLayout(new FlowLayout());
+        budgetButtonsPanel.setBackground(Color.DARK_GRAY);
+        budgetButtonsPanel.setPreferredSize(new Dimension(800,200));
+        budgetButtonsPanel.setBorder(normalPadding);
+        bottomPanel.add(budgetButtonsPanel, BorderLayout.CENTER);
+
+        // Set Budget
+        JButton setBudgetButton = new JButton();
+        setBudgetButton.setText("Set Budget");
+        setBudgetButton.setIcon(scaledSetBudgetIcon);
+        setBudgetButton.setVerticalAlignment(SwingConstants.CENTER);
+        budgetButtonsPanel.add(setBudgetButton);
+
+        // Calculate Budget
+        JButton calculateBudgetButton = new JButton();
+        calculateBudgetButton.setText("Calculate Budget");
+        calculateBudgetButton.setIcon(scaledCalculateBudgetIcon);
+        calculateBudgetButton.setVerticalAlignment(SwingConstants.CENTER);
+        budgetButtonsPanel.add(calculateBudgetButton);
+
+        // Budget Goals
+        JButton budgetGoalsButton = new JButton();
+        budgetGoalsButton.setText("Budget Goals");
+        budgetGoalsButton.setIcon(scaledBudgetGoalsIcon);
+        budgetGoalsButton.setVerticalAlignment(SwingConstants.CENTER);
+        budgetButtonsPanel.add(budgetGoalsButton);
+
+        // Copyright Label
+        JLabel copyrightLabel = new JLabel();
+        copyrightLabel.setText("© 2023 ROXAS, JOHAN RICKARDO");
+        copyrightLabel.setFont(new Font("Helvetica" , Font.PLAIN, 10));
+        copyrightLabel.setForeground(Color.WHITE);
+        copyrightLabel.setVerticalTextPosition(JLabel.CENTER);
+        copyrightLabel.setHorizontalAlignment(JLabel.CENTER);
+        bottomPanel.add(copyrightLabel, BorderLayout.SOUTH);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1200,700);
