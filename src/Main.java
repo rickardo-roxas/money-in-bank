@@ -67,7 +67,7 @@ public class Main extends JFrame {
     /**
      * CardLayout used for some components.
      */
-    final CardLayout cardLayout2 = new CardLayout(20,10);
+    final CardLayout cardLayout2 = new CardLayout(30,40);
 
     /**
      * Thin Montserrat font
@@ -911,6 +911,7 @@ public class Main extends JFrame {
         JPanel depositRadioPanel = new JPanel();
         depositRadioPanel.setLayout(new FlowLayout());
         depositRadioPanel.setBackground(Color.WHITE);
+        depositRadioPanel.setAlignmentX(SwingConstants.WEST);
         depositPanel.add(depositRadioPanel, gbc);
 
         // Radio Panel Components
@@ -919,7 +920,7 @@ public class Main extends JFrame {
         cashRadioButton.setText("Cash from Wallet");
         cashRadioButton.setFont(montserratBold.deriveFont(15f));
         cashRadioButton.setForeground(Color.BLACK);
-        cashRadioButton.setVerticalAlignment(SwingConstants.CENTER);
+        cashRadioButton.setAlignmentX(SwingConstants.WEST);
         depositRadioPanel.add(cashRadioButton);
 
         // Other Radio
@@ -927,17 +928,25 @@ public class Main extends JFrame {
         otherRadioButton.setText("Other");
         otherRadioButton.setFont(montserratBold.deriveFont(15f));
         otherRadioButton.setForeground(Color.BLACK);
-        otherRadioButton.setVerticalAlignment(SwingConstants.CENTER);
+        otherRadioButton.setAlignmentX(SwingConstants.WEST);
         depositRadioPanel.add(otherRadioButton);
 
         ButtonGroup depositRadioGroup = new ButtonGroup();
         depositRadioGroup.add(cashRadioButton);
         depositRadioGroup.add(otherRadioButton);
 
-        // Buttons Panel
+        // Separator
         gbc.gridwidth = 50;
         gbc.gridx = 0;
         gbc.gridy = 5;
+        JSeparator s2 = new JSeparator();
+        s2.setForeground(Color.BLACK);
+        s2.setOrientation(SwingConstants.HORIZONTAL);
+        s2.setPreferredSize(new Dimension(300, 2));
+        depositPanel.add(s2, gbc);
+
+        // Buttons Panel
+        gbc.gridy = 6;
         JPanel depositButtonsPanel = new JPanel();
         depositButtonsPanel.setLayout(new FlowLayout());
         depositButtonsPanel.setBackground(Color.WHITE);
@@ -1085,6 +1094,14 @@ public class Main extends JFrame {
         oneThousandButton.setVerticalAlignment(SwingConstants.CENTER);
         withdrawAmountsPanel.add(oneThousandButton);
 
+        // 1500
+        JButton oneThousandFiveButton = new JButton();
+        oneThousandFiveButton.setText("₱1500");
+        oneThousandFiveButton.setFont(montserratBold.deriveFont(15f));
+        oneThousandFiveButton.setForeground(Color.BLACK);
+        oneThousandFiveButton.setVerticalAlignment(SwingConstants.CENTER);
+        withdrawAmountsPanel.add(oneThousandFiveButton);
+
         // 2000
         JButton twoThousandButton = new JButton();
         twoThousandButton.setText("₱2000");
@@ -1101,10 +1118,26 @@ public class Main extends JFrame {
         threeThousandButton.setVerticalAlignment(SwingConstants.CENTER);
         withdrawAmountsPanel.add(threeThousandButton);
 
-        // Buttons Panel
+        // 5000
+        JButton fiveThousandButton = new JButton();
+        fiveThousandButton.setText("₱5000");
+        fiveThousandButton.setFont(montserratBold.deriveFont(15f));
+        fiveThousandButton.setForeground(Color.BLACK);
+        fiveThousandButton.setVerticalAlignment(SwingConstants.CENTER);
+        withdrawAmountsPanel.add(fiveThousandButton);
+
+        // Separator
         gbc.gridwidth = 50;
         gbc.gridx = 0;
         gbc.gridy = 5;
+        JSeparator s3 = new JSeparator();
+        s3.setForeground(Color.BLACK);
+        s3.setOrientation(SwingConstants.HORIZONTAL);
+        s3.setPreferredSize(new Dimension(400,2));
+        withdrawPanel.add(s3,gbc);
+
+        // Buttons Panel
+        gbc.gridy = 6;
         JPanel withdrawButtonsPanel = new JPanel();
         withdrawButtonsPanel.setLayout(new FlowLayout());
         withdrawButtonsPanel.setBackground(Color.WHITE);
@@ -1128,11 +1161,29 @@ public class Main extends JFrame {
         acceptWithdrawalButton.setVerticalAlignment(SwingConstants.CENTER);
         withdrawButtonsPanel.add(acceptWithdrawalButton);
 
-
+        // Card 4 Components
         // Transfer Panel
         JPanel transferPanel = new JPanel();
         transferPanel.setBackground(Color.CYAN);
         cardPanel.add(transferPanel, "4");
+
+        // Card 5 Components
+        // Transactions Panel
+        JPanel transactionsPanel = new JPanel();
+        transactionsPanel.setLayout(new BorderLayout());
+        transactionsPanel.setBackground(Color.WHITE);
+        transactionsPanel.setPreferredSize(new Dimension(900,600));
+        cardPanel.add(transactionsPanel, "5");
+
+        // Transactions Panel Components
+
+        // Card 6 Components
+        // Wallet Panel
+        JPanel walletPanel = new JPanel();
+        walletPanel.setLayout(new BorderLayout());
+        walletPanel.setBackground(Color.WHITE);
+        walletPanel.setPreferredSize(new Dimension(900,600));
+        cardPanel.add(walletPanel, "6");
 
         // Action Listeners
         accountButton.addActionListener(e -> cardLayout1.show(cardPanel, "1"));
