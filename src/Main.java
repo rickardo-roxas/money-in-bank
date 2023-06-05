@@ -1176,11 +1176,19 @@ public class Main extends JFrame {
         transactionsPanel.setPreferredSize(new Dimension(900,600));
         cardPanel.add(transactionsPanel, "5");
 
+        // Account Selector Combo Box
+        JComboBox<String> transactionsAccountComboBox = new JComboBox<>();
+        transactionsAccountComboBox.setFont(montserrat.deriveFont(17.5f));
+        transactionsAccountComboBox.setForeground(Color.BLACK);
+        transactionsAccountComboBox.addItem("BPI"  + " | " + "Savings 1" + " | " + "123 456 7890");
+        transactionsAccountComboBox.addItem("BPI" + " | " + "Savings 2" + " | " + "098 765 4321");
+        transactionsPanel.add(transactionsAccountComboBox, BorderLayout.NORTH);
+
         // Transactions Panel Components
         JPanel tablePanel = new JPanel();
         tablePanel.setLayout(new BorderLayout());
         tablePanel.setBackground(Color.WHITE);
-        transactionsPanel.add(tablePanel);
+        transactionsPanel.add(tablePanel, BorderLayout.CENTER);
 
         // Table Panel Components
         String[] columnNames = {"Reference Number" , "Type" , "Amount" , "Date"};
