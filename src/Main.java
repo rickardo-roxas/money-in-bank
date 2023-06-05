@@ -4,6 +4,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.StrokeBorder;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -1176,6 +1177,24 @@ public class Main extends JFrame {
         cardPanel.add(transactionsPanel, "5");
 
         // Transactions Panel Components
+        JPanel tablePanel = new JPanel();
+        tablePanel.setLayout(new BorderLayout());
+        tablePanel.setBackground(Color.WHITE);
+        transactionsPanel.add(tablePanel);
+
+        // Table Panel Components
+        String[] columnNames = {"Reference Number" , "Type" , "Amount" , "Date"};
+
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+        JTable table = new JTable(model);
+        table.getTableHeader().setFont(montserratBold.deriveFont(17.5f));
+        table.getTableHeader().setResizingAllowed(false);
+        table.setFont(montserrat.deriveFont(15f));
+        table.setIntercellSpacing(new Dimension(0, 5));
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        tablePanel.add(scrollPane, BorderLayout.CENTER);
 
         // Card 6 Components
         // Wallet Panel
