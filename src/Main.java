@@ -1275,17 +1275,21 @@ public class Main extends JFrame {
         gbc.gridy = 1;
         JPanel walletBalancePanel = new JPanel();
         walletBalancePanel.setLayout(gridBagLayout);
-        walletBalancePanel.setBackground(zomp);
+        walletBalancePanel.setBackground(asparagus);
         walletBalancePanel.setPreferredSize(new Dimension(510, 210));
         walletTilesPanel.add(walletBalancePanel, gbc);
 
         // Balance Panel Components
         // Balance Label
+        ImageIcon balanceIcon = new ImageIcon("icons/icons8-wallet-64.png");
+        ImageIcon scaledBalanceIcon = scaleImage(balanceIcon,35,35);
+
         gbc.fill = GridBagConstraints.WEST;
         gbc.gridx = 0;
         gbc.gridy = 0;
         JLabel walletBalanceLabel = new JLabel();
         walletBalanceLabel.setText("Balance");
+        walletBalanceLabel.setIcon(scaledBalanceIcon);
         walletBalanceLabel.setFont(montserrat.deriveFont(22f));
         walletBalanceLabel.setForeground(Color.WHITE);
         walletBalancePanel.add(walletBalanceLabel, gbc);
@@ -1311,10 +1315,14 @@ public class Main extends JFrame {
 
         // Expense Panel Components
         // Expense Label
+        ImageIcon expenseIcon = new ImageIcon("icons/icons8-cash-50.png");
+        ImageIcon scaledExpenseIcon = scaleImage(expenseIcon,26,26);
+
         gbc.gridx = 0;
         gbc.gridy = 0;
         JLabel walletExpenseLabel = new JLabel();
         walletExpenseLabel.setText("Expense");
+        walletExpenseLabel.setIcon(scaledExpenseIcon);
         walletExpenseLabel.setFont(montserrat.deriveFont(17f));
         walletExpenseLabel.setForeground(Color.WHITE);
         walletExpensePanel.add(walletExpenseLabel, gbc);
@@ -1340,10 +1348,15 @@ public class Main extends JFrame {
 
         // Income Panel Components
         // Income Label
+        ImageIcon incomeIcon = new ImageIcon("icons/icons8-savings-50.png");
+        ImageIcon scaledIncomeIcon = scaleImage(incomeIcon,26,26);
+
         gbc.gridx = 0;
         gbc.gridy = 0;
         JLabel walletIncomeLabel = new JLabel();
         walletIncomeLabel.setText("Income");
+        walletIncomeLabel.setIcon(scaledIncomeIcon);
+        walletIncomeLabel.setVerticalTextPosition(JLabel.TOP);
         walletIncomeLabel.setFont(montserrat.deriveFont(17f));
         walletIncomeLabel.setForeground(Color.WHITE);
         walletIncomePanel.add(walletIncomeLabel, gbc);
@@ -1359,9 +1372,58 @@ public class Main extends JFrame {
 
         // Buttons Panel
         JPanel walletButtonsPanel = new JPanel();
-        walletButtonsPanel.setBackground(Color.CYAN);
+        walletButtonsPanel.setLayout(gridBagLayout);
+        walletButtonsPanel.setBackground(Color.WHITE);
         walletButtonsPanel.setPreferredSize(new Dimension(250,600));
         walletPanel.add(walletButtonsPanel, BorderLayout.LINE_END);
+
+        // Buttons Panel Components
+        // Record Book Button
+        ImageIcon recordIcon = new ImageIcon("icons/btn/icons8-study-50.png");
+        ImageIcon scaledRecordIcon = scaleImage(recordIcon,30,30);
+
+        gbc.gridwidth = 50;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.insets = new Insets(5,0,0,0);
+
+        gbc.gridy = 0;
+        JButton recordButton = new JButton();
+        recordButton.setIcon(scaledRecordIcon);
+        recordButton.setText("Record Book");
+        recordButton.setFont(montserratBold.deriveFont(14f));
+        recordButton.setForeground(Color.WHITE);
+        recordButton.setBackground(midnightGreen);
+        recordButton.setVerticalAlignment(SwingConstants.CENTER);
+        walletButtonsPanel.add(recordButton, gbc);
+
+        // Expense Breakdown Button
+        ImageIcon expenseBreakdownIcon = new ImageIcon("icons/btn/icons8-cash-receipt-50.png");
+        ImageIcon scaledExpenseBreakdownIcon = scaleImage(expenseBreakdownIcon,30,30);
+
+        gbc.gridy = 1;
+        JButton expenseBreakdownButton = new JButton();
+        expenseBreakdownButton.setIcon(scaledExpenseBreakdownIcon);
+        expenseBreakdownButton.setText("Expense Breakdown");
+        expenseBreakdownButton.setFont(montserratBold.deriveFont(14f));
+        expenseBreakdownButton.setForeground(Color.WHITE);
+        expenseBreakdownButton.setBackground(midnightGreen);
+        expenseBreakdownButton.setVerticalAlignment(SwingConstants.CENTER);
+        walletButtonsPanel.add(expenseBreakdownButton, gbc);
+
+        // Income Breakdown Button
+        ImageIcon incomeBreakdownIcon = new ImageIcon("icons/btn/icons8-cash-50.png");
+        ImageIcon scaledIncomeBreakdownIcon = scaleImage(incomeBreakdownIcon,30,30);
+
+        gbc.gridy = 2;
+        JButton incomeBreakdownButton = new JButton();
+        incomeBreakdownButton.setIcon(scaledIncomeBreakdownIcon);
+        incomeBreakdownButton.setText("Income Breakdown");
+        incomeBreakdownButton.setFont(montserratBold.deriveFont(14f));
+        incomeBreakdownButton.setForeground(Color.WHITE);
+        incomeBreakdownButton.setBackground(midnightGreen);
+        incomeBreakdownButton.setVerticalAlignment(SwingConstants.CENTER);
+        walletButtonsPanel.add(incomeBreakdownButton, gbc);
 
         // Action Listeners
         accountButton.addActionListener(e -> cardLayout1.show(cardPanel, "1"));
