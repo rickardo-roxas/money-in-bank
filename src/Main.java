@@ -1,6 +1,11 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.StrokeBorder;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.lang.*;
@@ -57,7 +62,12 @@ public class Main extends JFrame {
     /**
      * CardLayout used for soe components.
      */
-    final CardLayout cardLayout = new CardLayout(30,40);
+    final CardLayout cardLayout1 = new CardLayout(30,40);
+
+    /**
+     * CardLayout used for some components.
+     */
+    final CardLayout cardLayout2 = new CardLayout(30,40);
 
     /**
      * Thin Montserrat font
@@ -588,7 +598,7 @@ public class Main extends JFrame {
         // Center Panel Components
         // Card Panel
         JPanel cardPanel = new JPanel();
-        cardPanel.setLayout(cardLayout);
+        cardPanel.setLayout(cardLayout1);
         cardPanel.setBackground(Color.WHITE);
         cardPanel.setPreferredSize(new Dimension(900,500));
         centerPanel.add(cardPanel, BorderLayout.NORTH);
@@ -648,7 +658,7 @@ public class Main extends JFrame {
 
         // Account Card Panel
         JPanel accountCardPanel = new JPanel();
-        accountCardPanel.setLayout(cardLayout);
+        accountCardPanel.setLayout(cardLayout2);
         accountCardPanel.setBackground(asparagus);
         accountCardPanel.setPreferredSize(new Dimension(400, 200));
         accountPanel.add(accountCardPanel, BorderLayout.CENTER);
@@ -727,49 +737,66 @@ public class Main extends JFrame {
         // Bottom Panel
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new BorderLayout());
-        bottomPanel.setBackground(Color.DARK_GRAY);
-        bottomPanel.setPreferredSize(new Dimension(800,200));
+        bottomPanel.setBackground(zomp);
+        bottomPanel.setPreferredSize(new Dimension(800,140));
         bottomPanel.setBorder(normalPadding);
         centerPanel.add(bottomPanel, BorderLayout.SOUTH);
 
+        // Bottom Panel Components
         // Buttons Panel
         JPanel budgetButtonsPanel = new JPanel();
         budgetButtonsPanel.setLayout(new FlowLayout());
-        budgetButtonsPanel.setBackground(Color.DARK_GRAY);
-        budgetButtonsPanel.setPreferredSize(new Dimension(800,200));
-        budgetButtonsPanel.setBorder(normalPadding);
+        budgetButtonsPanel.setBackground(zomp);
+        budgetButtonsPanel.setPreferredSize(new Dimension(800,140));
+        budgetButtonsPanel.setBorder(thinPadding);
         bottomPanel.add(budgetButtonsPanel, BorderLayout.CENTER);
 
+        // Buttons Panel Components
         // Set Budget
         JButton setBudgetButton = new JButton();
-        setBudgetButton.setText("Set Budget");
         setBudgetButton.setIcon(scaledSetBudgetIcon);
+        setBudgetButton.setText("Set Budget");
+        setBudgetButton.setFont(montserratBold.deriveFont(15f));
+        setBudgetButton.setForeground(Color.BLACK);
         setBudgetButton.setVerticalAlignment(SwingConstants.CENTER);
+        setBudgetButton.setOpaque(false);
+        setBudgetButton.setContentAreaFilled(false);
+        setBudgetButton.setBorderPainted(false);
         budgetButtonsPanel.add(setBudgetButton);
 
         // Calculate Budget
         JButton calculateBudgetButton = new JButton();
-        calculateBudgetButton.setText("Calculate Budget");
         calculateBudgetButton.setIcon(scaledCalculateBudgetIcon);
+        calculateBudgetButton.setText("Calculate Budget");
+        calculateBudgetButton.setFont(montserratBold.deriveFont(15f));
+        calculateBudgetButton.setForeground(Color.BLACK);
         calculateBudgetButton.setVerticalAlignment(SwingConstants.CENTER);
+        calculateBudgetButton.setOpaque(false);
+        calculateBudgetButton.setContentAreaFilled(false);
+        calculateBudgetButton.setBorderPainted(false);
         budgetButtonsPanel.add(calculateBudgetButton);
 
         // Budget Goals
         JButton budgetGoalsButton = new JButton();
-        budgetGoalsButton.setText("Budget Goals");
         budgetGoalsButton.setIcon(scaledBudgetGoalsIcon);
+        budgetGoalsButton.setText("Budget Goals");
+        budgetGoalsButton.setFont(montserratBold.deriveFont(15f));
+        budgetGoalsButton.setForeground(Color.BLACK);
         budgetGoalsButton.setVerticalAlignment(SwingConstants.CENTER);
+        budgetGoalsButton.setOpaque(false);
+        budgetGoalsButton.setContentAreaFilled(false);
+        budgetGoalsButton.setBorderPainted(false);
         budgetButtonsPanel.add(budgetGoalsButton);
 
         // Copyright Label
         JLabel copyrightLabel = new JLabel();
         copyrightLabel.setText("© 2023 ROXAS, JOHAN RICKARDO");
         copyrightLabel.setFont(new Font("Helvetica" , Font.PLAIN, 10));
-        copyrightLabel.setForeground(Color.WHITE);
+        copyrightLabel.setForeground(Color.BLACK);
         copyrightLabel.setVerticalTextPosition(JLabel.CENTER);
         copyrightLabel.setHorizontalAlignment(JLabel.CENTER);
         bottomPanel.add(copyrightLabel, BorderLayout.SOUTH);
-
+        
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1200,700);
         setResizable(false);
