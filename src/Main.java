@@ -1,9 +1,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.StrokeBorder;
+import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +9,8 @@ import java.awt.image.BufferedImage;
 import java.lang.*;
 import java.io.*;
 import java.awt.*;
+
+
 
 /**
  * @author Johan Rickardo Roxas
@@ -791,7 +790,7 @@ public class Main extends JFrame {
 
         // Copyright Label
         JLabel copyrightLabel = new JLabel();
-        copyrightLabel.setText("© 2023 ROXAS, JOHAN RICKARDO");
+        copyrightLabel.setText("<html><center>© 2023 ROXAS, JOHAN RICKARDO <br><center>MONEY IN BANK VERSION 1.00");
         copyrightLabel.setFont(new Font("Helvetica" , Font.PLAIN, 10));
         copyrightLabel.setForeground(Color.BLACK);
         copyrightLabel.setVerticalTextPosition(JLabel.CENTER);
@@ -1211,6 +1210,158 @@ public class Main extends JFrame {
         walletPanel.setBackground(Color.WHITE);
         walletPanel.setPreferredSize(new Dimension(900,600));
         cardPanel.add(walletPanel, "6");
+
+        // Wallet Panel Components
+        // Tiles Panel
+        JPanel walletTilesPanel = new JPanel();
+        walletTilesPanel.setLayout(gridBagLayout);
+        walletTilesPanel.setBorder(thinPadding);
+        walletTilesPanel.setBackground(Color.WHITE);
+        walletTilesPanel.setPreferredSize(new Dimension(650, 600));
+        walletPanel.add(walletTilesPanel, BorderLayout.LINE_START);
+
+        // Tiles Components
+        gbc.gridwidth = 50;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        // Date Panel
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        JPanel datePanel = new JPanel();
+        datePanel.setLayout(new FlowLayout());
+        datePanel.setBackground(Color.WHITE);
+        walletTilesPanel.add(datePanel,gbc);
+
+        // Left Button
+        ImageIcon dateLeftIcon = scaleImage(leftArrowIcon,20,20);
+
+        JButton leftDateButton = new JButton();
+        leftDateButton.setIcon(dateLeftIcon);
+        leftDateButton.setHorizontalAlignment(SwingConstants.CENTER);
+        leftDateButton.setVerticalAlignment(SwingConstants.CENTER);
+        leftDateButton.setOpaque(false);
+        leftDateButton.setContentAreaFilled(false);
+        leftDateButton.setBorderPainted(false);
+        datePanel.add(leftDateButton);
+
+        // Date
+        ImageIcon dateIcon = new ImageIcon("icons/calendar_today_FILL0_wght400_GRAD0_opsz48.png");
+        ImageIcon scaledDateIcon = scaleImage(dateIcon,20,20);
+
+        JLabel walletDateLabel = new JLabel();
+        walletDateLabel.setIcon(scaledDateIcon);
+        walletDateLabel.setText("MAY 2023");
+        walletDateLabel.setFont(montserratBold.deriveFont(15f));
+        walletDateLabel.setForeground(Color.BLACK);
+        walletDateLabel.setHorizontalAlignment(JLabel.LEFT);
+        walletDateLabel.setVerticalAlignment(JLabel.CENTER);
+        datePanel.add(walletDateLabel);
+
+        // Right Button
+        ImageIcon dateRightIcon = scaleImage(rightArrowIcon,20,20);
+
+        JButton rightDateButton = new JButton();
+        rightDateButton.setIcon(dateRightIcon);
+        rightDateButton.setHorizontalAlignment(SwingConstants.CENTER);
+        rightDateButton.setVerticalAlignment(SwingConstants.CENTER);
+        rightDateButton.setOpaque(false);
+        rightDateButton.setContentAreaFilled(false);
+        rightDateButton.setBorderPainted(false);
+        datePanel.add(rightDateButton);
+
+        // Balance Panel
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        JPanel walletBalancePanel = new JPanel();
+        walletBalancePanel.setLayout(gridBagLayout);
+        walletBalancePanel.setBackground(zomp);
+        walletBalancePanel.setPreferredSize(new Dimension(510, 210));
+        walletTilesPanel.add(walletBalancePanel, gbc);
+
+        // Balance Panel Components
+        // Balance Label
+        gbc.fill = GridBagConstraints.WEST;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        JLabel walletBalanceLabel = new JLabel();
+        walletBalanceLabel.setText("Balance");
+        walletBalanceLabel.setFont(montserrat.deriveFont(22f));
+        walletBalanceLabel.setForeground(Color.WHITE);
+        walletBalancePanel.add(walletBalanceLabel, gbc);
+
+        // Actual Balance Label
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        JLabel actualBalanceLabel = new JLabel();
+        actualBalanceLabel.setText("₱ " + "1,500.00");
+        actualBalanceLabel.setFont(montserratBlack.deriveFont(30f));
+        actualBalanceLabel.setForeground(Color.WHITE);
+        walletBalancePanel.add(actualBalanceLabel, gbc);
+
+        // Expense Panel
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        JPanel walletExpensePanel = new JPanel();
+        walletExpensePanel.setLayout(gridBagLayout);
+        walletExpensePanel.setBackground(satinSheenGold);
+        walletExpensePanel.setPreferredSize(new Dimension(250, 170));
+        walletTilesPanel.add(walletExpensePanel, gbc);
+
+        // Expense Panel Components
+        // Expense Label
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        JLabel walletExpenseLabel = new JLabel();
+        walletExpenseLabel.setText("Expense");
+        walletExpenseLabel.setFont(montserrat.deriveFont(17f));
+        walletExpenseLabel.setForeground(Color.WHITE);
+        walletExpensePanel.add(walletExpenseLabel, gbc);
+
+        // Actual Expense Label
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        JLabel actualExpenseLabel = new JLabel();
+        actualExpenseLabel.setText("₱ " + "651.00");
+        actualExpenseLabel.setFont(montserratBlack.deriveFont(22f));
+        actualExpenseLabel.setForeground(Color.WHITE);
+        walletExpensePanel.add(actualExpenseLabel, gbc);
+
+        // Income Panel
+        gbc.gridwidth = 1;
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        JPanel walletIncomePanel = new JPanel();
+        walletIncomePanel.setLayout(gridBagLayout);
+        walletIncomePanel.setBackground(teal);
+        walletIncomePanel.setPreferredSize(new Dimension(250,170));
+        walletTilesPanel.add(walletIncomePanel, gbc);
+
+        // Income Panel Components
+        // Income Label
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        JLabel walletIncomeLabel = new JLabel();
+        walletIncomeLabel.setText("Income");
+        walletIncomeLabel.setFont(montserrat.deriveFont(17f));
+        walletIncomeLabel.setForeground(Color.WHITE);
+        walletIncomePanel.add(walletIncomeLabel, gbc);
+
+        // Actual Income Label
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        JLabel actualIncomeLabel = new JLabel();
+        actualIncomeLabel.setText("₱ " + "1,500.00");
+        actualIncomeLabel.setFont(montserratBlack.deriveFont(22f));
+        actualIncomeLabel.setForeground(Color.WHITE);
+        walletIncomePanel.add(actualIncomeLabel, gbc);
+
+        // Buttons Panel
+        JPanel walletButtonsPanel = new JPanel();
+        walletButtonsPanel.setBackground(Color.CYAN);
+        walletButtonsPanel.setPreferredSize(new Dimension(250,600));
+        walletPanel.add(walletButtonsPanel, BorderLayout.LINE_END);
 
         // Action Listeners
         accountButton.addActionListener(e -> cardLayout1.show(cardPanel, "1"));
