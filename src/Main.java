@@ -62,12 +62,12 @@ public class Main extends JFrame {
     /**
      * CardLayout used for soe components.
      */
-    final CardLayout cardLayout1 = new CardLayout(30,40);
+    final CardLayout cardLayout1 = new CardLayout(20,10);
 
     /**
      * CardLayout used for some components.
      */
-    final CardLayout cardLayout2 = new CardLayout(30,40);
+    final CardLayout cardLayout2 = new CardLayout(20,10);
 
     /**
      * Thin Montserrat font
@@ -802,7 +802,7 @@ public class Main extends JFrame {
         JPanel depositPanel = new JPanel();
         depositPanel.setLayout(gridBagLayout);
         depositPanel.setBackground(Color.WHITE);
-        depositPanel.setPreferredSize(new Dimension(900,500));
+        depositPanel.setPreferredSize(new Dimension(900,700));
         cardPanel.add(depositPanel, "2");
 
         // Deposit Panel Components
@@ -894,10 +894,50 @@ public class Main extends JFrame {
         depositAmountTextField.setCursor(textCursor);
         depositPanel.add(depositAmountTextField, gbc);
 
+        // Source Label
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        JLabel depositSourceLabel = new JLabel();
+        depositSourceLabel.setText("Source:");
+        depositSourceLabel.setFont(montserrat.deriveFont(17.5f));
+        depositSourceLabel.setForeground(Color.BLACK);
+        depositPanel.add(depositSourceLabel, gbc);
+
+        // Radio Panel
+        gbc.gridwidth = 4;
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        JPanel depositRadioPanel = new JPanel();
+        depositRadioPanel.setLayout(new FlowLayout());
+        depositRadioPanel.setBackground(Color.WHITE);
+        depositPanel.add(depositRadioPanel, gbc);
+
+        // Radio Panel Components
+        // Cash Radio
+        JRadioButton cashRadioButton = new JRadioButton();
+        cashRadioButton.setText("Cash from Wallet");
+        cashRadioButton.setFont(montserratBold.deriveFont(15f));
+        cashRadioButton.setForeground(Color.BLACK);
+        cashRadioButton.setVerticalAlignment(SwingConstants.CENTER);
+        depositRadioPanel.add(cashRadioButton);
+
+        // Other Radio
+        JRadioButton otherRadioButton = new JRadioButton();
+        otherRadioButton.setText("Other");
+        otherRadioButton.setFont(montserratBold.deriveFont(15f));
+        otherRadioButton.setForeground(Color.BLACK);
+        otherRadioButton.setVerticalAlignment(SwingConstants.CENTER);
+        depositRadioPanel.add(otherRadioButton);
+
+        ButtonGroup depositRadioGroup = new ButtonGroup();
+        depositRadioGroup.add(cashRadioButton);
+        depositRadioGroup.add(otherRadioButton);
+
         // Buttons Panel
         gbc.gridwidth = 50;
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         JPanel depositButtonsPanel = new JPanel();
         depositButtonsPanel.setLayout(new FlowLayout());
         depositButtonsPanel.setBackground(Color.WHITE);
@@ -926,7 +966,7 @@ public class Main extends JFrame {
         JPanel withdrawPanel = new JPanel();
         withdrawPanel.setLayout(gridBagLayout);
         withdrawPanel.setBackground(Color.WHITE);
-        withdrawPanel.setPreferredSize(new Dimension(900,500));
+        withdrawPanel.setPreferredSize(new Dimension(900,700));
         cardPanel.add(withdrawPanel, "3");
         
         // Withdraw Panel Components
