@@ -134,7 +134,8 @@ public class Account {
      * @return states as comma-separated values
      */
     public String toString() {
-        return accountHolder + "," +
+        return bank + "," +
+                accountHolder + "," +
                 accountNumber + "," +
                 balance;
     } // end of toString method

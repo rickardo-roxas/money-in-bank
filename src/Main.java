@@ -18,6 +18,12 @@ import java.awt.*;
 public class Main extends JFrame {
 
     /**
+     * Utility class.
+     * Methods invoked produce useful information.
+     */
+    private final BankUtility bankUtility = new BankUtility();
+
+    /**
      * Midnight green
      * Primary color for UI
      */
@@ -123,8 +129,14 @@ public class Main extends JFrame {
         } // end of try-catch
     } // end of main method
 
-    private void run() {
+    private final String userFolder = "users/";
 
+    private void run() {
+        try {
+            bankUtility.readUserAccounts(userFolder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // end of try-catch
     } // end of run method
 
     /**
