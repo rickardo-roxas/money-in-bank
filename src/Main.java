@@ -603,7 +603,7 @@ public class Main extends JFrame {
         cardPanel.setPreferredSize(new Dimension(900,500));
         centerPanel.add(cardPanel, BorderLayout.NORTH);
 
-        // Card Panel Components
+        // Card 1 Components
         // Account Panel
         JPanel accountPanel = new JPanel();
         accountPanel.setLayout(new BorderLayout());
@@ -1378,23 +1378,24 @@ public class Main extends JFrame {
         walletPanel.add(walletButtonsPanel, BorderLayout.LINE_END);
 
         // Buttons Panel Components
+        gbc.gridwidth = 50;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5,0,0,0);
+
         // Record Book Button
         ImageIcon recordIcon = new ImageIcon("icons/btn/icons8-study-50.png");
         ImageIcon scaledRecordIcon = scaleImage(recordIcon,30,30);
 
-        gbc.gridwidth = 50;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
-        gbc.insets = new Insets(5,0,0,0);
-
         gbc.gridy = 0;
         JButton recordButton = new JButton();
         recordButton.setIcon(scaledRecordIcon);
-        recordButton.setText("Record Book");
+        recordButton.setText("Records");
         recordButton.setFont(montserratBold.deriveFont(14f));
         recordButton.setForeground(Color.WHITE);
         recordButton.setBackground(midnightGreen);
         recordButton.setVerticalAlignment(SwingConstants.CENTER);
+        recordButton.setAlignmentX(SwingConstants.WEST);
         walletButtonsPanel.add(recordButton, gbc);
 
         // Expense Breakdown Button
@@ -1404,11 +1405,12 @@ public class Main extends JFrame {
         gbc.gridy = 1;
         JButton expenseBreakdownButton = new JButton();
         expenseBreakdownButton.setIcon(scaledExpenseBreakdownIcon);
-        expenseBreakdownButton.setText("Expense Breakdown");
+        expenseBreakdownButton.setText("Expenses");
         expenseBreakdownButton.setFont(montserratBold.deriveFont(14f));
         expenseBreakdownButton.setForeground(Color.WHITE);
         expenseBreakdownButton.setBackground(midnightGreen);
         expenseBreakdownButton.setVerticalAlignment(SwingConstants.CENTER);
+        expenseBreakdownButton.setAlignmentX(SwingConstants.WEST);
         walletButtonsPanel.add(expenseBreakdownButton, gbc);
 
         // Income Breakdown Button
@@ -1418,14 +1420,16 @@ public class Main extends JFrame {
         gbc.gridy = 2;
         JButton incomeBreakdownButton = new JButton();
         incomeBreakdownButton.setIcon(scaledIncomeBreakdownIcon);
-        incomeBreakdownButton.setText("Income Breakdown");
+        incomeBreakdownButton.setText("Income");
         incomeBreakdownButton.setFont(montserratBold.deriveFont(14f));
         incomeBreakdownButton.setForeground(Color.WHITE);
         incomeBreakdownButton.setBackground(midnightGreen);
         incomeBreakdownButton.setVerticalAlignment(SwingConstants.CENTER);
+        incomeBreakdownButton.setAlignmentX(SwingConstants.WEST);
         walletButtonsPanel.add(incomeBreakdownButton, gbc);
 
         // Action Listeners
+        // Left Panel Buttons
         accountButton.addActionListener(e -> cardLayout1.show(cardPanel, "1"));
         depositButton.addActionListener(e -> cardLayout1.show(cardPanel,"2"));
         withdrawButton.addActionListener(e -> cardLayout1.show(cardPanel,"3"));
@@ -1433,6 +1437,10 @@ public class Main extends JFrame {
         transactionsButton.addActionListener(e -> cardLayout1.show(cardPanel,"5"));
         switchButton.addActionListener(e -> cardLayout1.show(cardPanel, "6"));
         signOutButton.addActionListener(e -> System.exit(0));
+
+        // Center Panel Arrows
+        leftArrowButton.addActionListener(e -> cardLayout2.previous(accountCardPanel));
+        rightArrowButton.addActionListener(e -> cardLayout2.next(accountCardPanel));
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1200,700);
