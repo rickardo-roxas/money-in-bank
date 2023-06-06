@@ -5,6 +5,10 @@
  */
 public class Account {
     /**
+     * Name of bank that the account is registered to
+     */
+    private String bank;
+    /**
      * Name of account holder
      */
     private String accountHolder;
@@ -25,22 +29,33 @@ public class Account {
      * Constructs an object of Account with default values.
      */
     public Account() {
-        accountHolder = "Jay Pritchett";
+        bank = "BPI";
+        accountHolder = "Juan Dela Cruz";
         accountNumber = "123 567 8900";
         balance = 10000.00;
     } // end of Account default constructor
 
     /**
      * Constructs an object of Account with user-defined values
+     * @param bank given bank company
      * @param accountHolder given name of account holder
      * @param accountNumber given account number
      * @param balance given balance
      */
-    public Account(String accountHolder, String accountNumber, double balance) {
+    public Account(String bank, String accountHolder, String accountNumber, double balance) {
+        this.bank = bank;
         this.accountHolder = accountHolder;
         this.accountNumber = accountNumber;
         this.balance = balance;
     } // end of Account constructor
+
+    /**
+     * Mutates the state of the bank attribute
+     * @param bank given value
+     */
+    public void setBank(String bank) {
+        this.bank = bank;
+    } // end of setBank mutator method
 
     /**
      * Mutates the state of the accountHolder attribute
@@ -73,6 +88,14 @@ public class Account {
     public void setBalance(double balance) {
         this.balance = balance;
     } // end of setBalance mutator method
+
+    /**
+     * Accesses the state of the bank attribute
+     * @return state/value of bank attribute
+     */
+    public String getBank() {
+        return bank;
+    } // end of getBank accessor method
 
     /**
      * Accesses the state of the accountHolder attribute
