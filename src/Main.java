@@ -1084,6 +1084,7 @@ public class Main extends JFrame {
         acceptDepositButton.setFont(montserratBold.deriveFont(15f));
         acceptDepositButton.setForeground(Color.BLACK);
         acceptDepositButton.setVerticalAlignment(SwingConstants.CENTER);
+        acceptDepositButton.setEnabled(false);
         depositButtonsPanel.add(acceptDepositButton);
 
         // Card 3 Components
@@ -1274,6 +1275,7 @@ public class Main extends JFrame {
         acceptWithdrawalButton.setFont(montserratBold.deriveFont(15f));
         acceptWithdrawalButton.setForeground(Color.BLACK);
         acceptWithdrawalButton.setVerticalAlignment(SwingConstants.CENTER);
+        acceptWithdrawalButton.setEnabled(false);
         withdrawButtonsPanel.add(acceptWithdrawalButton);
 
         // Card 4 Components
@@ -1908,6 +1910,8 @@ public class Main extends JFrame {
         incomeBreakdownButton.setAlignmentX(SwingConstants.WEST);
         walletButtonsPanel.add(incomeBreakdownButton, gbc);
 
+        /////////////////////////////////////////////////////////////////////////
+
         // Action Listeners
         // Left Panel Buttons
         accountButton.addActionListener(e -> cardLayout1.show(cardPanel, "1"));
@@ -1922,6 +1926,7 @@ public class Main extends JFrame {
         leftArrowButton.addActionListener(e -> cardLayout2.previous(accountCardPanel));
         rightArrowButton.addActionListener(e -> cardLayout2.next(accountCardPanel));
 
+        // Deposit Buttons
         // Deposit Combo Box
         depositAccountComboBox.addActionListener(e -> {
             Account selectedAccount = (Account) depositAccountComboBox.getSelectedItem();
@@ -1931,8 +1936,44 @@ public class Main extends JFrame {
                 depositAccountNameLabel.setText(selectedAccount.getAccountName());
                 depositAccountNumberLabel.setText(selectedAccount.getAccountNumber());
             } // end of if
+
+            // Cash Radio
+            cashRadioButton.addActionListener(e1 -> {
+                if (!depositAmountTextField.getText().equals(""))
+                    acceptDepositButton.setEnabled(true);
+            }); // end of ActionListener for cashRadioButton
+
+            // Other Radio
+            otherRadioButton.addActionListener(e1 -> {
+                if (!depositAmountTextField.getText().equals(""))
+                    acceptDepositButton.setEnabled(true);
+            }); // end of ActionListener for otherRadioButton
+
+            // Accept Deposit Button
+            acceptDepositButton.addActionListener(e1 -> {
+                try {
+                    if (selectedAccount != null) {
+                        String accountNumber = selectedAccount.getAccountNumber();
+                        double amount = Double.parseDouble(depositAmountTextField.getText());
+                        bankUtility.deposit(accountNumber, amount);
+                    } // end of if
+                } catch (Exception exception1) {
+                    JOptionPane.showMessageDialog(null, "Error making deposit. Try again");
+                } // end of try-catch
+            }); // end of ActionListener for acceptDepositButton
         }); // end of ActionListener for depositAccountComboBox
 
+        // Clear Deposit Button
+        clearDepositButton.addActionListener(e -> {
+            depositBalanceLabel.setText("SELECT ACCOUNT");
+            depositAccountNameLabel.setText("");
+            depositAccountNumberLabel.setText("");
+            depositAmountTextField.setText("");
+            depositRadioGroup.clearSelection();
+            acceptDepositButton.setEnabled(false);
+        }); // end of ActionListener for clearDepositButton
+
+        // Withdraw Buttons
         // Withdraw Combo Box
         withdrawAccountComboBox.addActionListener(e -> {
             Account selectedAccount = (Account) withdrawAccountComboBox.getSelectedItem();
@@ -1942,6 +1983,22 @@ public class Main extends JFrame {
                 withdrawAccountNameLabel.setText(selectedAccount.getAccountName());
                 withdrawAccountNumberLabel.setText(selectedAccount.getAccountNumber());
             } // end of if
+
+            if (!withdrawAmountTextField.getText().equals(""))
+                acceptWithdrawalButton.setEnabled(true);
+
+            // Accept Withdrawal Button
+            acceptWithdrawalButton.addActionListener(e2 -> {
+                try {
+                    if (selectedAccount != null) {
+                        String accountNumber = selectedAccount.getAccountNumber();
+                        double amount = Double.parseDouble(withdrawAmountTextField.getText());
+                        bankUtility.withdraw(accountNumber, amount);
+                    } // end of if
+                } catch (Exception exception1) {
+                    JOptionPane.showMessageDialog(null, "Error making withdrawal. Try again");
+                } // end of try-catch
+            }); // end of ActionListener for acceptWithdrawalButton method
         }); // end of ActionListener for withdrawAccountComboBox
 
         // Transfer Panel Buttons

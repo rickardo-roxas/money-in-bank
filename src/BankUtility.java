@@ -58,12 +58,13 @@ public class BankUtility {
      * @return newBalance
      * @throws Exception if exception or error occurs
      */
-    public double deposit(String accountNumber, double amount) throws Exception {
+    public void deposit(String accountNumber, double amount) throws Exception {
         double newBalance = 0.0;
         try {
             for (Account account: accounts) {
                 if (account.getAccountNumber().equals(accountNumber)) {
                     newBalance = account.getBalance() + amount;
+                    account.setBalance(newBalance);
                 } else {
                     throw new Exception();
                 } // end of if-else
@@ -72,22 +73,21 @@ public class BankUtility {
             JOptionPane.showMessageDialog(null, e1.getMessage());
             e1.printStackTrace();
         } // end of try-catch
-        return newBalance;
     } // end of deposit method
 
     /**
      * Withdraws amount from existing bank account
      * @param accountNumber given account number
      * @param amount withdrawal amount
-     * @return newBalance
      * @throws Exception if exception or error occurs
      */
-    public double withdraw(String accountNumber, double amount) throws Exception {
+    public void withdraw(String accountNumber, double amount) throws Exception {
         double newBalance = 0.0;
         try {
             for (Account account: accounts) {
                 if (account.getAccountName().equals(accountNumber)) {
                     newBalance = account.getBalance() - amount;
+                    account.setBalance(newBalance);
                 } else {
                      throw new Exception();
                 } // end of if-else
@@ -96,6 +96,5 @@ public class BankUtility {
             JOptionPane.showMessageDialog(null, e1.getMessage());
             e1.printStackTrace();
         } // end of try-catch
-        return newBalance;
     } // end of withdraw method
 } // end of class BankUtility
