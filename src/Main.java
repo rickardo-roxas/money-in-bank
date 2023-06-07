@@ -1984,7 +1984,11 @@ public class Main extends JFrame {
                 withdrawAccountNumberLabel.setText(selectedAccount.getAccountNumber());
             } // end of if
 
-            fiveHundredButton.addActionListener(e1 -> withdrawAmountTextField.setText(String.valueOf(500.00))); // end of ActionListener for fiveHundredButton
+            fiveHundredButton.addActionListener(e1 -> {
+                withdrawAmountTextField.setText(String.valueOf(500.00));
+                if (!withdrawAmountTextField.getText().equals(""))
+                    acceptWithdrawalButton.setEnabled(true);
+            }); // end of ActionListener for fiveHundredButton
 
             oneThousandButton.addActionListener(e2 -> {
                 withdrawAmountTextField.setText(String.valueOf(1000.00));

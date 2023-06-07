@@ -65,8 +65,6 @@ public class BankUtility {
                 if (account.getAccountNumber().equals(accountNumber)) {
                     newBalance = account.getBalance() + amount;
                     account.setBalance(newBalance);
-                } else {
-                    throw new Exception();
                 } // end of if-else
             } // end of for
         } catch (ArithmeticException e1) {
@@ -88,8 +86,6 @@ public class BankUtility {
                 if (account.getAccountName().equals(accountNumber)) {
                     newBalance = account.getBalance() - amount;
                     account.setBalance(newBalance);
-                } else {
-                     throw new Exception();
                 } // end of if-else
             } // end of for
         } catch (ArithmeticException e1) {
