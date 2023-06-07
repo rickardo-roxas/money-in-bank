@@ -31,6 +31,7 @@ public class Account {
     public Account() {
         bank = "BPI";
         accountHolder = "Juan Dela Cruz";
+        accountName = "Savings";
         accountNumber = "123 567 8900";
         balance = 10000.00;
     } // end of Account default constructor
@@ -42,9 +43,10 @@ public class Account {
      * @param accountNumber given account number
      * @param balance given balance
      */
-    public Account(String bank, String accountHolder, String accountNumber, double balance) {
+    public Account(String bank, String accountHolder, String accountName, String accountNumber, double balance) {
         this.bank = bank;
         this.accountHolder = accountHolder;
+        this.accountName = accountName;
         this.accountNumber = accountNumber;
         this.balance = balance;
     } // end of Account constructor

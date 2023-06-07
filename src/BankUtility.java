@@ -30,23 +30,24 @@ public class BankUtility {
      */
     public void readUserAccounts(String userFolder) throws Exception {
         try {
-            inputStream = new BufferedReader(new FileReader(userFolder + "accounts"));
+            inputStream = new BufferedReader(new FileReader(userFolder + "/accounts"));
             String line = "";
 
             while ((line = inputStream.readLine()) != null) {
                 String[] accountData = line.split(",");
                 String bank = accountData[0];
                 String accountHolder = accountData[1];
-                String accountNumber = accountData[2];
-                double balance = Double.parseDouble(accountData[3]);
-                accounts.add(new Account(bank, accountHolder, accountNumber, balance));
+                String accountName = accountData[2];
+                String accountNumber = accountData[3];
+                double balance = Double.parseDouble(accountData[4]);
+                accounts.add(new Account(bank, accountHolder, accountName, accountNumber, balance));
+                System.out.println(accounts);
             } // end of while
+            inputStream.close();
         } catch (FileNotFoundException e1) {
             throw new FileNotFoundException();
         } catch (IOException e2) {
             throw new IOException();
-        } finally {
-            inputStream.close();
         } // end of try-catch
     } // end of readFromFile method
 

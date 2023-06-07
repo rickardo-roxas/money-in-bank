@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import java.lang.*;
 import java.io.*;
 import java.awt.*;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Johan Rickardo Roxas
@@ -21,7 +24,7 @@ public class Main extends JFrame {
      * Utility class.
      * Methods invoked produce useful information.
      */
-    private final BankUtility bankUtility = new BankUtility();
+    private static final BankUtility bankUtility = new BankUtility();
 
     /**
      * Midnight green
@@ -119,23 +122,50 @@ public class Main extends JFrame {
      * @param args command line arguments
      */
     public static void main(String[] args) {
-        Main mainProgram;
         try {
-            mainProgram = new Main();
-            mainProgram.run();
+            run();
+            new Main();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         } // end of try-catch
     } // end of main method
 
-    private final String userFolder = "users/";
+    /**
+     * Folder name of user
+     */
+    public static String user = "test_user";
 
-    private void run() {
+    /**
+     * The folder of the user used in methods
+     */
+    private static final String userFolder = "users/" + user;
+
+    /**
+     * First bank account of user
+     */
+    private static Account accountOne;
+
+    /**
+     * Second bank account of user
+     */
+    private static Account accountTwo;
+
+    /**
+     * Controls the execution of the program
+     */
+    private static void run() {
         try {
             bankUtility.readUserAccounts(userFolder);
-        } catch (Exception e) {
-            e.printStackTrace();
+            accountOne = bankUtility.accounts.get(0);
+            accountTwo = bankUtility.accounts.get(1);
+        } catch (FileNotFoundException e1) {
+            JOptionPane.showMessageDialog(null, "No bank accounts found.");
+        } catch (IOException e2) {
+            JOptionPane.showMessageDialog(null,"Error reading user record. Restart app.");
+            System.exit(0);
+        } catch (Exception exception) {
+            exception.printStackTrace();
         } // end of try-catch
     } // end of run method
 
@@ -678,7 +708,8 @@ public class Main extends JFrame {
         accountCardPanel.setPreferredSize(new Dimension(400, 200));
         accountPanel.add(accountCardPanel, BorderLayout.CENTER);
 
-        // Account Holder Panel
+        // Account Card 1
+        // Account 1 Holder Panel
         JPanel accountHolderPanel = new JPanel();
         accountHolderPanel.setLayout(gridBagLayout);
         accountHolderPanel.setBackground(asparagus);
@@ -690,18 +721,18 @@ public class Main extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 10, 0, 10);
 
-        // Account Panel components
-        // Bank Label
+        // Account 1 Holder components
+        // Account 1 Bank Label
         gbc.gridy = 0;
         JLabel bankLabel = new JLabel();
-        bankLabel.setText("BPI");
+        bankLabel.setText(accountOne.getBank());
         bankLabel.setFont(montserratBold.deriveFont(30f));
         bankLabel.setForeground(Color.WHITE);
         bankLabel.setVerticalAlignment(SwingConstants.CENTER);
         bankLabel.setHorizontalAlignment(SwingConstants.CENTER);
         accountHolderPanel.add(bankLabel, gbc);
 
-        // Separator
+        // Separator 1
         gbc.gridy = 1;
         JSeparator s1 = new JSeparator();
         s1.setForeground(Color.WHITE);
@@ -709,45 +740,117 @@ public class Main extends JFrame {
         s1.setPreferredSize(new Dimension(400, 2));
         accountHolderPanel.add(s1, gbc);
 
-        // Actual Balance
+        // Account 1 Actual Balance
         gbc.gridy = 2;
         JLabel balanceLabel = new JLabel();
-        balanceLabel.setText("₱ " + "135,978.23");
+        balanceLabel.setText("₱ " + String.format("%,.2f",accountOne.getBalance()));
         balanceLabel.setFont(montserratBlack.deriveFont(40f));
         balanceLabel.setForeground(Color.WHITE);
         balanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
         balanceLabel.setVerticalAlignment(SwingConstants.CENTER);
         accountHolderPanel.add(balanceLabel,gbc);
 
-        // Account Name
+        // Account 1 Name
         gbc.gridy = 3;
         JLabel accountNameLabel = new JLabel();
-        accountNameLabel.setText("Savings 1");
+        accountNameLabel.setText(accountOne.getAccountName());
         accountNameLabel.setFont(montserrat.deriveFont(17.5f));
         accountNameLabel.setForeground(Color.WHITE);
         accountNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         accountNameLabel.setVerticalAlignment(SwingConstants.CENTER);
         accountHolderPanel.add(accountNameLabel, gbc);
 
-        // Account Number
+        // Account 1 Number
         gbc.gridy = 4;
         JLabel accountNumberLabel = new JLabel();
-        accountNumberLabel.setText("123 456 7890");
+        accountNumberLabel.setText(accountOne.getAccountNumber());
         accountNumberLabel.setFont(montserrat.deriveFont(17.5f));
         accountNumberLabel.setForeground(Color.WHITE);
         accountNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
         accountNumberLabel.setVerticalAlignment(SwingConstants.CENTER);
         accountHolderPanel.add(accountNumberLabel, gbc);
 
-        // Account Holder
+        // Account 1 Holder
         gbc.gridy = 5;
         JLabel accountHolderLabel = new JLabel();
-        accountHolderLabel.setText("John Doe");
+        accountHolderLabel.setText(accountOne.getAccountHolder());
         accountHolderLabel.setFont(montserrat.deriveFont(17.5f));
         accountHolderLabel.setForeground(Color.WHITE);
         accountHolderLabel.setHorizontalAlignment(SwingConstants.CENTER);
         accountHolderLabel.setVerticalAlignment(SwingConstants.CENTER);
         accountHolderPanel.add(accountHolderLabel, gbc);
+
+        // Account Card 2
+        // Account 1 Holder Panel
+        JPanel account2HolderPanel = new JPanel();
+        account2HolderPanel.setLayout(gridBagLayout);
+        account2HolderPanel.setBackground(asparagus);
+        account2HolderPanel.setPreferredSize(new Dimension(400, 200));
+        accountCardPanel.add(account2HolderPanel, BorderLayout.CENTER);
+
+        gbc.gridx = 0;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 10, 0, 10);
+
+        // Account 2 Holder components
+        // Bank Label
+        gbc.gridy = 0;
+        JLabel bank2Label = new JLabel();
+        bank2Label.setText(accountTwo.getBank());
+        bank2Label.setFont(montserratBold.deriveFont(30f));
+        bank2Label.setForeground(Color.WHITE);
+        bank2Label.setVerticalAlignment(SwingConstants.CENTER);
+        bank2Label.setHorizontalAlignment(SwingConstants.CENTER);
+        account2HolderPanel.add(bank2Label, gbc);
+
+        // Separator
+        gbc.gridy = 1;
+        JSeparator acc2Separator = new JSeparator();
+        acc2Separator.setForeground(Color.WHITE);
+        acc2Separator.setOrientation(SwingConstants.HORIZONTAL);
+        acc2Separator.setPreferredSize(new Dimension(400, 2));
+        account2HolderPanel.add(acc2Separator, gbc);
+
+        // Actual Balance 2
+        gbc.gridy = 2;
+        JLabel balance2Label = new JLabel();
+        balance2Label.setText("₱ " + String.format("%,.2f",accountTwo.getBalance()));
+        balance2Label.setFont(montserratBlack.deriveFont(40f));
+        balance2Label.setForeground(Color.WHITE);
+        balance2Label.setHorizontalAlignment(SwingConstants.CENTER);
+        balance2Label.setVerticalAlignment(SwingConstants.CENTER);
+        account2HolderPanel.add(balance2Label,gbc);
+
+        // Account 2 Name
+        gbc.gridy = 3;
+        JLabel account2NameLabel = new JLabel();
+        account2NameLabel.setText(accountTwo.getAccountName());
+        account2NameLabel.setFont(montserrat.deriveFont(17.5f));
+        account2NameLabel.setForeground(Color.WHITE);
+        account2NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        account2NameLabel.setVerticalAlignment(SwingConstants.CENTER);
+        account2HolderPanel.add(account2NameLabel, gbc);
+
+        // Account 2 Number
+        gbc.gridy = 4;
+        JLabel account2NumberLabel = new JLabel();
+        account2NumberLabel.setText(accountTwo.getAccountNumber());
+        account2NumberLabel.setFont(montserrat.deriveFont(17.5f));
+        account2NumberLabel.setForeground(Color.WHITE);
+        account2NumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        account2NumberLabel.setVerticalAlignment(SwingConstants.CENTER);
+        account2HolderPanel.add(account2NumberLabel, gbc);
+
+        // Account 2 Holder
+        gbc.gridy = 5;
+        JLabel account2HolderLabel = new JLabel();
+        account2HolderLabel.setText(accountTwo.getAccountHolder());
+        account2HolderLabel.setFont(montserrat.deriveFont(17.5f));
+        account2HolderLabel.setForeground(Color.WHITE);
+        account2HolderLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        account2HolderLabel.setVerticalAlignment(SwingConstants.CENTER);
+        account2HolderPanel.add(account2HolderLabel, gbc);
 
         // Bottom Panel
         JPanel bottomPanel = new JPanel();
