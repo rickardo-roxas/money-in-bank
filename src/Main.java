@@ -1984,8 +1984,41 @@ public class Main extends JFrame {
                 withdrawAccountNumberLabel.setText(selectedAccount.getAccountNumber());
             } // end of if
 
-            if (!withdrawAmountTextField.getText().equals(""))
+            fiveHundredButton.addActionListener(e1 -> withdrawAmountTextField.setText(String.valueOf(500.00))); // end of ActionListener for fiveHundredButton
+
+            oneThousandButton.addActionListener(e2 -> {
+                withdrawAmountTextField.setText(String.valueOf(1000.00));
+                if (!withdrawAmountTextField.getText().equals(""))
+                    acceptWithdrawalButton.setEnabled(true);
+            }); // end of ActionListener for oneThousandButton
+
+            oneThousandFiveButton.addActionListener(e3 -> {
+                withdrawAmountTextField.setText(String.valueOf(1500.00));
+                if (!withdrawAmountTextField.getText().equals(""))
+                    acceptWithdrawalButton.setEnabled(true);
+            }); // end of ActionListener for oneThousandFiveButton
+
+            twoThousandButton.addActionListener(e4 -> {
+                withdrawAmountTextField.setText(String.valueOf(2000.00));
+                if (!withdrawAmountTextField.getText().equals(""))
+                    acceptWithdrawalButton.setEnabled(true);
+            }); // end of ActionListener for twoThousandButton
+
+            threeThousandButton.addActionListener(e5 -> {
+                withdrawAmountTextField.setText(String.valueOf(3000.00));
+                if (!withdrawAmountTextField.getText().equals(""))
+                    acceptWithdrawalButton.setEnabled(true);
+            }); // end of ActionListener for threeThousandButton
+
+            fiveThousandButton.addActionListener(e6 -> {
+                withdrawAmountTextField.setText(String.valueOf(5000.00));
+                if (!withdrawAmountTextField.getText().equals(""))
+                    acceptWithdrawalButton.setEnabled(true);
+            }); // end of ActionListener for fiveThousandButton
+
+            withdrawAmountTextField.addActionListener(e7 -> {
                 acceptWithdrawalButton.setEnabled(true);
+            }); // end of ActionListener for withdrawAmountTextField
 
             // Accept Withdrawal Button
             acceptWithdrawalButton.addActionListener(e2 -> {
@@ -2000,6 +2033,15 @@ public class Main extends JFrame {
                 } // end of try-catch
             }); // end of ActionListener for acceptWithdrawalButton method
         }); // end of ActionListener for withdrawAccountComboBox
+
+        // Clear Withdraw Button
+        clearWithdrawalButton.addActionListener(e -> {
+            withdrawBalanceLabel.setText("SELECT ACCOUNT");
+            withdrawAccountNameLabel.setText("");
+            withdrawAccountNumberLabel.setText("");
+            withdrawAmountTextField.setText("");
+            acceptWithdrawalButton.setEnabled(false);
+        }); // end of ActionListener for clearWithdrawalButton
 
         // Transfer Panel Buttons
         // Step 1
