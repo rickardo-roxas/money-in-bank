@@ -942,12 +942,13 @@ public class Main extends JFrame {
         gbc.gridwidth = 50;
         gbc.gridx = 0;
         gbc.gridy = 1;
-        JComboBox<String> depositAccountComboBox = new JComboBox<>();
+        JComboBox<Account> depositAccountComboBox = new JComboBox<>();
         depositAccountComboBox.setFont(montserrat.deriveFont(17.5f));
         depositAccountComboBox.setForeground(Color.BLACK);
-        depositAccountComboBox.addItem("BPI"  + " | " + "Savings 1");
-        depositAccountComboBox.addItem("BPI" + " | " + "Savings 2");
         depositPanel.add(depositAccountComboBox, gbc);
+
+        depositAccountComboBox.addItem(accountOne);
+        depositAccountComboBox.addItem(accountTwo);
 
         // Account Details Panel
         gbc.gridx = 0;
@@ -963,7 +964,7 @@ public class Main extends JFrame {
         gbc.insets = new Insets(5, 10, 0, 10);
         gbc.gridy = 0;
         JLabel depositBalanceLabel = new JLabel();
-        depositBalanceLabel.setText("₱ " + "135,978.23");
+        depositBalanceLabel.setText("SELECT ACCOUNT");
         depositBalanceLabel.setFont(montserratBlack.deriveFont(40f));
         depositBalanceLabel.setForeground(Color.WHITE);
         depositBalanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -973,7 +974,6 @@ public class Main extends JFrame {
         // Account Name
         gbc.gridy = 1;
         JLabel depositAccountNameLabel = new JLabel();
-        depositAccountNameLabel.setText("Savings 1");
         depositAccountNameLabel.setFont(montserrat.deriveFont(17.5f));
         depositAccountNameLabel.setForeground(Color.WHITE);
         depositAccountNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -983,7 +983,6 @@ public class Main extends JFrame {
         // Account Number
         gbc.gridy = 2;
         JLabel depositAccountNumberLabel = new JLabel();
-        depositAccountNumberLabel.setText("123 456 7890");
         depositAccountNumberLabel.setFont(montserrat.deriveFont(17.5f));
         depositAccountNumberLabel.setForeground(Color.WHITE);
         depositAccountNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1070,7 +1069,7 @@ public class Main extends JFrame {
         depositButtonsPanel.setAlignmentX(SwingConstants.EAST);
         depositPanel.add(depositButtonsPanel, gbc);
 
-        // Deposit Amount 
+        // Deposit Amount
         // Clear Button
         JButton clearDepositButton = new JButton();
         clearDepositButton.setText("Clear");
@@ -1113,12 +1112,13 @@ public class Main extends JFrame {
         // Account Selector Combo Box
         gbc.gridx = 0;
         gbc.gridy = 1;
-        JComboBox<String> withdrawAccountComboBox = new JComboBox<>();
+        JComboBox<Account> withdrawAccountComboBox = new JComboBox<>();
         withdrawAccountComboBox.setFont(montserrat.deriveFont(17.5f));
         withdrawAccountComboBox.setForeground(Color.BLACK);
-        withdrawAccountComboBox.addItem("BPI"  + " | " + "Savings 1");
-        withdrawAccountComboBox.addItem("BPI" + " | " + "Savings 2");
         withdrawPanel.add(withdrawAccountComboBox, gbc);
+
+        withdrawAccountComboBox.addItem(accountOne);
+        withdrawAccountComboBox.addItem(accountTwo);
 
         // Account Details Panel
         gbc.gridwidth = 50;
@@ -1135,7 +1135,7 @@ public class Main extends JFrame {
         gbc.insets = new Insets(10, 10, 0, 10);
         gbc.gridy = 0;
         JLabel withdrawBalanceLabel = new JLabel();
-        withdrawBalanceLabel.setText("₱ " + "135,978.23");
+        withdrawBalanceLabel.setText("SELECT ACCOUNT");
         withdrawBalanceLabel.setFont(montserratBlack.deriveFont(40f));
         withdrawBalanceLabel.setForeground(Color.WHITE);
         withdrawBalanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1145,7 +1145,6 @@ public class Main extends JFrame {
         // Account Name
         gbc.gridy = 1;
         JLabel withdrawAccountNameLabel = new JLabel();
-        withdrawAccountNameLabel.setText("Savings 1");
         withdrawAccountNameLabel.setFont(montserrat.deriveFont(17.5f));
         withdrawAccountNameLabel.setForeground(Color.WHITE);
         withdrawAccountNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1155,7 +1154,6 @@ public class Main extends JFrame {
         // Account Number
         gbc.gridy = 2;
         JLabel withdrawAccountNumberLabel = new JLabel();
-        withdrawAccountNumberLabel.setText("123 456 7890");
         withdrawAccountNumberLabel.setFont(montserrat.deriveFont(17.5f));
         withdrawAccountNumberLabel.setForeground(Color.WHITE);
         withdrawAccountNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1923,6 +1921,28 @@ public class Main extends JFrame {
         // Center Panel Arrows
         leftArrowButton.addActionListener(e -> cardLayout2.previous(accountCardPanel));
         rightArrowButton.addActionListener(e -> cardLayout2.next(accountCardPanel));
+
+        // Deposit Combo Box
+        depositAccountComboBox.addActionListener(e -> {
+            Account selectedAccount = (Account) depositAccountComboBox.getSelectedItem();
+
+            if (selectedAccount != null) {
+                depositBalanceLabel.setText("₱ " + String.format("%,.2f" , selectedAccount.getBalance()));
+                depositAccountNameLabel.setText(selectedAccount.getAccountName());
+                depositAccountNumberLabel.setText(selectedAccount.getAccountNumber());
+            } // end of if
+        }); // end of ActionListener for depositAccountComboBox
+
+        // Withdraw Combo Box
+        withdrawAccountComboBox.addActionListener(e -> {
+            Account selectedAccount = (Account) withdrawAccountComboBox.getSelectedItem();
+
+            if (selectedAccount != null) {
+                withdrawBalanceLabel.setText("₱ " + String.format("%,.2f" , selectedAccount.getBalance()));
+                withdrawAccountNameLabel.setText(selectedAccount.getAccountName());
+                withdrawAccountNumberLabel.setText(selectedAccount.getAccountNumber());
+            } // end of if
+        }); // end of ActionListener for withdrawAccountComboBox
 
         // Transfer Panel Buttons
         // Step 1
