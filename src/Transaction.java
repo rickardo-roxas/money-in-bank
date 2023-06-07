@@ -26,7 +26,7 @@ public class Transaction {
     public Transaction() {
         type = "Deposit";
         amount = 1000.00;
-        date = "2023/06/07";
+        date = "2023-06-07 13:25:05";
     } // end of Transaction default constructor
 
     /**
@@ -95,7 +95,7 @@ public class Transaction {
      */
     public String toString() {
         return type + "," +
-                amount + "," +
+                String.format("%,.2f",amount) + "," +
                 date;
     } // end of toString method
 } // end of class Transaction

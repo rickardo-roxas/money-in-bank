@@ -139,7 +139,7 @@ public class Main extends JFrame {
     /**
      * The folder of the user used in methods
      */
-    private static final String userFolder = "users/" + user;
+    static final String userFolder = "users/" + user;
 
     /**
      * First bank account of user
@@ -156,7 +156,7 @@ public class Main extends JFrame {
      */
     private static void run() {
         try {
-            bankUtility.readUserAccounts(userFolder);
+            bankUtility.readUserAccounts();
             accountOne = bankUtility.accounts.get(0);
             accountTwo = bankUtility.accounts.get(1);
         } catch (FileNotFoundException e1) {
@@ -945,10 +945,12 @@ public class Main extends JFrame {
         JComboBox<Account> depositAccountComboBox = new JComboBox<>();
         depositAccountComboBox.setFont(montserrat.deriveFont(17.5f));
         depositAccountComboBox.setForeground(Color.BLACK);
+        depositAccountComboBox.setBackground(Color.WHITE);
         depositPanel.add(depositAccountComboBox, gbc);
 
         depositAccountComboBox.addItem(accountOne);
         depositAccountComboBox.addItem(accountTwo);
+        depositAccountComboBox.setSelectedItem(null);
 
         // Account Details Panel
         gbc.gridx = 0;
@@ -1074,7 +1076,8 @@ public class Main extends JFrame {
         JButton clearDepositButton = new JButton();
         clearDepositButton.setText("Clear");
         clearDepositButton.setFont(montserratBold.deriveFont(15f));
-        clearDepositButton.setForeground(Color.BLACK);
+        clearDepositButton.setForeground(Color.WHITE);
+        clearDepositButton.setBackground(teal);
         clearDepositButton.setVerticalAlignment(SwingConstants.CENTER);
         depositButtonsPanel.add(clearDepositButton);
 
@@ -1082,7 +1085,8 @@ public class Main extends JFrame {
         JButton acceptDepositButton = new JButton();
         acceptDepositButton.setText("Deposit");
         acceptDepositButton.setFont(montserratBold.deriveFont(15f));
-        acceptDepositButton.setForeground(Color.BLACK);
+        acceptDepositButton.setForeground(Color.WHITE);
+        acceptDepositButton.setBackground(satinSheenGold);
         acceptDepositButton.setVerticalAlignment(SwingConstants.CENTER);
         acceptDepositButton.setEnabled(false);
         depositButtonsPanel.add(acceptDepositButton);
@@ -1115,11 +1119,13 @@ public class Main extends JFrame {
         gbc.gridy = 1;
         JComboBox<Account> withdrawAccountComboBox = new JComboBox<>();
         withdrawAccountComboBox.setFont(montserrat.deriveFont(17.5f));
+        withdrawAccountComboBox.setBackground(Color.WHITE);
         withdrawAccountComboBox.setForeground(Color.BLACK);
         withdrawPanel.add(withdrawAccountComboBox, gbc);
 
         withdrawAccountComboBox.addItem(accountOne);
         withdrawAccountComboBox.addItem(accountTwo);
+        withdrawAccountComboBox.setSelectedItem(null);
 
         // Account Details Panel
         gbc.gridwidth = 50;
@@ -1198,7 +1204,8 @@ public class Main extends JFrame {
         JButton fiveHundredButton = new JButton();
         fiveHundredButton.setText("₱500");
         fiveHundredButton.setFont(montserratBold.deriveFont(15f));
-        fiveHundredButton.setForeground(Color.BLACK);
+        fiveHundredButton.setBackground(midnightGreen);
+        fiveHundredButton.setForeground(Color.WHITE);
         fiveHundredButton.setVerticalAlignment(SwingConstants.CENTER);
         withdrawAmountsPanel.add(fiveHundredButton);
 
@@ -1206,7 +1213,8 @@ public class Main extends JFrame {
         JButton oneThousandButton = new JButton();
         oneThousandButton.setText("₱1000");
         oneThousandButton.setFont(montserratBold.deriveFont(15f));
-        oneThousandButton.setForeground(Color.BLACK);
+        oneThousandButton.setBackground(midnightGreen);
+        oneThousandButton.setForeground(Color.WHITE);
         oneThousandButton.setVerticalAlignment(SwingConstants.CENTER);
         withdrawAmountsPanel.add(oneThousandButton);
 
@@ -1214,7 +1222,8 @@ public class Main extends JFrame {
         JButton oneThousandFiveButton = new JButton();
         oneThousandFiveButton.setText("₱1500");
         oneThousandFiveButton.setFont(montserratBold.deriveFont(15f));
-        oneThousandFiveButton.setForeground(Color.BLACK);
+        oneThousandFiveButton.setBackground(midnightGreen);
+        oneThousandFiveButton.setForeground(Color.WHITE);
         oneThousandFiveButton.setVerticalAlignment(SwingConstants.CENTER);
         withdrawAmountsPanel.add(oneThousandFiveButton);
 
@@ -1222,7 +1231,8 @@ public class Main extends JFrame {
         JButton twoThousandButton = new JButton();
         twoThousandButton.setText("₱2000");
         twoThousandButton.setFont(montserratBold.deriveFont(15f));
-        twoThousandButton.setForeground(Color.BLACK);
+        twoThousandButton.setBackground(midnightGreen);
+        twoThousandButton.setForeground(Color.WHITE);
         twoThousandButton.setVerticalAlignment(SwingConstants.CENTER);
         withdrawAmountsPanel.add(twoThousandButton);
 
@@ -1230,7 +1240,8 @@ public class Main extends JFrame {
         JButton threeThousandButton = new JButton();
         threeThousandButton.setText("₱3000");
         threeThousandButton.setFont(montserratBold.deriveFont(15f));
-        threeThousandButton.setForeground(Color.BLACK);
+        threeThousandButton.setBackground(midnightGreen);
+        threeThousandButton.setForeground(Color.WHITE);
         threeThousandButton.setVerticalAlignment(SwingConstants.CENTER);
         withdrawAmountsPanel.add(threeThousandButton);
 
@@ -1238,7 +1249,8 @@ public class Main extends JFrame {
         JButton fiveThousandButton = new JButton();
         fiveThousandButton.setText("₱5000");
         fiveThousandButton.setFont(montserratBold.deriveFont(15f));
-        fiveThousandButton.setForeground(Color.BLACK);
+        fiveThousandButton.setBackground(midnightGreen);
+        fiveThousandButton.setForeground(Color.WHITE);
         fiveThousandButton.setVerticalAlignment(SwingConstants.CENTER);
         withdrawAmountsPanel.add(fiveThousandButton);
 
@@ -1265,7 +1277,8 @@ public class Main extends JFrame {
         JButton clearWithdrawalButton = new JButton();
         clearWithdrawalButton.setText("Clear");
         clearWithdrawalButton.setFont(montserratBold.deriveFont(15f));
-        clearWithdrawalButton.setForeground(Color.BLACK);
+        clearWithdrawalButton.setBackground(teal);
+        clearWithdrawalButton.setForeground(Color.WHITE);
         clearWithdrawalButton.setVerticalAlignment(SwingConstants.CENTER);
         withdrawButtonsPanel.add(clearWithdrawalButton);
 
@@ -1273,7 +1286,8 @@ public class Main extends JFrame {
         JButton acceptWithdrawalButton = new JButton();
         acceptWithdrawalButton.setText("Withdraw");
         acceptWithdrawalButton.setFont(montserratBold.deriveFont(15f));
-        acceptWithdrawalButton.setForeground(Color.BLACK);
+        acceptWithdrawalButton.setBackground(satinSheenGold);
+        acceptWithdrawalButton.setForeground(Color.WHITE);
         acceptWithdrawalButton.setVerticalAlignment(SwingConstants.CENTER);
         acceptWithdrawalButton.setEnabled(false);
         withdrawButtonsPanel.add(acceptWithdrawalButton);
@@ -1970,6 +1984,7 @@ public class Main extends JFrame {
             depositAccountNumberLabel.setText("");
             depositAmountTextField.setText("");
             depositRadioGroup.clearSelection();
+            depositAccountComboBox.setSelectedItem(null);
             acceptDepositButton.setEnabled(false);
         }); // end of ActionListener for clearDepositButton
 
@@ -2044,6 +2059,7 @@ public class Main extends JFrame {
             withdrawAccountNameLabel.setText("");
             withdrawAccountNumberLabel.setText("");
             withdrawAmountTextField.setText("");
+            withdrawAccountComboBox.setSelectedItem(null);
             acceptWithdrawalButton.setEnabled(false);
         }); // end of ActionListener for clearWithdrawalButton
 
