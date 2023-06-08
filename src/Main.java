@@ -663,7 +663,7 @@ public class Main extends JFrame {
         JPanel accountPanel = new JPanel();
         accountPanel.setLayout(new BorderLayout());
         accountPanel.setBackground(Color.WHITE);
-        accountPanel.setPreferredSize(new Dimension(900,500));
+        accountPanel.setPreferredSize(new Dimension(900,400));
         cardPanel.add(accountPanel, "1");
 
         // Left Button Panel
@@ -861,6 +861,62 @@ public class Main extends JFrame {
         account2HolderLabel.setHorizontalAlignment(SwingConstants.CENTER);
         account2HolderLabel.setVerticalAlignment(SwingConstants.CENTER);
         account2HolderPanel.add(account2HolderLabel, gbc);
+
+        // Account Card 3
+        // Add Account Panel
+        JPanel addAccountPanel = new JPanel();
+        addAccountPanel.setLayout(gridBagLayout);
+        addAccountPanel.setBackground(asparagus);
+        addAccountPanel.setPreferredSize(new Dimension(400, 200));
+        accountCardPanel.add(addAccountPanel, BorderLayout.CENTER);
+
+        gbc.gridx = 0;
+        gbc.gridwidth = 50;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5,10,0,10);
+
+        // Add Account Panel Components
+        // Add Account Button
+        ImageIcon addAccountIcon = new ImageIcon("icons/btn/icons8-add-50.png");
+        ImageIcon scaledAddAccountIcon = scaleImage(addAccountIcon,40,40);
+
+        gbc.gridy = 0;
+        JButton addAccountButton = new JButton();
+        addAccountButton.setIcon(scaledAddAccountIcon);
+        addAccountButton.setText("Add Account");
+        addAccountButton.setFont(montserrat.deriveFont(17.5f));
+        addAccountButton.setForeground(Color.WHITE);
+        addAccountButton.setBorderPainted(false);
+        addAccountButton.setOpaque(false);
+        addAccountButton.setContentAreaFilled(false);
+        addAccountPanel.add(addAccountButton,gbc);
+
+        addAccountButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            /**
+             * Interaction with the button when the mouse hovers on it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(handCursor);
+
+                ImageIcon zoomedIcon = scaleImage(addAccountIcon,42,42);
+                addAccountButton.setIcon(zoomedIcon);
+                addAccountButton.setFont(montserrat.deriveFont(19.5f));
+            } // end of mouseEntered method
+
+            /**
+             * Interaction with the button when the mouse hovers away from it
+             * @param e the event to be processed
+             */
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(defaultCursor);
+
+                addAccountButton.setIcon(scaledAddAccountIcon);
+                addAccountButton.setFont(montserrat.deriveFont(17.5f));
+            } // end of mouseExited method
+        }); // end of mouseListener for addAccountButton
 
         // Bottom Panel
         JPanel bottomPanel = new JPanel();
