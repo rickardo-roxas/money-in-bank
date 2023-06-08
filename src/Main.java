@@ -1400,12 +1400,15 @@ public class Main extends JFrame {
 
         // Source Account Selector Combo Box
         gbc.gridy = 2;
-        JComboBox<String> transferSourceComboBox = new JComboBox<>();
+        JComboBox<Account> transferSourceComboBox = new JComboBox<>();
         transferSourceComboBox.setFont(montserrat.deriveFont(17.5f));
+        depositAccountComboBox.setBackground(Color.WHITE);
         transferSourceComboBox.setForeground(Color.BLACK);
-        transferSourceComboBox.addItem("BPI" + " | " + "Savings 1" + " | " + "123 456 7890");
-        transferSourceComboBox.addItem("BPI" + " | " + "Savings 2" + " | " + "098 765 4321");
         transferOnePanel.add(transferSourceComboBox, gbc);
+
+        transferSourceComboBox.addItem(accountOne);
+        transferSourceComboBox.addItem(accountTwo);
+        transferSourceComboBox.setSelectedItem(null);
 
         // Source Account Details Panel
         gbc.gridy = 3;
@@ -1419,7 +1422,7 @@ public class Main extends JFrame {
         gbc.insets = new Insets(10,10,0,10);
         gbc.gridy = 0;
         JLabel sourceBalanceLabel = new JLabel();
-        sourceBalanceLabel.setText("₱ " + "135,978.23");
+        sourceBalanceLabel.setText("SELECT ACCOUNT");
         sourceBalanceLabel.setFont(montserratBlack.deriveFont(40f));
         sourceBalanceLabel.setForeground(Color.WHITE);
         sourceBalanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1429,7 +1432,6 @@ public class Main extends JFrame {
         // Source Account Name
         gbc.gridy = 1;
         JLabel sourceAccountNameLabel = new JLabel();
-        sourceAccountNameLabel.setText("Savings 1");
         sourceAccountNameLabel.setFont(montserrat.deriveFont(17.5f));
         sourceAccountNameLabel.setForeground(Color.WHITE);
         sourceAccountNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1439,7 +1441,6 @@ public class Main extends JFrame {
         // Source Account Number
         gbc.gridy = 2;
         JLabel sourceAccountNumberLabel = new JLabel();
-        sourceAccountNumberLabel.setText("123 456 7890");
         sourceAccountNumberLabel.setFont(montserrat.deriveFont(17.5f));
         sourceAccountNumberLabel.setForeground(Color.WHITE);
         sourceAccountNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1451,8 +1452,10 @@ public class Main extends JFrame {
         JButton transferOneNextButton = new JButton();
         transferOneNextButton.setText("Next");
         transferOneNextButton.setFont(montserratBold.deriveFont(15f));
-        transferOneNextButton.setForeground(Color.BLACK);
+        transferOneNextButton.setBackground(satinSheenGold);
+        transferOneNextButton.setForeground(Color.WHITE);
         transferOneNextButton.setVerticalAlignment(SwingConstants.CENTER);
+        transferOneNextButton.setEnabled(false);
         transferOnePanel.add(transferOneNextButton, gbc);
 
         // Step 2
@@ -2153,7 +2156,20 @@ public class Main extends JFrame {
 
         // Transfer Panel Buttons
         // Step 1
-        transferOneNextButton.addActionListener(e -> cardLayout3.next(transferPanel));
+        transferSourceComboBox.addActionListener(e -> {
+            Account selectedAccount = (Account) transferSourceComboBox.getSelectedItem();
+
+            if (selectedAccount != null) {
+                sourceBalanceLabel.setText("₱ " + String.format("%,.2f" , selectedAccount.getBalance()));
+                sourceAccountNameLabel.setText(selectedAccount.getAccountName());
+                sourceAccountNumberLabel.setText(selectedAccount.getAccountNumber());
+
+                transferOneNextButton.setEnabled(true);
+                transferOneNextButton.addActionListener(next -> cardLayout3.next(transferPanel));
+            } // end of if
+        }); // end of ActionListener for transferSourceComboBox
+
+
 
         // Step 2
         transferTwoPreviousButton.addActionListener(e -> cardLayout3.previous(transferPanel));
