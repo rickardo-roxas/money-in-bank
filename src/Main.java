@@ -24,7 +24,7 @@ public class Main extends JFrame {
      * Utility class.
      * Methods invoked produce useful information.
      */
-    private static final BankUtility bankUtility = new BankUtility();
+    public static final BankUtility bankUtility = new BankUtility();
 
     /**
      * Midnight green
@@ -2046,7 +2046,6 @@ public class Main extends JFrame {
                     if (selectedAccount != null) {
                         double amount = Double.parseDouble(depositAmountTextField.getText());
                         selectedAccount.deposit(amount);
-                        bankUtility.saveFile();
                     } // end of if
                 } catch (Exception exception1) {
                     JOptionPane.showMessageDialog(null, "Error making deposit. Try again");

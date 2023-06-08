@@ -187,6 +187,7 @@ public class Account {
             } // end of if
             transactions.add(new Transaction("Deposit",amount, dateFormat.format(now)));
             printTransaction();
+            Main.bankUtility.saveFile();
         } catch (ArithmeticException e1) {
             JOptionPane.showMessageDialog(null, e1.getMessage());
             e1.printStackTrace();
@@ -234,6 +235,7 @@ public class Account {
             } // end of if
             transactions.add(new Transaction("Transfer", amount, dateFormat.format(now)));
             printTransaction();
+            Main.bankUtility.saveFile();
         } catch (ArithmeticException e1) {
             JOptionPane.showMessageDialog(null, e1.getMessage() + "Try again.");
             e1.printStackTrace();
