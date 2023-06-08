@@ -170,6 +170,7 @@ public class Account {
     public String toString() {
         return bank + "," +
                 accountHolder + "," +
+                accountName + "," +
                 accountNumber + "," +
                 balance;
     } // end of toString method
@@ -180,7 +181,6 @@ public class Account {
      * @throws Exception if exception or error occurs
      */
     public void deposit(double amount) throws Exception {
-        double newBalance = 0.0;
         try {
             if (amount > 0) {
                 this.setBalance(this.getBalance() + amount);
@@ -228,10 +228,10 @@ public class Account {
      */
     public void transfer(Account recipient, double amount) throws Exception {
         try {
-             if (amount > 0) {
-                 this.setBalance(this.getBalance() - amount);
-                 recipient.setBalance(recipient.getBalance() + amount);
-             } // end of if
+            if (amount > 0) {
+                this.setBalance(this.getBalance() - amount);
+                recipient.setBalance(recipient.getBalance() + amount);
+            } // end of if
             transactions.add(new Transaction("Transfer", amount, dateFormat.format(now)));
             printTransaction();
         } catch (ArithmeticException e1) {
@@ -243,31 +243,47 @@ public class Account {
     } // end of transfer method
 
     /**
-     * Prints transaction to file
+     * Prints transactions to file without overwriting the previous transactions.
      * @throws Exception if error occurs during reading or writing file.
      */
     private void printTransaction() throws Exception {
         try {
             // Reads existing transactions
-            inputStream = new BufferedReader(new FileReader(filePath));
-            String existingTransactions = inputStream.readLine();
+            inputStream = new BufferedReader(new FileReader(filePath + this.accountNumber));
+            List<String> existingTransactions = new ArrayList<>();
+            String line;
+
+            // Read all lines from the file
+            while ((line = inputStream.readLine()) != null) {
+                existingTransactions.add(line);
+            } // end of while
             inputStream.close();
 
             // Writes to file with existing contents without overwriting
             FileOutputStream outputStream =
-                    new FileOutputStream(filePath, false);
+                    new FileOutputStream(filePath + this.accountNumber, false);
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(existingTransactions).append("\n");
 
-            // Prints new transactions to file
-            for (Transaction transaction: transactions){
+            // Append existing transactions to the StringBuilder
+            for (String transaction : existingTransactions) {
+                stringBuilder.append(transaction).append("\n");
+            } // end of for
+
+            // Append new transactions to the StringBuilder
+            for (Transaction transaction : transactions) {
                 stringBuilder.append(transaction.toString()).append("\n");
             } // end of for
 
             outputStream.write(stringBuilder.toString().getBytes());
             outputStream.close();
         } catch (FileNotFoundException e1) {
-            throw new FileNotFoundException();
+            try (FileWriter newFile = new FileWriter(filePath + this.accountNumber, true)) {
+                for (Transaction transaction : transactions) {
+                    newFile.write(transaction + "\n");
+                } // end of for
+            } catch (IOException e3) {
+                JOptionPane.showMessageDialog(null, "Error making file. Try again.");
+            } // end of 2nd try-catch
         } catch (IOException e2) {
             throw new IOException();
         } // end of try-catch

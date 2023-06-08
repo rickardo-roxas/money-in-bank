@@ -53,22 +53,23 @@ public class BankUtility {
         } // end of try-catch
     } // end of readFromFile method
 
+    /**
+     * Saves accounts of user to existing or new file
+     * @throws IOException if writing or reading error occurs
+     */
     public void saveFile() throws IOException {
         try {
-            inputStream = new BufferedReader(new FileReader(Main.userFolder + "/accounts"));
-            String userAccountMetadata = inputStream.readLine();
-            inputStream.close();
-
             FileOutputStream outputStream = new FileOutputStream(Main.userFolder + "/accounts", false);
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(userAccountMetadata).append("\n");
 
-            outputStream.write(stringBuilder.toString().getBytes());
-            outputStream.close();
-
+            // Append the account information to the StringBuilder
             for (Account account : accounts) {
                 stringBuilder.append(account.toString()).append("\n");
             } // end of for
+
+            // Write the StringBuilder content to the file
+            outputStream.write(stringBuilder.toString().getBytes());
+            outputStream.close();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
         } catch (IOException e2) {

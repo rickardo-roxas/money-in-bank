@@ -95,7 +95,7 @@ public class Transaction {
      */
     public String toString() {
         return type + "," +
-                String.format("%,.2f",amount) + "," +
+                amount + "," +
                 date;
     } // end of toString method
 } // end of class Transaction
