@@ -112,11 +112,21 @@ public class Main extends JFrame {
      */
     EmptyBorder thinPadding = new EmptyBorder(10,10,10,10);
 
+    /**
+     * Cursor used for buttons
+     */
     Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
 
+    /**
+     * Default cursor
+     */
     Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 
+    /**
+     * Cursor used for texts
+     */
     Cursor textCursor = new Cursor(Cursor.TEXT_CURSOR);
+
     /**
      * Main entry point of the program
      * @param args command line arguments
@@ -139,7 +149,7 @@ public class Main extends JFrame {
     /**
      * The folder of the user used in methods
      */
-    static final String userFolder = "users/" + user;
+    public static final String userFolder = "users/" + user;
 
     /**
      * First bank account of user
@@ -1672,12 +1682,16 @@ public class Main extends JFrame {
         cardPanel.add(transactionsPanel, "5");
 
         // Account Selector Combo Box
-        JComboBox<String> transactionsAccountComboBox = new JComboBox<>();
+        JComboBox<Account> transactionsAccountComboBox = new JComboBox<>();
         transactionsAccountComboBox.setFont(montserrat.deriveFont(17.5f));
+        transactionsAccountComboBox.setBackground(Color.WHITE);
         transactionsAccountComboBox.setForeground(Color.BLACK);
-        transactionsAccountComboBox.addItem("BPI"  + " | " + "Savings 1" + " | " + "123 456 7890");
-        transactionsAccountComboBox.addItem("BPI" + " | " + "Savings 2" + " | " + "098 765 4321");
         transactionsPanel.add(transactionsAccountComboBox, BorderLayout.NORTH);
+
+        transactionsAccountComboBox.addItem(accountOne);
+        transactionsAccountComboBox.addItem(accountTwo);
+
+        transactionsAccountComboBox.setSelectedItem(null);
 
         // Transactions Panel Components
         JPanel tablePanel = new JPanel();
@@ -1686,7 +1700,7 @@ public class Main extends JFrame {
         transactionsPanel.add(tablePanel, BorderLayout.CENTER);
 
         // Table Panel Components
-        String[] columnNames = {"Reference Number" , "Type" , "Amount" , "Date"};
+        String[] columnNames = {"Type" , "Amount" , "Date"};
 
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
@@ -2060,6 +2074,26 @@ public class Main extends JFrame {
             withdrawAccountComboBox.setSelectedItem(null);
             acceptWithdrawalButton.setEnabled(false);
         }); // end of ActionListener for clearWithdrawalButton
+
+        // Transaction Panel Buttons
+        transactionsAccountComboBox.addActionListener(e -> {
+            model.setRowCount(0);
+            table.scrollRectToVisible(table.getCellRect(0, 0, true));
+
+            Account selectedAccount = (Account) transactionsAccountComboBox.getSelectedItem();
+            if (selectedAccount != null) {
+                try {
+                    List<Transaction> transactions = selectedAccount.readTransactions(selectedAccount.getAccountNumber());
+                    for (Transaction transaction : transactions) {
+                        Object[] transactionData = {transaction.getType(), transaction.getAmount(), transaction.getDate()};
+                        model.addRow(transactionData);
+                    } // end of for
+                } catch (FileNotFoundException e1) {
+                    Object[] noFile = {"No Transactions Found"};
+                    model.addRow(noFile);
+                } // end of try-catch
+            } // end of if
+        }); // end of ActionListener for transactionsAccountComboBox
 
         // Transfer Panel Buttons
         // Step 1

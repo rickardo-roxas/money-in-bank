@@ -53,6 +53,11 @@ public class Account {
     private final LocalDateTime now = LocalDateTime.now();
 
     /**
+     * Used for reading files.
+     */
+    private BufferedReader inputStream;
+
+    /**
      * Constructs an object of Account with default values.
      */
     public Account() {
@@ -178,8 +183,7 @@ public class Account {
         double newBalance = 0.0;
         try {
             if (amount > 0) {
-                newBalance = this.getBalance() + amount;
-                this.setBalance(newBalance);
+                this.setBalance(this.getBalance() + amount);
             } // end of if
             transactions.add(new Transaction("Deposit",amount, dateFormat.format(now)));
             printTransaction();
@@ -212,6 +216,11 @@ public class Account {
     } // end of withdraw method
 
     /**
+     * File path of account
+     */
+    private final String filePath = Main.userFolder + "/";
+
+    /**
      * Transfers amount to another account
      * @param recipient Account to be given
      * @param amount amount to be transferred
@@ -240,14 +249,13 @@ public class Account {
     private void printTransaction() throws Exception {
         try {
             // Reads existing transactions
-            BufferedReader inputStream = new BufferedReader(
-                    new FileReader(Main.userFolder + "/" + this.accountNumber));
+            inputStream = new BufferedReader(new FileReader(filePath));
             String existingTransactions = inputStream.readLine();
             inputStream.close();
 
             // Writes to file with existing contents without overwriting
             FileOutputStream outputStream =
-                    new FileOutputStream(Main.userFolder + "/" + this.accountNumber, false);
+                    new FileOutputStream(filePath, false);
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(existingTransactions).append("\n");
 
@@ -264,4 +272,31 @@ public class Account {
             throw new IOException();
         } // end of try-catch
     } // end of printTransaction method
+
+    /**
+     * Reads transactions to be displayed
+     * @return List of Transactions of current account
+     */
+    public List<Transaction> readTransactions(String accountNumber) throws FileNotFoundException {
+        List<Transaction> currentTransactions = new ArrayList<>();
+        try {
+            inputStream = new BufferedReader(new FileReader(filePath + accountNumber));
+            String line = "";
+
+            while ((line = inputStream.readLine()) != null) {
+                String[] transactionData = line.split(",");
+                String type = transactionData[0];
+                double amount = Double.parseDouble(transactionData[1]);
+                String date = transactionData[2];
+                currentTransactions.add(new Transaction(type, amount, date));
+                System.out.println(currentTransactions);
+            } // end of while
+            inputStream.close();
+        } catch (FileNotFoundException e1) {
+            throw new FileNotFoundException();
+        } catch (IOException  e2) {
+            e2.printStackTrace();
+        } // end of try-catch
+        return currentTransactions;
+    } // end of readTransactions method
 } // end of class Bank
