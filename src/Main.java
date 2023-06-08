@@ -2001,7 +2001,11 @@ public class Main extends JFrame {
 
         // Action Listeners
         // Left Panel Buttons
-        accountButton.addActionListener(e -> cardLayout1.show(cardPanel, "1"));
+        accountButton.addActionListener(e -> {
+            cardLayout1.show(cardPanel, "1");
+
+
+        }); // end of ActionListener for accountButton
         depositButton.addActionListener(e -> cardLayout1.show(cardPanel,"2"));
         withdrawButton.addActionListener(e -> cardLayout1.show(cardPanel,"3"));
         transferButton.addActionListener(e -> cardLayout1.show(cardPanel,"4"));
@@ -2042,6 +2046,7 @@ public class Main extends JFrame {
                     if (selectedAccount != null) {
                         double amount = Double.parseDouble(depositAmountTextField.getText());
                         selectedAccount.deposit(amount);
+                        bankUtility.saveFile();
                     } // end of if
                 } catch (Exception exception1) {
                     JOptionPane.showMessageDialog(null, "Error making deposit. Try again");
@@ -2177,6 +2182,10 @@ public class Main extends JFrame {
 
         // Step 3
         transferThreePreviousButton.addActionListener(e -> cardLayout3.previous(transferPanel));
+
+        this.invalidate();
+        this.validate();
+        this.repaint();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1200,700);

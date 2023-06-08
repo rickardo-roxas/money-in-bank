@@ -1,11 +1,5 @@
-import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.time.DateTimeException;
+import java.io.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -30,6 +24,7 @@ public class BankUtility {
      * Date of application use.
      */
     private final LocalDateTime now = LocalDateTime.now();
+
 
     /**
      * Reads user's stored file to populate List of accounts.
@@ -57,4 +52,27 @@ public class BankUtility {
             throw new IOException();
         } // end of try-catch
     } // end of readFromFile method
+
+    public void saveFile() throws IOException {
+        try {
+            inputStream = new BufferedReader(new FileReader(Main.userFolder + "/accounts"));
+            String userAccountMetadata = inputStream.readLine();
+            inputStream.close();
+
+            FileOutputStream outputStream = new FileOutputStream(Main.userFolder + "/accounts", false);
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(userAccountMetadata).append("\n");
+
+            outputStream.write(stringBuilder.toString().getBytes());
+            outputStream.close();
+
+            for (Account account : accounts) {
+                stringBuilder.append(account.toString()).append("\n");
+            } // end of for
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (IOException e2) {
+            throw new IOException();
+        } // end of try-catch
+    } // end of saveFile method
 } // end of class BankUtility
