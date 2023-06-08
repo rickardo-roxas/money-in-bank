@@ -1967,9 +1967,8 @@ public class Main extends JFrame {
             acceptDepositButton.addActionListener(e1 -> {
                 try {
                     if (selectedAccount != null) {
-                        String accountNumber = selectedAccount.getAccountNumber();
                         double amount = Double.parseDouble(depositAmountTextField.getText());
-                        bankUtility.deposit(accountNumber, amount);
+                        selectedAccount.deposit(amount);
                     } // end of if
                 } catch (Exception exception1) {
                     JOptionPane.showMessageDialog(null, "Error making deposit. Try again");
@@ -2043,9 +2042,8 @@ public class Main extends JFrame {
             acceptWithdrawalButton.addActionListener(e2 -> {
                 try {
                     if (selectedAccount != null) {
-                        String accountNumber = selectedAccount.getAccountNumber();
                         double amount = Double.parseDouble(withdrawAmountTextField.getText());
-                        bankUtility.withdraw(accountNumber, amount);
+                        selectedAccount.withdraw(amount);
                     } // end of if
                 } catch (Exception exception1) {
                     JOptionPane.showMessageDialog(null, "Error making withdrawal. Try again");
