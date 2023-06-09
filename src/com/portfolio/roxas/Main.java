@@ -1871,9 +1871,8 @@ public class Main extends JFrame {
         // Action Listeners
         // Left Panel Buttons
         accountButton.addActionListener(e -> {
+            refresh();
             cardLayout1.show(cardPanel, "1");
-
-
         }); // end of ActionListener for accountButton
         depositButton.addActionListener(e -> cardLayout1.show(cardPanel,"2"));
         withdrawButton.addActionListener(e -> cardLayout1.show(cardPanel,"3"));
@@ -2106,10 +2105,6 @@ public class Main extends JFrame {
         // Step 3
         transferThreePreviousButton.addActionListener(e -> cardLayout3.previous(transferPanel));
 
-        this.invalidate();
-        this.validate();
-        this.repaint();
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1200,700);
         setResizable(false);
@@ -2196,6 +2191,12 @@ public class Main extends JFrame {
 
         return accountHolderPanel;
     }  // end of addAccountCardPanel
+
+    private void refresh() {
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    } // end of refresh method
 
     /**
      * Resizes an image using desired dimensions
