@@ -1,5 +1,6 @@
 package com.portfolio.roxas;
 
+import javax.swing.*;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -27,6 +28,24 @@ public class BankUtility {
      */
     private final LocalDateTime now = LocalDateTime.now();
 
+    /**
+     * Adds new account of user
+     * @param bank given bank provider
+     * @param accountHolder given name of account holder
+     * @param accountName given name of bank account
+     * @param accountNumber given number of bank account
+     * @param balance starting balance of account
+     * @throws IOException if writing or reading fails
+     */
+    public void addAccount(String bank, String accountHolder, String accountName,
+                           String accountNumber, double balance) throws IOException {
+        try {
+            accounts.add(new Account(bank,accountHolder,accountName,accountNumber,balance));
+            saveFile();
+        } catch (IOException e1) {
+            throw new IOException();
+        } // end of try-catch
+    } // end of addAccount method
 
     /**
      * Reads user's stored file to populate List of accounts.

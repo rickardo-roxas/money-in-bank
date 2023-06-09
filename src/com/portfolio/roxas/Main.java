@@ -2254,9 +2254,14 @@ public class Main extends JFrame {
         setVisible(true);
     } // end of Main constructor
 
+    /**
+     * Adds new account card panel in the Accounts page
+     * @param account specified bank account
+     * @return new panel
+     */
     private JPanel addAccountCardPanel(Account account) {
-        // Account Card 1
-        // Account 1 Holder Panel
+        // Account Card
+        // Account Holder Panel
         JPanel accountHolderPanel = new JPanel();
         accountHolderPanel.setLayout(gridBagLayout);
         accountHolderPanel.setBackground(asparagus);
