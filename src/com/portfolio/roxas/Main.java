@@ -14,7 +14,7 @@ import static java.awt.event.KeyEvent.*;
 /**
  * @author Johan Rickardo Roxas
  * @version 1.00 (2023/06/01)
- * com.portfolio.roxas.Main program that contains the graphical user-interface.
+ * Main program that contains the graphical user-interface.
  */
 public class Main extends JFrame {
 
@@ -126,7 +126,7 @@ public class Main extends JFrame {
     Cursor textCursor = new Cursor(Cursor.TEXT_CURSOR);
 
     /**
-     * com.portfolio.roxas.Main entry point of the program
+     * Main entry point of the program
      * @param args command line arguments
      */
     public static void main(String[] args) {
@@ -212,7 +212,7 @@ public class Main extends JFrame {
     } // end of run method
 
     /**
-     * Constructs com.portfolio.roxas.Main with graphical user interface
+     * Constructs Main with graphical user interface
      */
     public Main() {
         super("Money In Bank");
@@ -289,12 +289,12 @@ public class Main extends JFrame {
         gbc.insets = new Insets(5, 0, 0, 80);
 
         // Button Icons
-        // Add com.portfolio.roxas.Account Icon
+        // Add Account Icon
         ImageIcon accountIcon =
                 new ImageIcon("icons/btn/account_balance_FILL0_wght400_GRAD0_opsz48.png");
         ImageIcon scaledAccountIcon = scaleImage(accountIcon, 30,30);
 
-        // Deposit com.portfolio.roxas.Account Icon
+        // Deposit Account Icon
         ImageIcon depositIcon =
                 new ImageIcon("icons/btn/savings_FILL0_wght400_GRAD0_opsz48.png");
         ImageIcon scaledDepositIcon = scaleImage(depositIcon, 30,30);
@@ -340,10 +340,10 @@ public class Main extends JFrame {
         ImageIcon scaledBudgetGoalsIcon = scaleImage(budgetGoalsIcon,70,70);
 
         // Buttons
-        // Add com.portfolio.roxas.Account Button
+        // Add Account Button
         gbc.gridy = 0;
         JButton accountButton = new JButton(scaledAccountIcon);
-        accountButton.setText("com.portfolio.roxas.Account");
+        accountButton.setText("Account");
         accountButton.setFont(montserratBold.deriveFont(15f));
         accountButton.setForeground(Color.BLACK);
         accountButton.setHorizontalAlignment(SwingConstants.LEFT);
@@ -512,7 +512,7 @@ public class Main extends JFrame {
             } // end of mouseExited method
         }); // end of mouseListener for transferButton
 
-        // com.portfolio.roxas.Transaction Button
+        // Transaction Button
         gbc.gridy = 4;
         JButton transactionsButton = new JButton(scaledTransactionsIcon);
         transactionsButton.setText("Transactions");
@@ -657,7 +657,7 @@ public class Main extends JFrame {
         centerPanel.add(cardPanel, BorderLayout.NORTH);
 
         // Card 1 Components
-        // com.portfolio.roxas.Account Panel
+        // Account Panel
         JPanel accountPanel = new JPanel();
         accountPanel.setLayout(new BorderLayout());
         accountPanel.setBackground(Color.WHITE);
@@ -709,15 +709,15 @@ public class Main extends JFrame {
         rightArrowButton.setBorderPainted(false);
         rightButtonPanel.add(rightArrowButton, gbc);
 
-        // com.portfolio.roxas.Account Card Panel
+        // Account Card Panel
         JPanel accountCardPanel = new JPanel();
         accountCardPanel.setLayout(cardLayout2);
         accountCardPanel.setBackground(asparagus);
         accountCardPanel.setPreferredSize(new Dimension(400, 200));
         accountPanel.add(accountCardPanel, BorderLayout.CENTER);
 
-        // com.portfolio.roxas.Account Card 1
-        // com.portfolio.roxas.Account 1 Holder Panel
+        // Account Card 1
+        // Account 1 Holder Panel
         JPanel accountHolderPanel = new JPanel();
         accountHolderPanel.setLayout(gridBagLayout);
         accountHolderPanel.setBackground(asparagus);
@@ -729,8 +729,8 @@ public class Main extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 10, 0, 10);
 
-        // com.portfolio.roxas.Account 1 Holder components
-        // com.portfolio.roxas.Account 1 Bank Label
+        // Account 1 Holder components
+        // Account 1 Bank Label
         gbc.gridy = 0;
         JLabel bankLabel = new JLabel();
         bankLabel.setText(accountOne.getBank());
@@ -748,7 +748,7 @@ public class Main extends JFrame {
         s1.setPreferredSize(new Dimension(400, 2));
         accountHolderPanel.add(s1, gbc);
 
-        // com.portfolio.roxas.Account 1 Actual Balance
+        // Account 1 Actual Balance
         gbc.gridy = 2;
         JLabel balanceLabel = new JLabel();
         balanceLabel.setText("₱ " + String.format("%,.2f",accountOne.getBalance()));
@@ -758,7 +758,7 @@ public class Main extends JFrame {
         balanceLabel.setVerticalAlignment(SwingConstants.CENTER);
         accountHolderPanel.add(balanceLabel,gbc);
 
-        // com.portfolio.roxas.Account 1 Name
+        // Account 1 Name
         gbc.gridy = 3;
         JLabel accountNameLabel = new JLabel();
         accountNameLabel.setText(accountOne.getAccountName());
@@ -768,7 +768,7 @@ public class Main extends JFrame {
         accountNameLabel.setVerticalAlignment(SwingConstants.CENTER);
         accountHolderPanel.add(accountNameLabel, gbc);
 
-        // com.portfolio.roxas.Account 1 Number
+        // Account 1 Number
         gbc.gridy = 4;
         JLabel accountNumberLabel = new JLabel();
         accountNumberLabel.setText(accountOne.getAccountNumber());
@@ -778,7 +778,7 @@ public class Main extends JFrame {
         accountNumberLabel.setVerticalAlignment(SwingConstants.CENTER);
         accountHolderPanel.add(accountNumberLabel, gbc);
 
-        // com.portfolio.roxas.Account 1 Holder
+        // Account 1 Holder
         gbc.gridy = 5;
         JLabel accountHolderLabel = new JLabel();
         accountHolderLabel.setText(accountOne.getAccountHolder());
@@ -788,8 +788,8 @@ public class Main extends JFrame {
         accountHolderLabel.setVerticalAlignment(SwingConstants.CENTER);
         accountHolderPanel.add(accountHolderLabel, gbc);
 
-        // com.portfolio.roxas.Account Card 2
-        // com.portfolio.roxas.Account 1 Holder Panel
+        // Account Card 2
+        // Account 1 Holder Panel
         JPanel account2HolderPanel = new JPanel();
         account2HolderPanel.setLayout(gridBagLayout);
         account2HolderPanel.setBackground(asparagus);
@@ -801,7 +801,7 @@ public class Main extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 10, 0, 10);
 
-        // com.portfolio.roxas.Account 2 Holder components
+        // Account 2 Holder components
         // Bank Label
         gbc.gridy = 0;
         JLabel bank2Label = new JLabel();
@@ -830,7 +830,7 @@ public class Main extends JFrame {
         balance2Label.setVerticalAlignment(SwingConstants.CENTER);
         account2HolderPanel.add(balance2Label,gbc);
 
-        // com.portfolio.roxas.Account 2 Name
+        // Account 2 Name
         gbc.gridy = 3;
         JLabel account2NameLabel = new JLabel();
         account2NameLabel.setText(accountTwo.getAccountName());
@@ -840,7 +840,7 @@ public class Main extends JFrame {
         account2NameLabel.setVerticalAlignment(SwingConstants.CENTER);
         account2HolderPanel.add(account2NameLabel, gbc);
 
-        // com.portfolio.roxas.Account 2 Number
+        // Account 2 Number
         gbc.gridy = 4;
         JLabel account2NumberLabel = new JLabel();
         account2NumberLabel.setText(accountTwo.getAccountNumber());
@@ -850,7 +850,7 @@ public class Main extends JFrame {
         account2NumberLabel.setVerticalAlignment(SwingConstants.CENTER);
         account2HolderPanel.add(account2NumberLabel, gbc);
 
-        // com.portfolio.roxas.Account 2 Holder
+        // Account 2 Holder
         gbc.gridy = 5;
         JLabel account2HolderLabel = new JLabel();
         account2HolderLabel.setText(accountTwo.getAccountHolder());
@@ -860,8 +860,8 @@ public class Main extends JFrame {
         account2HolderLabel.setVerticalAlignment(SwingConstants.CENTER);
         account2HolderPanel.add(account2HolderLabel, gbc);
 
-        // com.portfolio.roxas.Account Card 3
-        // Add com.portfolio.roxas.Account Panel
+        // Account Card 3
+        // Add Account Panel
         JPanel addAccountPanel = new JPanel();
         addAccountPanel.setLayout(gridBagLayout);
         addAccountPanel.setBackground(asparagus);
@@ -873,15 +873,15 @@ public class Main extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5,10,0,10);
 
-        // Add com.portfolio.roxas.Account Panel Components
-        // Add com.portfolio.roxas.Account Button
+        // Add Account Panel Components
+        // Add Account Button
         ImageIcon addAccountIcon = new ImageIcon("icons/btn/icons8-add-50.png");
         ImageIcon scaledAddAccountIcon = scaleImage(addAccountIcon,40,40);
 
         gbc.gridy = 0;
         JButton addAccountButton = new JButton();
         addAccountButton.setIcon(scaledAddAccountIcon);
-        addAccountButton.setText("Add com.portfolio.roxas.Account");
+        addAccountButton.setText("Add Account");
         addAccountButton.setFont(montserrat.deriveFont(17.5f));
         addAccountButton.setForeground(Color.WHITE);
         addAccountButton.setBorderPainted(false);
@@ -992,17 +992,17 @@ public class Main extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 20, 10, 20);
 
-        // com.portfolio.roxas.Account Selector Label
+        // Account Selector Label
         gbc.gridx = 0;
         gbc.gridy = 0;
         JLabel depositAccountLabel = new JLabel();
-        depositAccountLabel.setText("Select com.portfolio.roxas.Account:");
+        depositAccountLabel.setText("Select Account:");
         depositAccountLabel.setFont(montserrat.deriveFont(17.5f));
         depositAccountLabel.setForeground(Color.BLACK);
         depositAccountLabel.setHorizontalAlignment(JLabel.CENTER);
         depositPanel.add(depositAccountLabel, gbc);
 
-        // com.portfolio.roxas.Account Selector Combo Box
+        // Account Selector Combo Box
         gbc.gridwidth = 50;
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -1016,7 +1016,7 @@ public class Main extends JFrame {
         depositAccountComboBox.addItem(accountTwo);
         depositAccountComboBox.setSelectedItem(null);
 
-        // com.portfolio.roxas.Account Details Panel
+        // Account Details Panel
         gbc.gridx = 0;
         gbc.gridy = 2;
         JPanel depositAccountPanel = new JPanel();
@@ -1025,7 +1025,7 @@ public class Main extends JFrame {
         depositAccountPanel.setPreferredSize(new Dimension(600,200));
         depositPanel.add(depositAccountPanel, gbc);
 
-        // com.portfolio.roxas.Account Details Components
+        // Account Details Components
         // Balance
         gbc.insets = new Insets(5, 10, 0, 10);
         gbc.gridy = 0;
@@ -1037,7 +1037,7 @@ public class Main extends JFrame {
         depositBalanceLabel.setVerticalAlignment(SwingConstants.CENTER);
         depositAccountPanel.add(depositBalanceLabel, gbc);
 
-        // com.portfolio.roxas.Account Name
+        // Account Name
         gbc.gridy = 1;
         JLabel depositAccountNameLabel = new JLabel();
         depositAccountNameLabel.setFont(montserrat.deriveFont(17.5f));
@@ -1046,7 +1046,7 @@ public class Main extends JFrame {
         depositAccountNameLabel.setVerticalAlignment(SwingConstants.CENTER);
         depositAccountPanel.add(depositAccountNameLabel, gbc);
 
-        // com.portfolio.roxas.Account Number
+        // Account Number
         gbc.gridy = 2;
         JLabel depositAccountNumberLabel = new JLabel();
         depositAccountNumberLabel.setFont(montserrat.deriveFont(17.5f));
@@ -1169,17 +1169,17 @@ public class Main extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 20, 10, 20);
 
-        // com.portfolio.roxas.Account Selector Label
+        // Account Selector Label
         gbc.gridx = 0;
         gbc.gridy = 0;
         JLabel withdrawAccountLabel = new JLabel();
-        withdrawAccountLabel.setText("Select com.portfolio.roxas.Account:");
+        withdrawAccountLabel.setText("Select Account:");
         withdrawAccountLabel.setFont(montserrat.deriveFont(17.5f));
         withdrawAccountLabel.setForeground(Color.BLACK);
         withdrawAccountLabel.setHorizontalAlignment(JLabel.CENTER);
         withdrawPanel.add(withdrawAccountLabel, gbc);
 
-        // com.portfolio.roxas.Account Selector Combo Box
+        // Account Selector Combo Box
         gbc.gridx = 0;
         gbc.gridy = 1;
         JComboBox<Account> withdrawAccountComboBox = new JComboBox<>();
@@ -1192,7 +1192,7 @@ public class Main extends JFrame {
         withdrawAccountComboBox.addItem(accountTwo);
         withdrawAccountComboBox.setSelectedItem(null);
 
-        // com.portfolio.roxas.Account Details Panel
+        // Account Details Panel
         gbc.gridwidth = 50;
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -1202,7 +1202,7 @@ public class Main extends JFrame {
         withdrawAccountPanel.setPreferredSize(new Dimension(600,200));
         withdrawPanel.add(withdrawAccountPanel, gbc);
 
-        // com.portfolio.roxas.Account Details Components
+        // Account Details Components
         // Balance
         gbc.insets = new Insets(10, 10, 0, 10);
         gbc.gridy = 0;
@@ -1214,7 +1214,7 @@ public class Main extends JFrame {
         withdrawBalanceLabel.setVerticalAlignment(SwingConstants.CENTER);
         withdrawAccountPanel.add(withdrawBalanceLabel, gbc);
 
-        // com.portfolio.roxas.Account Name
+        // Account Name
         gbc.gridy = 1;
         JLabel withdrawAccountNameLabel = new JLabel();
         withdrawAccountNameLabel.setFont(montserrat.deriveFont(17.5f));
@@ -1223,7 +1223,7 @@ public class Main extends JFrame {
         withdrawAccountNameLabel.setVerticalAlignment(SwingConstants.CENTER);
         withdrawAccountPanel.add(withdrawAccountNameLabel, gbc);
 
-        // com.portfolio.roxas.Account Number
+        // Account Number
         gbc.gridy = 2;
         JLabel withdrawAccountNumberLabel = new JLabel();
         withdrawAccountNumberLabel.setFont(montserrat.deriveFont(17.5f));
@@ -1394,7 +1394,7 @@ public class Main extends JFrame {
         stepOneLabel.setForeground(Color.BLACK);
         transferOnePanel.add(stepOneLabel, gbc);
 
-        // Source com.portfolio.roxas.Account Selector Label
+        // Source Account Selector Label
         gbc.gridwidth = 50;
         gbc.gridy = 1;
         JLabel sourceAccountLabel = new JLabel();
@@ -1404,7 +1404,7 @@ public class Main extends JFrame {
         sourceAccountLabel.setHorizontalAlignment(JLabel.CENTER);
         transferOnePanel.add(sourceAccountLabel, gbc);
 
-        // Source com.portfolio.roxas.Account Selector Combo Box
+        // Source Account Selector Combo Box
         gbc.gridy = 2;
         JComboBox<Account> transferSourceComboBox = new JComboBox<>();
         transferSourceComboBox.setFont(montserrat.deriveFont(17.5f));
@@ -1416,7 +1416,7 @@ public class Main extends JFrame {
         transferSourceComboBox.addItem(accountTwo);
         transferSourceComboBox.setSelectedItem(null);
 
-        // Source com.portfolio.roxas.Account Details Panel
+        // Source Account Details Panel
         gbc.gridy = 3;
         JPanel transferSourceDetailsPanel = new JPanel();
         transferSourceDetailsPanel.setLayout(gridBagLayout);
@@ -1424,7 +1424,7 @@ public class Main extends JFrame {
         transferSourceDetailsPanel.setPreferredSize(new Dimension(600,200));
         transferOnePanel.add(transferSourceDetailsPanel, gbc);
 
-        // Source com.portfolio.roxas.Account Details Components
+        // Source Account Details Components
         gbc.insets = new Insets(10,10,0,10);
         gbc.gridy = 0;
         JLabel sourceBalanceLabel = new JLabel();
@@ -1435,7 +1435,7 @@ public class Main extends JFrame {
         sourceBalanceLabel.setVerticalAlignment(SwingConstants.CENTER);
         transferSourceDetailsPanel.add(sourceBalanceLabel, gbc);
 
-        // Source com.portfolio.roxas.Account Name
+        // Source Account Name
         gbc.gridy = 1;
         JLabel sourceAccountNameLabel = new JLabel();
         sourceAccountNameLabel.setFont(montserrat.deriveFont(17.5f));
@@ -1444,7 +1444,7 @@ public class Main extends JFrame {
         sourceAccountNameLabel.setVerticalAlignment(SwingConstants.CENTER);
         transferSourceDetailsPanel.add(sourceAccountNameLabel, gbc);
 
-        // Source com.portfolio.roxas.Account Number
+        // Source Account Number
         gbc.gridy = 2;
         JLabel sourceAccountNumberLabel = new JLabel();
         sourceAccountNumberLabel.setFont(montserrat.deriveFont(17.5f));
@@ -1486,7 +1486,7 @@ public class Main extends JFrame {
         stepTwoLabel.setForeground(Color.BLACK);
         transferTwoPanel.add(stepTwoLabel, gbc);
 
-        // Recipient com.portfolio.roxas.Account Selector Label
+        // Recipient Account Selector Label
         gbc.gridwidth = 50;
         gbc.gridy = 1;
         JLabel recipientAccountLabel = new JLabel();
@@ -1496,7 +1496,7 @@ public class Main extends JFrame {
         recipientAccountLabel.setHorizontalAlignment(JLabel.CENTER);
         transferTwoPanel.add(recipientAccountLabel, gbc);
 
-        // Recipient com.portfolio.roxas.Account Radio Panel
+        // Recipient Account Radio Panel
         gbc.gridwidth = 1;
         gbc.gridy = 2;
         JPanel transferRadioPanel = new JPanel();
@@ -1505,9 +1505,9 @@ public class Main extends JFrame {
         transferTwoPanel.add(transferRadioPanel, gbc);
 
         // Transfer Radio Panel Components
-        // Own com.portfolio.roxas.Account
+        // Own Account
         JRadioButton ownAccountRadio = new JRadioButton();
-        ownAccountRadio.setText("Own com.portfolio.roxas.Account");
+        ownAccountRadio.setText("Own Account");
         ownAccountRadio.setFont(montserratBold.deriveFont(15f));
         ownAccountRadio.setForeground(Color.BLACK);
         transferRadioPanel.add(ownAccountRadio);
@@ -1540,24 +1540,24 @@ public class Main extends JFrame {
         recipientPanel.setPreferredSize(new Dimension(900, 500));
         transferTwoPanel.add(recipientPanel, gbc);
 
-        // Own com.portfolio.roxas.Account Panel
+        // Own Account Panel
         JPanel ownAccountPanel = new JPanel();
         ownAccountPanel.setLayout(gridBagLayout);
         ownAccountPanel.setBackground(Color.WHITE);
         ownAccountPanel.setPreferredSize(new Dimension(900,500));
         recipientPanel.add(ownAccountPanel);
 
-        // Own com.portfolio.roxas.Account Panel Components
-        // Own com.portfolio.roxas.Account Selector
+        // Own Account Panel Components
+        // Own Account Selector
         gbc.gridwidth = 50;
         gbc.gridy = 0;
         JLabel ownAccountLabel = new JLabel();
-        ownAccountLabel.setText("Select com.portfolio.roxas.Account:");
+        ownAccountLabel.setText("Select Account:");
         ownAccountLabel.setFont(montserrat.deriveFont(17.5f));
         ownAccountLabel.setForeground(Color.BLACK);
         ownAccountPanel.add(ownAccountLabel, gbc);
 
-        // Own com.portfolio.roxas.Account Selector Combo Box
+        // Own Account Selector Combo Box
         gbc.gridy = 1;
         JComboBox<String> ownAccountComboBox = new JComboBox<>();
         ownAccountComboBox.setFont(montserrat.deriveFont(17.5f));
@@ -1566,7 +1566,7 @@ public class Main extends JFrame {
         ownAccountComboBox.addItem("BPI" + " | " + "Savings 2" + " | " + "098 765 4321");
         ownAccountPanel.add(ownAccountComboBox, gbc);
 
-        // Own com.portfolio.roxas.Account Details Panel
+        // Own Account Details Panel
         gbc.gridy = 2;
         JPanel ownAccountDetailsPanel = new JPanel();
         ownAccountDetailsPanel.setLayout(gridBagLayout);
@@ -1574,7 +1574,7 @@ public class Main extends JFrame {
         ownAccountDetailsPanel.setPreferredSize(new Dimension(600,200));
         ownAccountPanel.add(ownAccountDetailsPanel, gbc);
 
-        // Own com.portfolio.roxas.Account Details Components
+        // Own Account Details Components
         // Balance
         gbc.insets = new Insets(5,10,0,10);
         gbc.gridy = 0;
@@ -1586,7 +1586,7 @@ public class Main extends JFrame {
         ownTransferBalanceLabel.setVerticalAlignment(SwingConstants.CENTER);
         ownAccountDetailsPanel.add(ownTransferBalanceLabel, gbc);
 
-        // com.portfolio.roxas.Account Name
+        // Account Name
         gbc.gridy = 1;
         JLabel ownTransferAccountNameLabel = new JLabel();
         ownTransferAccountNameLabel.setText("Savings 1");
@@ -1596,7 +1596,7 @@ public class Main extends JFrame {
         ownTransferAccountNameLabel.setVerticalAlignment(SwingConstants.CENTER);
         ownAccountDetailsPanel.add(ownTransferAccountNameLabel, gbc);
 
-        // com.portfolio.roxas.Account Number
+        // Account Number
         gbc.gridy = 2;
         JLabel ownTransferAccountNumberLabel = new JLabel();
         ownTransferAccountNumberLabel.setText("123 456 7890");
@@ -1746,7 +1746,7 @@ public class Main extends JFrame {
         transactionsPanel.setPreferredSize(new Dimension(900,600));
         cardPanel.add(transactionsPanel, "5");
 
-        // com.portfolio.roxas.Account Selector Combo Box
+        // Account Selector Combo Box
         JComboBox<Account> transactionsAccountComboBox = new JComboBox<>();
         transactionsAccountComboBox.setFont(montserrat.deriveFont(17.5f));
         transactionsAccountComboBox.setBackground(Color.WHITE);
@@ -2199,7 +2199,7 @@ public class Main extends JFrame {
             fiveThousandButton.setEnabled(false);
         }); // end of ActionListener for clearWithdrawalButton
 
-        // com.portfolio.roxas.Transaction Panel Buttons
+        // Transaction Panel Buttons
         transactionsAccountComboBox.addActionListener(e -> {
             model.setRowCount(0);
             table.scrollRectToVisible(table.getCellRect(0, 0, true));
@@ -2252,7 +2252,82 @@ public class Main extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
-    } // end of com.portfolio.roxas.Main constructor
+    } // end of Main constructor
+
+    private JPanel addAccountCardPanel(Account account) {
+        // Account Card 1
+        // Account 1 Holder Panel
+        JPanel accountHolderPanel = new JPanel();
+        accountHolderPanel.setLayout(gridBagLayout);
+        accountHolderPanel.setBackground(asparagus);
+        accountHolderPanel.setPreferredSize(new Dimension(400, 200));
+
+        gbc.gridx = 0;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 10, 0, 10);
+
+        // Account Holder components
+        // Account Bank Label
+        gbc.gridy = 0;
+        JLabel bankLabel = new JLabel();
+        bankLabel.setText(accountOne.getBank());
+        bankLabel.setFont(montserratBold.deriveFont(30f));
+        bankLabel.setForeground(Color.WHITE);
+        bankLabel.setVerticalAlignment(SwingConstants.CENTER);
+        bankLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(bankLabel, gbc);
+
+        // Separator 1
+        gbc.gridy = 1;
+        JSeparator s1 = new JSeparator();
+        s1.setForeground(Color.WHITE);
+        s1.setOrientation(SwingConstants.HORIZONTAL);
+        s1.setPreferredSize(new Dimension(400, 2));
+        accountHolderPanel.add(s1, gbc);
+
+        // Account 1 Actual Balance
+        gbc.gridy = 2;
+        JLabel balanceLabel = new JLabel();
+        balanceLabel.setText("₱ " + String.format("%,.2f",account.getBalance()));
+        balanceLabel.setFont(montserratBlack.deriveFont(40f));
+        balanceLabel.setForeground(Color.WHITE);
+        balanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        balanceLabel.setVerticalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(balanceLabel,gbc);
+
+        // Account Name
+        gbc.gridy = 3;
+        JLabel accountNameLabel = new JLabel();
+        accountNameLabel.setText(account.getAccountName());
+        accountNameLabel.setFont(montserrat.deriveFont(17.5f));
+        accountNameLabel.setForeground(Color.WHITE);
+        accountNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        accountNameLabel.setVerticalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(accountNameLabel, gbc);
+
+        // Account Number
+        gbc.gridy = 4;
+        JLabel accountNumberLabel = new JLabel();
+        accountNumberLabel.setText(account.getAccountNumber());
+        accountNumberLabel.setFont(montserrat.deriveFont(17.5f));
+        accountNumberLabel.setForeground(Color.WHITE);
+        accountNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        accountNumberLabel.setVerticalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(accountNumberLabel, gbc);
+
+        // Account Holder
+        gbc.gridy = 5;
+        JLabel accountHolderLabel = new JLabel();
+        accountHolderLabel.setText(account.getAccountHolder());
+        accountHolderLabel.setFont(montserrat.deriveFont(17.5f));
+        accountHolderLabel.setForeground(Color.WHITE);
+        accountHolderLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        accountHolderLabel.setVerticalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(accountHolderLabel, gbc);
+
+        return accountHolderPanel;
+    }  // end of addAccountCardPanel
 
     /**
      * Resizes an image using desired dimensions
@@ -2274,4 +2349,4 @@ public class Main extends JFrame {
         } // end of if-else
         return new ImageIcon(sourceImage.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH));
     } // end of scaleImage method
-} // end of class com.portfolio.roxas.Main
+} // end of class Main
