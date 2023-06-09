@@ -2,9 +2,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.lang.*;
 import java.io.*;
@@ -12,6 +10,8 @@ import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.awt.event.KeyEvent.*;
 
 /**
  * @author Johan Rickardo Roxas
@@ -1077,6 +1077,7 @@ public class Main extends JFrame {
         depositAmountTextField.setFont(montserrat.deriveFont(17.5f));
         depositAmountTextField.setForeground(Color.BLACK);
         depositAmountTextField.setCursor(textCursor);
+        depositAmountTextField.setEnabled(false);
         depositPanel.add(depositAmountTextField, gbc);
 
         // Source Label
@@ -1253,6 +1254,7 @@ public class Main extends JFrame {
         withdrawAmountTextField.setFont(montserrat.deriveFont(17.5f));
         withdrawAmountTextField.setForeground(Color.BLACK);
         withdrawAmountTextField.setCursor(textCursor);
+        withdrawAmountTextField.setEnabled(false);
         withdrawPanel.add(withdrawAmountTextField, gbc);
 
         // Withdraw Amounts Panel
@@ -1273,6 +1275,7 @@ public class Main extends JFrame {
         fiveHundredButton.setBackground(midnightGreen);
         fiveHundredButton.setForeground(Color.WHITE);
         fiveHundredButton.setVerticalAlignment(SwingConstants.CENTER);
+        fiveHundredButton.setEnabled(false);
         withdrawAmountsPanel.add(fiveHundredButton);
 
         // 1000
@@ -1282,6 +1285,7 @@ public class Main extends JFrame {
         oneThousandButton.setBackground(midnightGreen);
         oneThousandButton.setForeground(Color.WHITE);
         oneThousandButton.setVerticalAlignment(SwingConstants.CENTER);
+        oneThousandButton.setEnabled(false);
         withdrawAmountsPanel.add(oneThousandButton);
 
         // 1500
@@ -1291,6 +1295,7 @@ public class Main extends JFrame {
         oneThousandFiveButton.setBackground(midnightGreen);
         oneThousandFiveButton.setForeground(Color.WHITE);
         oneThousandFiveButton.setVerticalAlignment(SwingConstants.CENTER);
+        oneThousandFiveButton.setEnabled(false);
         withdrawAmountsPanel.add(oneThousandFiveButton);
 
         // 2000
@@ -1300,6 +1305,7 @@ public class Main extends JFrame {
         twoThousandButton.setBackground(midnightGreen);
         twoThousandButton.setForeground(Color.WHITE);
         twoThousandButton.setVerticalAlignment(SwingConstants.CENTER);
+        twoThousandButton.setEnabled(false);
         withdrawAmountsPanel.add(twoThousandButton);
 
         // 3000
@@ -1309,6 +1315,7 @@ public class Main extends JFrame {
         threeThousandButton.setBackground(midnightGreen);
         threeThousandButton.setForeground(Color.WHITE);
         threeThousandButton.setVerticalAlignment(SwingConstants.CENTER);
+        threeThousandButton.setEnabled(false);
         withdrawAmountsPanel.add(threeThousandButton);
 
         // 5000
@@ -1318,6 +1325,7 @@ public class Main extends JFrame {
         fiveThousandButton.setBackground(midnightGreen);
         fiveThousandButton.setForeground(Color.WHITE);
         fiveThousandButton.setVerticalAlignment(SwingConstants.CENTER);
+        fiveThousandButton.setEnabled(false);
         withdrawAmountsPanel.add(fiveThousandButton);
 
         // Separator
@@ -2026,6 +2034,7 @@ public class Main extends JFrame {
                 depositBalanceLabel.setText("₱ " + String.format("%,.2f" , selectedAccount.getBalance()));
                 depositAccountNameLabel.setText(selectedAccount.getAccountName());
                 depositAccountNumberLabel.setText(selectedAccount.getAccountNumber());
+                depositAmountTextField.setEnabled(true);
             } // end of if
 
             // Cash Radio
@@ -2039,6 +2048,25 @@ public class Main extends JFrame {
                 if (!depositAmountTextField.getText().equals(""))
                     acceptDepositButton.setEnabled(true);
             }); // end of ActionListener for otherRadioButton
+
+            depositAmountTextField.addKeyListener(new KeyAdapter() {
+                /**
+                 * Validates characters being entered to be numerical values only
+                 * @param e the event to be processed
+                 */
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    String value = depositAmountTextField.getText();
+                    if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || e.getKeyChar() == VK_BACK_SPACE
+                        || e.getKeyChar() == VK_PERIOD || e.getKeyChar() == VK_DECIMAL){
+                        depositAmountTextField.setEditable(true);
+                        // label.setText("");
+                    } else {
+                        depositAmountTextField.setEditable(false);
+                        // label.setText("* Enter only numeric digits(0-9)");
+                    } // end of if-else
+                } // end of ketTyped method
+            }); // end of KeyListener for depositAmountTextField
 
             // Accept Deposit Button
             acceptDepositButton.addActionListener(e1 -> {
@@ -2061,6 +2089,7 @@ public class Main extends JFrame {
             depositAmountTextField.setText("");
             depositRadioGroup.clearSelection();
             depositAccountComboBox.setSelectedItem(null);
+            depositAmountTextField.setEnabled(false);
             acceptDepositButton.setEnabled(false);
         }); // end of ActionListener for clearDepositButton
 
@@ -2073,7 +2102,33 @@ public class Main extends JFrame {
                 withdrawBalanceLabel.setText("₱ " + String.format("%,.2f" , selectedAccount.getBalance()));
                 withdrawAccountNameLabel.setText(selectedAccount.getAccountName());
                 withdrawAccountNumberLabel.setText(selectedAccount.getAccountNumber());
+                withdrawAmountTextField.setEnabled(true);
+                fiveHundredButton.setEnabled(true);
+                oneThousandButton.setEnabled(true);
+                oneThousandFiveButton.setEnabled(true);
+                twoThousandButton.setEnabled(true);
+                threeThousandButton.setEnabled(true);
+                fiveThousandButton.setEnabled(true);
             } // end of if
+
+            withdrawAmountTextField.addKeyListener(new KeyAdapter() {
+                /**
+                 * Validates characters being entered to be numerical values only
+                 * @param e the event to be processed
+                 */
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    String value = withdrawAmountTextField.getText();
+                    if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || e.getKeyChar() == VK_BACK_SPACE
+                            || e.getKeyChar() == VK_PERIOD || e.getKeyChar() == VK_DECIMAL){
+                        withdrawAmountTextField.setEditable(true);
+                        // label.setText("");
+                    } else {
+                        withdrawAmountTextField.setEditable(false);
+                        // label.setText("* Enter only numeric digits(0-9)");
+                    } // end of if-else
+                } // end of keyTyped method
+            }); // end of KeyListener for withdrawAmountTextField
 
             fiveHundredButton.addActionListener(e1 -> {
                 withdrawAmountTextField.setText(String.valueOf(500.00));
@@ -2135,6 +2190,7 @@ public class Main extends JFrame {
             withdrawAccountNumberLabel.setText("");
             withdrawAmountTextField.setText("");
             withdrawAccountComboBox.setSelectedItem(null);
+            withdrawAmountTextField.setEnabled(false);
             acceptWithdrawalButton.setEnabled(false);
         }); // end of ActionListener for clearWithdrawalButton
 
