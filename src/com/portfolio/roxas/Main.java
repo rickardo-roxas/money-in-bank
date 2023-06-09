@@ -1,17 +1,15 @@
-import javax.imageio.ImageIO;
+package com.portfolio.roxas;
+
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
+import java.awt.event.*;
 import java.lang.*;
 import java.io.*;
 import java.awt.*;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
+
+import static java.awt.event.KeyEvent.*;
 
 /**
  * @author Johan Rickardo Roxas
@@ -24,7 +22,7 @@ public class Main extends JFrame {
      * Utility class.
      * Methods invoked produce useful information.
      */
-    private static final BankUtility bankUtility = new BankUtility();
+    public static final BankUtility bankUtility = new BankUtility();
 
     /**
      * Midnight green
@@ -718,151 +716,14 @@ public class Main extends JFrame {
         accountCardPanel.setPreferredSize(new Dimension(400, 200));
         accountPanel.add(accountCardPanel, BorderLayout.CENTER);
 
-        // Account Card 1
-        // Account 1 Holder Panel
-        JPanel accountHolderPanel = new JPanel();
-        accountHolderPanel.setLayout(gridBagLayout);
-        accountHolderPanel.setBackground(asparagus);
-        accountHolderPanel.setPreferredSize(new Dimension(400, 200));
-        accountCardPanel.add(accountHolderPanel, BorderLayout.CENTER);
+        // Account Card Panel Components
+        // Adds Account Cards of user's existing bank accounts
+        if (bankUtility.accounts != null) {
+            for (Account account : bankUtility.accounts) {
+                accountCardPanel.add(addAccountCardPanel(account), BorderLayout.CENTER);
+            } // end of for
+        } // end of if
 
-        gbc.gridx = 0;
-        gbc.gridwidth = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(5, 10, 0, 10);
-
-        // Account 1 Holder components
-        // Account 1 Bank Label
-        gbc.gridy = 0;
-        JLabel bankLabel = new JLabel();
-        bankLabel.setText(accountOne.getBank());
-        bankLabel.setFont(montserratBold.deriveFont(30f));
-        bankLabel.setForeground(Color.WHITE);
-        bankLabel.setVerticalAlignment(SwingConstants.CENTER);
-        bankLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        accountHolderPanel.add(bankLabel, gbc);
-
-        // Separator 1
-        gbc.gridy = 1;
-        JSeparator s1 = new JSeparator();
-        s1.setForeground(Color.WHITE);
-        s1.setOrientation(SwingConstants.HORIZONTAL);
-        s1.setPreferredSize(new Dimension(400, 2));
-        accountHolderPanel.add(s1, gbc);
-
-        // Account 1 Actual Balance
-        gbc.gridy = 2;
-        JLabel balanceLabel = new JLabel();
-        balanceLabel.setText("₱ " + String.format("%,.2f",accountOne.getBalance()));
-        balanceLabel.setFont(montserratBlack.deriveFont(40f));
-        balanceLabel.setForeground(Color.WHITE);
-        balanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        balanceLabel.setVerticalAlignment(SwingConstants.CENTER);
-        accountHolderPanel.add(balanceLabel,gbc);
-
-        // Account 1 Name
-        gbc.gridy = 3;
-        JLabel accountNameLabel = new JLabel();
-        accountNameLabel.setText(accountOne.getAccountName());
-        accountNameLabel.setFont(montserrat.deriveFont(17.5f));
-        accountNameLabel.setForeground(Color.WHITE);
-        accountNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        accountNameLabel.setVerticalAlignment(SwingConstants.CENTER);
-        accountHolderPanel.add(accountNameLabel, gbc);
-
-        // Account 1 Number
-        gbc.gridy = 4;
-        JLabel accountNumberLabel = new JLabel();
-        accountNumberLabel.setText(accountOne.getAccountNumber());
-        accountNumberLabel.setFont(montserrat.deriveFont(17.5f));
-        accountNumberLabel.setForeground(Color.WHITE);
-        accountNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        accountNumberLabel.setVerticalAlignment(SwingConstants.CENTER);
-        accountHolderPanel.add(accountNumberLabel, gbc);
-
-        // Account 1 Holder
-        gbc.gridy = 5;
-        JLabel accountHolderLabel = new JLabel();
-        accountHolderLabel.setText(accountOne.getAccountHolder());
-        accountHolderLabel.setFont(montserrat.deriveFont(17.5f));
-        accountHolderLabel.setForeground(Color.WHITE);
-        accountHolderLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        accountHolderLabel.setVerticalAlignment(SwingConstants.CENTER);
-        accountHolderPanel.add(accountHolderLabel, gbc);
-
-        // Account Card 2
-        // Account 1 Holder Panel
-        JPanel account2HolderPanel = new JPanel();
-        account2HolderPanel.setLayout(gridBagLayout);
-        account2HolderPanel.setBackground(asparagus);
-        account2HolderPanel.setPreferredSize(new Dimension(400, 200));
-        accountCardPanel.add(account2HolderPanel, BorderLayout.CENTER);
-
-        gbc.gridx = 0;
-        gbc.gridwidth = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(5, 10, 0, 10);
-
-        // Account 2 Holder components
-        // Bank Label
-        gbc.gridy = 0;
-        JLabel bank2Label = new JLabel();
-        bank2Label.setText(accountTwo.getBank());
-        bank2Label.setFont(montserratBold.deriveFont(30f));
-        bank2Label.setForeground(Color.WHITE);
-        bank2Label.setVerticalAlignment(SwingConstants.CENTER);
-        bank2Label.setHorizontalAlignment(SwingConstants.CENTER);
-        account2HolderPanel.add(bank2Label, gbc);
-
-        // Separator
-        gbc.gridy = 1;
-        JSeparator acc2Separator = new JSeparator();
-        acc2Separator.setForeground(Color.WHITE);
-        acc2Separator.setOrientation(SwingConstants.HORIZONTAL);
-        acc2Separator.setPreferredSize(new Dimension(400, 2));
-        account2HolderPanel.add(acc2Separator, gbc);
-
-        // Actual Balance 2
-        gbc.gridy = 2;
-        JLabel balance2Label = new JLabel();
-        balance2Label.setText("₱ " + String.format("%,.2f",accountTwo.getBalance()));
-        balance2Label.setFont(montserratBlack.deriveFont(40f));
-        balance2Label.setForeground(Color.WHITE);
-        balance2Label.setHorizontalAlignment(SwingConstants.CENTER);
-        balance2Label.setVerticalAlignment(SwingConstants.CENTER);
-        account2HolderPanel.add(balance2Label,gbc);
-
-        // Account 2 Name
-        gbc.gridy = 3;
-        JLabel account2NameLabel = new JLabel();
-        account2NameLabel.setText(accountTwo.getAccountName());
-        account2NameLabel.setFont(montserrat.deriveFont(17.5f));
-        account2NameLabel.setForeground(Color.WHITE);
-        account2NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        account2NameLabel.setVerticalAlignment(SwingConstants.CENTER);
-        account2HolderPanel.add(account2NameLabel, gbc);
-
-        // Account 2 Number
-        gbc.gridy = 4;
-        JLabel account2NumberLabel = new JLabel();
-        account2NumberLabel.setText(accountTwo.getAccountNumber());
-        account2NumberLabel.setFont(montserrat.deriveFont(17.5f));
-        account2NumberLabel.setForeground(Color.WHITE);
-        account2NumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        account2NumberLabel.setVerticalAlignment(SwingConstants.CENTER);
-        account2HolderPanel.add(account2NumberLabel, gbc);
-
-        // Account 2 Holder
-        gbc.gridy = 5;
-        JLabel account2HolderLabel = new JLabel();
-        account2HolderLabel.setText(accountTwo.getAccountHolder());
-        account2HolderLabel.setFont(montserrat.deriveFont(17.5f));
-        account2HolderLabel.setForeground(Color.WHITE);
-        account2HolderLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        account2HolderLabel.setVerticalAlignment(SwingConstants.CENTER);
-        account2HolderPanel.add(account2HolderLabel, gbc);
-
-        // Account Card 3
         // Add Account Panel
         JPanel addAccountPanel = new JPanel();
         addAccountPanel.setLayout(gridBagLayout);
@@ -1077,6 +938,7 @@ public class Main extends JFrame {
         depositAmountTextField.setFont(montserrat.deriveFont(17.5f));
         depositAmountTextField.setForeground(Color.BLACK);
         depositAmountTextField.setCursor(textCursor);
+        depositAmountTextField.setEnabled(false);
         depositPanel.add(depositAmountTextField, gbc);
 
         // Source Label
@@ -1253,6 +1115,7 @@ public class Main extends JFrame {
         withdrawAmountTextField.setFont(montserrat.deriveFont(17.5f));
         withdrawAmountTextField.setForeground(Color.BLACK);
         withdrawAmountTextField.setCursor(textCursor);
+        withdrawAmountTextField.setEnabled(false);
         withdrawPanel.add(withdrawAmountTextField, gbc);
 
         // Withdraw Amounts Panel
@@ -1273,6 +1136,7 @@ public class Main extends JFrame {
         fiveHundredButton.setBackground(midnightGreen);
         fiveHundredButton.setForeground(Color.WHITE);
         fiveHundredButton.setVerticalAlignment(SwingConstants.CENTER);
+        fiveHundredButton.setEnabled(false);
         withdrawAmountsPanel.add(fiveHundredButton);
 
         // 1000
@@ -1282,6 +1146,7 @@ public class Main extends JFrame {
         oneThousandButton.setBackground(midnightGreen);
         oneThousandButton.setForeground(Color.WHITE);
         oneThousandButton.setVerticalAlignment(SwingConstants.CENTER);
+        oneThousandButton.setEnabled(false);
         withdrawAmountsPanel.add(oneThousandButton);
 
         // 1500
@@ -1291,6 +1156,7 @@ public class Main extends JFrame {
         oneThousandFiveButton.setBackground(midnightGreen);
         oneThousandFiveButton.setForeground(Color.WHITE);
         oneThousandFiveButton.setVerticalAlignment(SwingConstants.CENTER);
+        oneThousandFiveButton.setEnabled(false);
         withdrawAmountsPanel.add(oneThousandFiveButton);
 
         // 2000
@@ -1300,6 +1166,7 @@ public class Main extends JFrame {
         twoThousandButton.setBackground(midnightGreen);
         twoThousandButton.setForeground(Color.WHITE);
         twoThousandButton.setVerticalAlignment(SwingConstants.CENTER);
+        twoThousandButton.setEnabled(false);
         withdrawAmountsPanel.add(twoThousandButton);
 
         // 3000
@@ -1309,6 +1176,7 @@ public class Main extends JFrame {
         threeThousandButton.setBackground(midnightGreen);
         threeThousandButton.setForeground(Color.WHITE);
         threeThousandButton.setVerticalAlignment(SwingConstants.CENTER);
+        threeThousandButton.setEnabled(false);
         withdrawAmountsPanel.add(threeThousandButton);
 
         // 5000
@@ -1318,6 +1186,7 @@ public class Main extends JFrame {
         fiveThousandButton.setBackground(midnightGreen);
         fiveThousandButton.setForeground(Color.WHITE);
         fiveThousandButton.setVerticalAlignment(SwingConstants.CENTER);
+        fiveThousandButton.setEnabled(false);
         withdrawAmountsPanel.add(fiveThousandButton);
 
         // Separator
@@ -2002,9 +1871,8 @@ public class Main extends JFrame {
         // Action Listeners
         // Left Panel Buttons
         accountButton.addActionListener(e -> {
+            SwingUtilities.updateComponentTreeUI(this);
             cardLayout1.show(cardPanel, "1");
-
-
         }); // end of ActionListener for accountButton
         depositButton.addActionListener(e -> cardLayout1.show(cardPanel,"2"));
         withdrawButton.addActionListener(e -> cardLayout1.show(cardPanel,"3"));
@@ -2014,8 +1882,14 @@ public class Main extends JFrame {
         signOutButton.addActionListener(e -> System.exit(0));
 
         // Center Panel Arrows
-        leftArrowButton.addActionListener(e -> cardLayout2.previous(accountCardPanel));
-        rightArrowButton.addActionListener(e -> cardLayout2.next(accountCardPanel));
+        leftArrowButton.addActionListener(e -> {
+            cardPanel.revalidate();
+            cardLayout2.previous(accountCardPanel);
+        });
+        rightArrowButton.addActionListener(e -> {
+            cardPanel.revalidate();
+            cardLayout2.next(accountCardPanel);
+        });
 
         // Deposit Buttons
         // Deposit Combo Box
@@ -2026,6 +1900,7 @@ public class Main extends JFrame {
                 depositBalanceLabel.setText("₱ " + String.format("%,.2f" , selectedAccount.getBalance()));
                 depositAccountNameLabel.setText(selectedAccount.getAccountName());
                 depositAccountNumberLabel.setText(selectedAccount.getAccountNumber());
+                depositAmountTextField.setEnabled(true);
             } // end of if
 
             // Cash Radio
@@ -2040,13 +1915,31 @@ public class Main extends JFrame {
                     acceptDepositButton.setEnabled(true);
             }); // end of ActionListener for otherRadioButton
 
+            depositAmountTextField.addKeyListener(new KeyAdapter() {
+                /**
+                 * Validates characters being entered to be numerical values only
+                 * @param e the event to be processed
+                 */
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    String value = depositAmountTextField.getText();
+                    if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || e.getKeyChar() == VK_BACK_SPACE
+                            || e.getKeyChar() == VK_PERIOD || e.getKeyChar() == VK_DECIMAL){
+                        depositAmountTextField.setEditable(true);
+                        // label.setText("");
+                    } else {
+                        depositAmountTextField.setEditable(false);
+                        // label.setText("* Enter only numeric digits(0-9)");
+                    } // end of if-else
+                } // end of ketTyped method
+            }); // end of KeyListener for depositAmountTextField
+
             // Accept Deposit Button
             acceptDepositButton.addActionListener(e1 -> {
                 try {
                     if (selectedAccount != null) {
                         double amount = Double.parseDouble(depositAmountTextField.getText());
                         selectedAccount.deposit(amount);
-                        bankUtility.saveFile();
                     } // end of if
                 } catch (Exception exception1) {
                     JOptionPane.showMessageDialog(null, "Error making deposit. Try again");
@@ -2062,6 +1955,7 @@ public class Main extends JFrame {
             depositAmountTextField.setText("");
             depositRadioGroup.clearSelection();
             depositAccountComboBox.setSelectedItem(null);
+            depositAmountTextField.setEnabled(false);
             acceptDepositButton.setEnabled(false);
         }); // end of ActionListener for clearDepositButton
 
@@ -2074,7 +1968,33 @@ public class Main extends JFrame {
                 withdrawBalanceLabel.setText("₱ " + String.format("%,.2f" , selectedAccount.getBalance()));
                 withdrawAccountNameLabel.setText(selectedAccount.getAccountName());
                 withdrawAccountNumberLabel.setText(selectedAccount.getAccountNumber());
+                withdrawAmountTextField.setEnabled(true);
+                fiveHundredButton.setEnabled(true);
+                oneThousandButton.setEnabled(true);
+                oneThousandFiveButton.setEnabled(true);
+                twoThousandButton.setEnabled(true);
+                threeThousandButton.setEnabled(true);
+                fiveThousandButton.setEnabled(true);
             } // end of if
+
+            withdrawAmountTextField.addKeyListener(new KeyAdapter() {
+                /**
+                 * Validates characters being entered to be numerical values only
+                 * @param e the event to be processed
+                 */
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    String value = withdrawAmountTextField.getText();
+                    if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || e.getKeyChar() == VK_BACK_SPACE
+                            || e.getKeyChar() == VK_PERIOD || e.getKeyChar() == VK_DECIMAL){
+                        withdrawAmountTextField.setEditable(true);
+                        // label.setText("");
+                    } else {
+                        withdrawAmountTextField.setEditable(false);
+                        // label.setText("* Enter only numeric digits(0-9)");
+                    } // end of if-else
+                } // end of keyTyped method
+            }); // end of KeyListener for withdrawAmountTextField
 
             fiveHundredButton.addActionListener(e1 -> {
                 withdrawAmountTextField.setText(String.valueOf(500.00));
@@ -2136,7 +2056,15 @@ public class Main extends JFrame {
             withdrawAccountNumberLabel.setText("");
             withdrawAmountTextField.setText("");
             withdrawAccountComboBox.setSelectedItem(null);
+            withdrawAmountTextField.setEnabled(false);
             acceptWithdrawalButton.setEnabled(false);
+            withdrawAmountTextField.setEnabled(true);
+            fiveHundredButton.setEnabled(false);
+            oneThousandButton.setEnabled(false);
+            oneThousandFiveButton.setEnabled(false);
+            twoThousandButton.setEnabled(false);
+            threeThousandButton.setEnabled(false);
+            fiveThousandButton.setEnabled(false);
         }); // end of ActionListener for clearWithdrawalButton
 
         // Transaction Panel Buttons
@@ -2183,16 +2111,98 @@ public class Main extends JFrame {
         // Step 3
         transferThreePreviousButton.addActionListener(e -> cardLayout3.previous(transferPanel));
 
-        this.invalidate();
-        this.validate();
-        this.repaint();
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1200,700);
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
     } // end of Main constructor
+
+    /**
+     * Adds new account card panel in the Accounts page
+     * @param account specified bank account
+     * @return new panel
+     */
+    private JPanel addAccountCardPanel(Account account) {
+        // Account Card
+        // Account Holder Panel
+        JPanel accountHolderPanel = new JPanel();
+        accountHolderPanel.setLayout(gridBagLayout);
+        accountHolderPanel.setBackground(asparagus);
+        accountHolderPanel.setPreferredSize(new Dimension(400, 200));
+
+        gbc.gridx = 0;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 10, 0, 10);
+
+        // Account Holder components
+        // Account Bank Label
+        gbc.gridy = 0;
+        JLabel bankLabel = new JLabel();
+        bankLabel.setText(accountOne.getBank());
+        bankLabel.setFont(montserratBold.deriveFont(30f));
+        bankLabel.setForeground(Color.WHITE);
+        bankLabel.setVerticalAlignment(SwingConstants.CENTER);
+        bankLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(bankLabel, gbc);
+
+        // Separator 1
+        gbc.gridy = 1;
+        JSeparator s1 = new JSeparator();
+        s1.setForeground(Color.WHITE);
+        s1.setOrientation(SwingConstants.HORIZONTAL);
+        s1.setPreferredSize(new Dimension(400, 2));
+        accountHolderPanel.add(s1, gbc);
+
+        // Account 1 Actual Balance
+        gbc.gridy = 2;
+        JLabel balanceLabel = new JLabel();
+        balanceLabel.setText("₱ " + String.format("%,.2f",account.getBalance()));
+        balanceLabel.setFont(montserratBlack.deriveFont(40f));
+        balanceLabel.setForeground(Color.WHITE);
+        balanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        balanceLabel.setVerticalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(balanceLabel,gbc);
+
+        // Account Name
+        gbc.gridy = 3;
+        JLabel accountNameLabel = new JLabel();
+        accountNameLabel.setText(account.getAccountName());
+        accountNameLabel.setFont(montserrat.deriveFont(17.5f));
+        accountNameLabel.setForeground(Color.WHITE);
+        accountNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        accountNameLabel.setVerticalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(accountNameLabel, gbc);
+
+        // Account Number
+        gbc.gridy = 4;
+        JLabel accountNumberLabel = new JLabel();
+        accountNumberLabel.setText(account.getAccountNumber());
+        accountNumberLabel.setFont(montserrat.deriveFont(17.5f));
+        accountNumberLabel.setForeground(Color.WHITE);
+        accountNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        accountNumberLabel.setVerticalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(accountNumberLabel, gbc);
+
+        // Account Holder
+        gbc.gridy = 5;
+        JLabel accountHolderLabel = new JLabel();
+        accountHolderLabel.setText(account.getAccountHolder());
+        accountHolderLabel.setFont(montserrat.deriveFont(17.5f));
+        accountHolderLabel.setForeground(Color.WHITE);
+        accountHolderLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        accountHolderLabel.setVerticalAlignment(SwingConstants.CENTER);
+        accountHolderPanel.add(accountHolderLabel, gbc);
+
+        return accountHolderPanel;
+    }  // end of addAccountCardPanel
+
+    private void refresh() {
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    } // end of refresh method
 
     /**
      * Resizes an image using desired dimensions

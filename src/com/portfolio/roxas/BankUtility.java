@@ -1,3 +1,6 @@
+package com.portfolio.roxas;
+
+import javax.swing.*;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -5,7 +8,7 @@ import java.util.*;
 /**
  * @author Johan Rickardo Roxas
  * @version 1.00 (2023/06/06)
- * BankUtility class.
+ * com.portfolio.roxas.BankUtility class.
  * TODO: Documentation
  */
 public class BankUtility {
@@ -25,6 +28,24 @@ public class BankUtility {
      */
     private final LocalDateTime now = LocalDateTime.now();
 
+    /**
+     * Adds new account of user
+     * @param bank given bank provider
+     * @param accountHolder given name of account holder
+     * @param accountName given name of bank account
+     * @param accountNumber given number of bank account
+     * @param balance starting balance of account
+     * @throws IOException if writing or reading fails
+     */
+    public void addAccount(String bank, String accountHolder, String accountName,
+                           String accountNumber, double balance) throws IOException {
+        try {
+            accounts.add(new Account(bank,accountHolder,accountName,accountNumber,balance));
+            saveFile();
+        } catch (IOException e1) {
+            throw new IOException();
+        } // end of try-catch
+    } // end of addAccount method
 
     /**
      * Reads user's stored file to populate List of accounts.
@@ -53,26 +74,27 @@ public class BankUtility {
         } // end of try-catch
     } // end of readFromFile method
 
+    /**
+     * Saves accounts of user to existing or new file
+     * @throws IOException if writing or reading error occurs
+     */
     public void saveFile() throws IOException {
         try {
-            inputStream = new BufferedReader(new FileReader(Main.userFolder + "/accounts"));
-            String userAccountMetadata = inputStream.readLine();
-            inputStream.close();
-
             FileOutputStream outputStream = new FileOutputStream(Main.userFolder + "/accounts", false);
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(userAccountMetadata).append("\n");
 
-            outputStream.write(stringBuilder.toString().getBytes());
-            outputStream.close();
-
+            // Append the account information to the StringBuilder
             for (Account account : accounts) {
                 stringBuilder.append(account.toString()).append("\n");
             } // end of for
+
+            // Write the StringBuilder content to the file
+            outputStream.write(stringBuilder.toString().getBytes());
+            outputStream.close();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
         } catch (IOException e2) {
             throw new IOException();
         } // end of try-catch
     } // end of saveFile method
-} // end of class BankUtility
+} // end of class com.portfolio.roxas.BankUtility

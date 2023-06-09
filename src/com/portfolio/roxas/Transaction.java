@@ -1,3 +1,5 @@
+package com.portfolio.roxas;
+
 /**
  * @author Johan Rickardo Roxas
  * @version 1.00 (2023/06/07)
@@ -6,31 +8,31 @@
 public class Transaction {
 
     /**
-     * Type of Transaction (Deposit or Withdrawal)
+     * Type of com.portfolio.roxas.Transaction (Deposit or Withdrawal)
      */
     private String type;
 
     /**
-     * Amount of Transaction
+     * Amount of com.portfolio.roxas.Transaction
      */
     private double amount;
 
     /**
-     * Date of Transaction
+     * Date of com.portfolio.roxas.Transaction
      */
     private String date;
 
     /**
-     * Constructs an object of Transaction with default values.
+     * Constructs an object of com.portfolio.roxas.Transaction with default values.
      */
     public Transaction() {
         type = "Deposit";
         amount = 1000.00;
         date = "2023-06-07 13:25:05";
-    } // end of Transaction default constructor
+    } // end of com.portfolio.roxas.Transaction default constructor
 
     /**
-     * Constructs an object of Transaction with user-defined values
+     * Constructs an object of com.portfolio.roxas.Transaction with user-defined values
      * @param type given type
      * @param amount given amount
      * @param date given date
@@ -39,7 +41,7 @@ public class Transaction {
         this.type = type;
         this.amount = amount;
         this.date = date;
-    } // end of Transaction constructor
+    } // end of com.portfolio.roxas.Transaction constructor
 
     /**
      * Mutates the state of the type attribute
@@ -90,12 +92,12 @@ public class Transaction {
     } // end of getDate accessor method
 
     /**
-     * Concatenates the attribute states of Transaction
+     * Concatenates the attribute states of com.portfolio.roxas.Transaction
      * @return states as comma-separated values
      */
     public String toString() {
         return type + "," +
-                String.format("%,.2f",amount) + "," +
+                amount + "," +
                 date;
     } // end of toString method
-} // end of class Transaction
+} // end of class com.portfolio.roxas.Transaction

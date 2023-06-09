@@ -1,3 +1,5 @@
+package com.portfolio.roxas;
+
 import javax.swing.*;
 import java.io.*;
 import java.time.LocalDateTime;
@@ -8,7 +10,7 @@ import java.util.List;
 /**
  * @author Johan Rickardo Roxas
  * @version 1.00 (2023/06/01)
- * Template for Account object.
+ * Template for com.portfolio.roxas.Account object.
  */
 public class Account {
 
@@ -28,7 +30,7 @@ public class Account {
     private String accountName;
 
     /**
-     * Account number (XXX XXX XXXX)
+     * com.portfolio.roxas.Account number (XXX XXX XXXX)
      */
     private String accountNumber;
 
@@ -38,7 +40,7 @@ public class Account {
     private double balance;
 
     /**
-     * Transaction of current account
+     * com.portfolio.roxas.Transaction of current account
      */
     private final List<Transaction> transactions = new ArrayList<>();
 
@@ -58,7 +60,7 @@ public class Account {
     private BufferedReader inputStream;
 
     /**
-     * Constructs an object of Account with default values.
+     * Constructs an object of com.portfolio.roxas.Account with default values.
      */
     public Account() {
         bank = "BPI";
@@ -66,10 +68,10 @@ public class Account {
         accountName = "Savings";
         accountNumber = "123 567 8900";
         balance = 10000.00;
-    } // end of Account default constructor
+    } // end of com.portfolio.roxas.Account default constructor
 
     /**
-     * Constructs an object of Account with user-defined values
+     * Constructs an object of com.portfolio.roxas.Account with user-defined values
      * @param bank given bank company
      * @param accountHolder given name of account holder
      * @param accountNumber given account number
@@ -81,7 +83,7 @@ public class Account {
         this.accountName = accountName;
         this.accountNumber = accountNumber;
         this.balance = balance;
-    } // end of Account constructor
+    } // end of com.portfolio.roxas.Account constructor
 
     /**
      * Mutates the state of the bank attribute
@@ -164,12 +166,13 @@ public class Account {
     } // end of getBalance accessor method
 
     /**
-     * Concatenates the attribute states of Account
+     * Concatenates the attribute states of com.portfolio.roxas.Account
      * @return states as comma-separated values
      */
     public String toString() {
         return bank + "," +
                 accountHolder + "," +
+                accountName + "," +
                 accountNumber + "," +
                 balance;
     } // end of toString method
@@ -180,13 +183,13 @@ public class Account {
      * @throws Exception if exception or error occurs
      */
     public void deposit(double amount) throws Exception {
-        double newBalance = 0.0;
         try {
             if (amount > 0) {
                 this.setBalance(this.getBalance() + amount);
             } // end of if
             transactions.add(new Transaction("Deposit",amount, dateFormat.format(now)));
             printTransaction();
+            Main.bankUtility.saveFile();
         } catch (ArithmeticException e1) {
             JOptionPane.showMessageDialog(null, e1.getMessage());
             e1.printStackTrace();
@@ -222,18 +225,19 @@ public class Account {
 
     /**
      * Transfers amount to another account
-     * @param recipient Account to be given
+     * @param recipient com.portfolio.roxas.Account to be given
      * @param amount amount to be transferred
      * @throws Exception if exception or error occurs
      */
     public void transfer(Account recipient, double amount) throws Exception {
         try {
-             if (amount > 0) {
-                 this.setBalance(this.getBalance() - amount);
-                 recipient.setBalance(recipient.getBalance() + amount);
-             } // end of if
+            if (amount > 0) {
+                this.setBalance(this.getBalance() - amount);
+                recipient.setBalance(recipient.getBalance() + amount);
+            } // end of if
             transactions.add(new Transaction("Transfer", amount, dateFormat.format(now)));
             printTransaction();
+            Main.bankUtility.saveFile();
         } catch (ArithmeticException e1) {
             JOptionPane.showMessageDialog(null, e1.getMessage() + "Try again.");
             e1.printStackTrace();
@@ -243,31 +247,47 @@ public class Account {
     } // end of transfer method
 
     /**
-     * Prints transaction to file
+     * Prints transactions to file without overwriting the previous transactions.
      * @throws Exception if error occurs during reading or writing file.
      */
     private void printTransaction() throws Exception {
         try {
             // Reads existing transactions
-            inputStream = new BufferedReader(new FileReader(filePath));
-            String existingTransactions = inputStream.readLine();
+            inputStream = new BufferedReader(new FileReader(filePath + this.accountNumber));
+            List<String> existingTransactions = new ArrayList<>();
+            String line;
+
+            // Read all lines from the file
+            while ((line = inputStream.readLine()) != null) {
+                existingTransactions.add(line);
+            } // end of while
             inputStream.close();
 
             // Writes to file with existing contents without overwriting
             FileOutputStream outputStream =
-                    new FileOutputStream(filePath, false);
+                    new FileOutputStream(filePath + this.accountNumber, false);
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(existingTransactions).append("\n");
 
-            // Prints new transactions to file
-            for (Transaction transaction: transactions){
+            // Append existing transactions to the StringBuilder
+            for (String transaction : existingTransactions) {
+                stringBuilder.append(transaction).append("\n");
+            } // end of for
+
+            // Append new transactions to the StringBuilder
+            for (Transaction transaction : transactions) {
                 stringBuilder.append(transaction.toString()).append("\n");
             } // end of for
 
             outputStream.write(stringBuilder.toString().getBytes());
             outputStream.close();
         } catch (FileNotFoundException e1) {
-            throw new FileNotFoundException();
+            try (FileWriter newFile = new FileWriter(filePath + this.accountNumber, true)) {
+                for (Transaction transaction : transactions) {
+                    newFile.write(transaction + "\n");
+                } // end of for
+            } catch (IOException e3) {
+                JOptionPane.showMessageDialog(null, "Error making file. Try again.");
+            } // end of 2nd try-catch
         } catch (IOException e2) {
             throw new IOException();
         } // end of try-catch
