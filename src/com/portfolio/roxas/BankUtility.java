@@ -1,3 +1,5 @@
+package com.portfolio.roxas;
+
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -5,7 +7,7 @@ import java.util.*;
 /**
  * @author Johan Rickardo Roxas
  * @version 1.00 (2023/06/06)
- * BankUtility class.
+ * com.portfolio.roxas.BankUtility class.
  * TODO: Documentation
  */
 public class BankUtility {
@@ -76,4 +78,4 @@ public class BankUtility {
             throw new IOException();
         } // end of try-catch
     } // end of saveFile method
-} // end of class BankUtility
+} // end of class com.portfolio.roxas.BankUtility

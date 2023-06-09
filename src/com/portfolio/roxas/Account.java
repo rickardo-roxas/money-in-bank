@@ -1,3 +1,5 @@
+package com.portfolio.roxas;
+
 import javax.swing.*;
 import java.io.*;
 import java.time.LocalDateTime;
@@ -8,7 +10,7 @@ import java.util.List;
 /**
  * @author Johan Rickardo Roxas
  * @version 1.00 (2023/06/01)
- * Template for Account object.
+ * Template for com.portfolio.roxas.Account object.
  */
 public class Account {
 
@@ -28,7 +30,7 @@ public class Account {
     private String accountName;
 
     /**
-     * Account number (XXX XXX XXXX)
+     * com.portfolio.roxas.Account number (XXX XXX XXXX)
      */
     private String accountNumber;
 
@@ -38,7 +40,7 @@ public class Account {
     private double balance;
 
     /**
-     * Transaction of current account
+     * com.portfolio.roxas.Transaction of current account
      */
     private final List<Transaction> transactions = new ArrayList<>();
 
@@ -58,7 +60,7 @@ public class Account {
     private BufferedReader inputStream;
 
     /**
-     * Constructs an object of Account with default values.
+     * Constructs an object of com.portfolio.roxas.Account with default values.
      */
     public Account() {
         bank = "BPI";
@@ -66,10 +68,10 @@ public class Account {
         accountName = "Savings";
         accountNumber = "123 567 8900";
         balance = 10000.00;
-    } // end of Account default constructor
+    } // end of com.portfolio.roxas.Account default constructor
 
     /**
-     * Constructs an object of Account with user-defined values
+     * Constructs an object of com.portfolio.roxas.Account with user-defined values
      * @param bank given bank company
      * @param accountHolder given name of account holder
      * @param accountNumber given account number
@@ -81,7 +83,7 @@ public class Account {
         this.accountName = accountName;
         this.accountNumber = accountNumber;
         this.balance = balance;
-    } // end of Account constructor
+    } // end of com.portfolio.roxas.Account constructor
 
     /**
      * Mutates the state of the bank attribute
@@ -164,7 +166,7 @@ public class Account {
     } // end of getBalance accessor method
 
     /**
-     * Concatenates the attribute states of Account
+     * Concatenates the attribute states of com.portfolio.roxas.Account
      * @return states as comma-separated values
      */
     public String toString() {
@@ -223,7 +225,7 @@ public class Account {
 
     /**
      * Transfers amount to another account
-     * @param recipient Account to be given
+     * @param recipient com.portfolio.roxas.Account to be given
      * @param amount amount to be transferred
      * @throws Exception if exception or error occurs
      */
