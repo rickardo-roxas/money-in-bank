@@ -1871,7 +1871,7 @@ public class Main extends JFrame {
         // Action Listeners
         // Left Panel Buttons
         accountButton.addActionListener(e -> {
-            refresh();
+            SwingUtilities.updateComponentTreeUI(this);
             cardLayout1.show(cardPanel, "1");
         }); // end of ActionListener for accountButton
         depositButton.addActionListener(e -> cardLayout1.show(cardPanel,"2"));
@@ -1882,8 +1882,14 @@ public class Main extends JFrame {
         signOutButton.addActionListener(e -> System.exit(0));
 
         // Center Panel Arrows
-        leftArrowButton.addActionListener(e -> cardLayout2.previous(accountCardPanel));
-        rightArrowButton.addActionListener(e -> cardLayout2.next(accountCardPanel));
+        leftArrowButton.addActionListener(e -> {
+            cardPanel.revalidate();
+            cardLayout2.previous(accountCardPanel);
+        });
+        rightArrowButton.addActionListener(e -> {
+            cardPanel.revalidate();
+            cardLayout2.next(accountCardPanel);
+        });
 
         // Deposit Buttons
         // Deposit Combo Box
@@ -1918,7 +1924,7 @@ public class Main extends JFrame {
                 public void keyTyped(KeyEvent e) {
                     String value = depositAmountTextField.getText();
                     if ((e.getKeyChar() >= '0' && e.getKeyChar() <= '9') || e.getKeyChar() == VK_BACK_SPACE
-                        || e.getKeyChar() == VK_PERIOD || e.getKeyChar() == VK_DECIMAL){
+                            || e.getKeyChar() == VK_PERIOD || e.getKeyChar() == VK_DECIMAL){
                         depositAmountTextField.setEditable(true);
                         // label.setText("");
                     } else {
