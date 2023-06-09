@@ -2192,6 +2192,13 @@ public class Main extends JFrame {
             withdrawAccountComboBox.setSelectedItem(null);
             withdrawAmountTextField.setEnabled(false);
             acceptWithdrawalButton.setEnabled(false);
+            withdrawAmountTextField.setEnabled(true);
+            fiveHundredButton.setEnabled(false);
+            oneThousandButton.setEnabled(false);
+            oneThousandFiveButton.setEnabled(false);
+            twoThousandButton.setEnabled(false);
+            threeThousandButton.setEnabled(false);
+            fiveThousandButton.setEnabled(false);
         }); // end of ActionListener for clearWithdrawalButton
 
         // Transaction Panel Buttons
